@@ -1,0 +1,41 @@
+#top_box .navbtn i,.index_default .tit i.arr,#top_box .menber i,#top_box .searchform_box .searchform .btn_search,.topcategories li i{ background-image:none;}
+#top_box,#top_box .menber a, #top_box .cart_txt a, #top_box .categories_txt a{border-bottom:0;}
+#top_box{ height:auto;}
+#top_box .top_wrap{ padding-left:0; height:44px; background:#fff;}
+#top_box #logo{ height:44px;  display:table; width:52%; float:left; position:relative;}
+#top_box #logo a{ height:44px;padding-left:10px; display:table-cell; text-align:center;  line-height:44px;}
+#top_box #logo img{ max-height:65%; max-width:80%;vertical-align:middle; }
+#top_box .navbtn{float:left; width:12%;text-align:center;}
+#top_box .navbtn i,#top_box .navbtn a i{ width:25px;height:25px; display:inline-block;  line-height:25px; margin-top:9px; font-size:14px; color:#fff; border-radius:50%; background:#000; }
+#top_box .menber a i,#top_box .help a i{ font-size:18px;}
+#top_box .help a i{ line-height:28px; font-size:20px;}
+.topsearchform{ margin:0; padding:10px 0;display:none; position:fixed; top:44px; left:0; width:100%; background:#fff; z-index:99;}
+.topsearchform .searchform_box{ margin-top:0;}
+.topsearchform .searchform{ height:auto; margin:0 10px; border:0; overflow:hidden; padding:0 20% 0 0; background:#fff;}
+.topsearchform .searchform .search_input{ height:28px; line-height:28px; text-indent:5px; border-radius:28px; border:1px solid #9a9a9a;}
+.topsearchform .searchform .btn_search{ height:30px; width:auto; background:#fff; font-size:14px; line-height:28px; color:#4b4b4b; padding:0; margin:0;}
+
+#body_box{ padding-top:44px;}
+.index_default{ padding-top:34px !important;}
+.index_default .tit{ background:#f1f1f1; border:0; padding:0 10px; color:#000; border-bottom:1px solid #000;}
+.index_default .tit .more{ float:right; color:#aaa; font-weight:bold; font-size:12px;}
+.index_default .pro_deals .tit a{color:#000; font-weight:bold;}
+.index_default .homead{ border:1px solid #dadada;}
+.index_default .homead img{ width:100%;}
+#carousel .tc-paging-item{background:#c9c9c9 !important;}
+#carousel .tc-paging-item.current{ background:#8a8a8a !important; }
+
+
+
+.topcategorieswrap{width:100%;position:absolute; top:44px; left:0; z-index:999; display:none;}
+.topcategorieswrapbg{background:#000; opacity:0.5;}
+.topcategories{ width:80%; background:#fff; position:absolute; top:0; left:0; }
+.topcategories li{ border-bottom:1px solid #eaeaea; line-height:42px; padding:0 10px; margin:0 10px; position:relative;}
+.topcategories .logo{ height:44px; line-height:44px; background:#274a60;}
+.topcategories .logo img{ max-height:25px; vertical-align:middle;}
+.topcategories li a{ display:block;}
+.topcategories li i{ font-size:16px; color:#274a60; margin:0 5px 0 0; position:relative; top:1px;}
+.topcategories li i.arr{ height:13px; position:absolute; right:10px; top:50%; margin-top:-6px; font-size:13px;}
+
+#top_box .cart_txt a i span{ top:-4px; right:-4px;}
+

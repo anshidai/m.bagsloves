@@ -1,0 +1,2176 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Shipment - m1736.newdemo.zhcart.com</title>
+        <meta content="charset=utf-8" />
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <meta content="false" id="twcClient" name="twcClient" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon-precomposed" href="images/touch_icon_57.png" />
+        <link rel="apple-touch-icon" size="72x72" href="images/touch_icon_72.png" />
+        <link rel="apple-touch-icon" size="114x114" href="images/touch_icon_114.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link href="css/tips.css" type="text/css"  rel="stylesheet" />
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/reLayout.js"></script>
+        <script type="text/javascript" src="js/common.js"></script>
+        <script type="text/javascript" src="js/jq.puzz.js"></script>
+        <script type="text/javascript" src="js/jquery.prompt.min.js"></script>
+        <script type="text/javascript" src="js/iscroll.js"></script>
+        <script type="text/javascript" src="js/gentimer.js"></script>
+        <script type="text/javascript" src="js/dialog.js"></script>
+    </head>
+
+    <body>
+                <div id="top_box2">
+            <a href="/"><img src="css/img/order-home-icon.png" class="ordertophomeicon"></a>
+            <span class="pic"><img src="css/img/shopping-cart_secure_checkout.png"></span></div>
+        <div class="clear"></div>
+<div id="body_box_1" class="order_add common_top">
+    <script type="text/javascript">
+    var state_str = '[]';
+    var countryState=eval("("+state_str+")");
+    function changeCountryToChangeSate(country_id,state_td,state_name)
+    {
+        if(!state_name)
+            state_name = 'state'
+        var state = $('#'+state_td).find('input[name='+state_name+']').val();
+        if(!state)
+        {
+            state = $('#'+state_td).find('select[name='+state_name+']').val();
+        }
+        if(countryState[country_id])
+        {
+            var state = $('#'+state_td).find('input[name='+state_name+']').val();
+            if(!state)
+            {
+                state = $('#'+state_td).find('select[name='+state_name+']').val();
+            }
+            var str='<div class="select"><select name="'+state_name+'">';
+            for(key in countryState[country_id])
+            {
+                if(state && countryState[country_id][key].base_name.toLowerCase()==state.toLowerCase())
+                str += '<option value="'+countryState[country_id][key].base_name+'" selected="selected">'+countryState[country_id][key].base_name+'</option>';
+                else
+                str += '<option value="'+countryState[country_id][key].base_name+'">'+countryState[country_id][key].base_name+'</option>';
+            }
+            str +='</select></div>';
+            $('#'+state_td).html(str);
+        }
+        else
+        {
+            if(!state)
+                state='';
+            $('#'+state_td).html('<input type="text" name="'+state_name+'" value="'+state+'" />');
+        }
+        var myreg = /^\++[0-9]*$/;
+        var inputVal = jQuery.trim($("input[name='mobilephone']").val());
+        if (myreg.test(inputVal) && inputVal.length < 7) {
+            if ($("option[value=" + country_id + "]:selected").attr("codes")) {
+                $("input[name='mobilephone']").val("+" + $("option[value=" + country_id + "]:selected").attr("codes") + " ");
+            }
+        } else if (!myreg.test(inputVal) && inputVal.length < 7) {
+            if ($("option[value=" + country_id + "]:selected").attr("codes")) {
+                $("input[name='mobilephone']").val("+" + $("option[value=" + country_id + "]:selected").attr("codes") + " ");
+            }
+        }
+        var inputVal = jQuery.trim($("input[name='billing_mobilephone']").val());
+        if (myreg.test(inputVal) && inputVal.length < 7) {
+            if ($("option[value=" + country_id + "]:selected").attr("codes")) {
+                $("input[name='billing_mobilephone']").val("+" + $("option[value=" + country_id + "]:selected").attr("codes") + " ");
+            }
+        } else if (!myreg.test(inputVal) && inputVal.length < 7) {
+            if ($("option[value=" + country_id + "]:selected").attr("codes")) {
+                $("input[name='billing_mobilephone']").val("+" + $("option[value=" + country_id + "]:selected").attr("codes") + " ");
+            }
+        }
+    }
+</script>
+<div class="wrap common_payment_box">
+	<div class="progress_bar_box">
+    	<div class="progress_bar_bg"><div><span class=""></span></div><div><span></span></div></div>
+    	<div class="progress_point"><span class="pointlf on"></span><span class="pointct"></span><span class="pointrt"></span></div>
+        <p class="progress_txt"><span class="lf">Cart</span><span class="ct">Shipping&amp;Payment</span><span class="rt">Success</span></p>
+    </div>
+        <dl>
+    	<dt>Shipping Address</dt>
+        <dd>
+                                    <div class="select">
+            <select id="shipping_address_id" name="shipping_address_id">
+                                                  <option value="1" data_id="39" selected="selected">ande afea( naeia beiig shi &nbsp; shie &nbsp; aea &nbsp; Canada&nbsp;01001 &nbsp;+86 232424&nbsp; &nbsp;affe@163.com)</option>
+                                                                                </select>
+            </div>
+            <div class="shipping_add">
+            <input valign="center" id="shipping_address" name="shipping_address" type="hidden" value="1" data_id="39" checked="checked"/>
+            <a href="javascript:;" data_id="1" class="btn_edit"> Edit</a> / 
+            <a href="javascript:;" class="btn_new_shipping_address">Add a New Shipping Address</a>
+            </div>
+                                </dd>
+    </dl>
+    <dl>
+    	<dt>Shipping Method</dt>
+        <dd class="shipping_box">
+            <ul id="shippinglist" class="shippinglist">  
+            </ul>
+            <span id="shippingmethodselected">Please Select Shipping Method</span>
+            <span id="shipfee" class="order_add_span red"></span>
+            <span id="shipdiscout" class="shipdiscout"></span>
+            <div id="insurance_box" style="display: none;" class="order_add_span"><input id="insurance" name="insurance" type="checkbox" value="1" /> Add Shipping Insurance <font class="red">US$ <font id="insurance_price" class="red"></font></font></div>
+        </dd>
+    </dl>
+    <dl class="common_code_box creditbox" style="display: none;">
+    	<dt>
+            <div class="code">
+                <div class="code_txt">Have a Coupon Code ?<i></i></div>
+            </div>
+        </dt>
+        <dd>
+            <p class="price"><font class="red">Total:<span id="total_useful_credit" class="red">0</span></font>   (100 point = US$ 1.00)</p>
+            <p>At most <span class="col_red" id="max_exp_credit">0</span> points can be used this time</p>
+            <input type="text" name="use_credit" class="credit_input" id="use_credit_text"/>
+            <input type="button" class="use_btn" value="use" />
+            <div class="credit_save">
+            <p>save : <font class="exp_amount red">US$ 0</font></p>
+            </div>
+            
+        </dd>
+    </dl>
+    <dl>
+    	<dt>Payment Method</dt>
+        <dd class="paymentmethod_box">
+            <div class="select">
+            <select id="payment_id" name="payment_id">
+                 <option value="">Please Select Payment Method</option>
+                                                   <option value="1" data_id="1">Paypal</option>
+                                                                    <option value="11" data_id="1">Western Union</option>
+                                                                    <option value="12" data_id="0">MoneyGram</option>
+                                                </select>
+            </div>
+        </dd>
+    </dl>
+        <dl class="common_leavemessage">
+    	<dt><div id="message_header"><i></i><span class="plus">+</span> Leave a Message</div></dt>
+        <dd>
+              <div id="message_box" style="display: none;">
+              <textarea id="order_remark" name="order_remark"></textarea>
+              </div>
+        </dd>
+    </dl>
+	<!--
+    <dl class="cartsummary">
+    	<dt>Cart Summary</dt>
+        <dd>
+                        <div class="pro bor_bottom">
+                <a href="/Sheath-Flower-Chapel-Train-Ivory-Wedding-Dress-For-Bride-with-Sweetheart-Strapless-Neck-p10396.html" class="pic"><img src="/upload/thumb/84x84/goods/test/wedding/56278848-68d5-439b-a455-0d62c1797400.jpg" alt="" /></a>
+                <a class="name" href="/Sheath-Flower-Chapel-Train-Ivory-Wedding-Dress-For-Bride-with-Sweetheart-Strapless-Neck-p10396.html">Sheath Flower Chapel Train Ivory Wedding Dress For Bride with Sweetheart Strapless Neck</a>
+                <div class="price">US$<strong> 169.99</strong></div>
+                <div class="qty">Qty: 1</div>
+                <div class="styles">    
+                                        <span class="order_detail_sku">Size:xl</span>
+                                        <span class="order_detail_sku">Color:write</span>
+                                </div>
+            </div>
+                                                            <div class="pro bor_bottom">
+                <a href="/Court-Train-Ivory-Wedding-Dress-For-Bride-with-V-Neck-Mermaid-Buttons-p10406.html" class="pic"><img src="/upload/thumb/84x84/goods/test/WeddingDresses/d3731d8a-4ade-46b5-a47a-4b0bfff080cf.jpg" alt="" /></a>
+                <a class="name" href="/Court-Train-Ivory-Wedding-Dress-For-Bride-with-V-Neck-Mermaid-Buttons-p10406.html">Court Train Ivory Wedding Dress For Bride with V-Neck Mermaid Buttons</a>
+                <div class="price">US$<strong> 322.11</strong></div>
+                <div class="qty">Qty: 1</div>
+                <div class="styles">    
+                                        <span class="order_detail_sku">Size:xl</span>
+                                        <span class="order_detail_sku">Color:write</span>
+                                </div>
+            </div>
+                                                                     </dd>
+    </dl>
+	-->
+	<dl class="cartsummary">
+        <dt>Cart Summary</dt>
+        <dd>
+            <table>
+                <tr>
+                    <td class="n_images">
+                                                <!--{if $smarty.foreach.goodsForeach.iteration <4}-->
+                        <img src="/upload/thumb/54x54/goods/test/wedding/56278848-68d5-439b-a455-0d62c1797400.jpg" alt="" />
+                        <!--{/if}-->
+                                                <!--{if $smarty.foreach.goodsForeach.iteration <4}-->
+                        <img src="/upload/thumb/54x54/goods/test/WeddingDresses/d3731d8a-4ade-46b5-a47a-4b0bfff080cf.jpg" alt="" />
+                        <!--{/if}-->
+                                                
+                    </td>
+                    <td class="n_total" align="right" valign="middle">
+                        <div class="n_right">
+                            <span class="span_yd"><a href="/m-cart-list.html"> <i class="yd"></i> <i class="yd"></i> <i class="yd"></i></a></span>
+                            <span class="span_qty"><a href="/m-cart-list.html">(2)</a></span>
+                            <span class="span_jt"><a href="/m-cart-list.html"><i class="jt"></i></a></span>
+                        </div>
+                    </td>                   
+                </tr>
+            </table>
+        </dd>
+    </dl>
+    <dl class="cartsummary noborder">
+        <dd>
+            <p class="totalprice" style="display:none;">Subtotal(2 item) <span class="cartsummary_price">US$ <font id="cart_totalprice">492.10</font></span></p>
+            <p class="totalprice">Product Price(2 item) <span class="cartsummary_price">US$ <font id="cart_totalprice">492.10</font></span></p>
+            <p class="totalprice">Discount Amount <span class="cartsummary_price">US$ <font id="cart_Preferential_amount">0</font></span></p>
+            <p class="totalprice">Shipping charges <span class="cartsummary_price">US$ <font id="shipping_price">0</font></span></p>
+            <p class="totalprice">Shipping Insurance <span class="cartsummary_price">US$ <font id="shipping_insurance">0</font></span></p>
+            <p class="totalprice">Credits Value <span class="cartsummary_price">US$ <font id="credits_value_amount">0</font></span></p>
+            <p class="totalprice">Payment Fee <span class="cartsummary_price">US$ <font id="payment_fee">0</span></font></p>
+            <p class="totalprice">Grand Total <span class="cartsummary_price">US$ <font id="order_totalprice">492.10</font></span></p>
+        </dd>
+    </dl>
+    <input id="totalsaveprice" type="hidden" value="0.00" />
+    <button class="common_btn2 checkout">Place Your Order</button>
+    <div id="order_payment" style="display: none;"></div>
+        <div id="newaddressbox" style="display: none">
+
+    </div>
+    </div>
+<iframe id="payiframe" class="payiframe" src=""></iframe>
+<script>    
+    var newaddress_str = '<div class="checkout_box">'+
+              '<h3>New a shipping address</h3>'+
+              '<ul class="newaddress">'+
+                 '<li>'+
+                   '<div class="firstname">'+
+                       '<span class="must">*</span><label>First Name</label><br>'+
+                       '<input type="text" name="first_name" />'+
+                   '</div>'+
+                   '<div class="lastname">'+
+                       '<span class="must">*</span><label>Last Name</label><br>'+
+                       '<input type="text" name="last_name" />'+
+                   '</div>'+
+                 '</li>'+
+                 '<li>'+
+                   '<span class="must">*</span><label>Select Your Country/Region</label><br>'+
+                   '<div class="select"><select id="add_new_shipping_address" name="country_id" autocomplete="false" onchange="changeCountryToChangeSate(this.value,\'newaddress_state_box\')">'+
+                        '<option value="0">Please select </option>'+
+                        ''+
+                        '<option codes="93" value="1">'+"Afghanistan"+'</option>'+
+                        ''+
+                        '<option codes="358" value="2">'+"Aland Islands"+'</option>'+
+                        ''+
+                        '<option codes="355" value="3">'+"Albania"+'</option>'+
+                        ''+
+                        '<option codes="213" value="4">'+"Algeria"+'</option>'+
+                        ''+
+                        '<option codes="1684" value="5">'+"American Samoa"+'</option>'+
+                        ''+
+                        '<option codes="376" value="6">'+"Andorra"+'</option>'+
+                        ''+
+                        '<option codes="244" value="7">'+"Angola"+'</option>'+
+                        ''+
+                        '<option codes="1264" value="8">'+"Anguilla"+'</option>'+
+                        ''+
+                        '<option codes="672" value="9">'+"Antarctica"+'</option>'+
+                        ''+
+                        '<option codes="1268" value="10">'+"Antigua And Barbuda"+'</option>'+
+                        ''+
+                        '<option codes="54" value="11">'+"Argentina"+'</option>'+
+                        ''+
+                        '<option codes="374" value="12">'+"Armenia"+'</option>'+
+                        ''+
+                        '<option codes="297" value="13">'+"Aruba"+'</option>'+
+                        ''+
+                        '<option codes="61" value="14">'+"Australia"+'</option>'+
+                        ''+
+                        '<option codes="43" value="15">'+"Austria"+'</option>'+
+                        ''+
+                        '<option codes="994" value="16">'+"Azerbaijan"+'</option>'+
+                        ''+
+                        '<option codes="1242" value="17">'+"Bahamas"+'</option>'+
+                        ''+
+                        '<option codes="973" value="18">'+"Bahrain"+'</option>'+
+                        ''+
+                        '<option codes="880" value="19">'+"Bangladesh"+'</option>'+
+                        ''+
+                        '<option codes="1246" value="20">'+"Barbados"+'</option>'+
+                        ''+
+                        '<option codes="375" value="21">'+"Belarus"+'</option>'+
+                        ''+
+                        '<option codes="32" value="22">'+"Belgium"+'</option>'+
+                        ''+
+                        '<option codes="501" value="23">'+"Belize"+'</option>'+
+                        ''+
+                        '<option codes="229" value="24">'+"Benin"+'</option>'+
+                        ''+
+                        '<option codes="1441" value="25">'+"Bermuda"+'</option>'+
+                        ''+
+                        '<option codes="975" value="26">'+"Bhutan"+'</option>'+
+                        ''+
+                        '<option codes="591" value="27">'+"Bolivia"+'</option>'+
+                        ''+
+                        '<option codes="387" value="28">'+"Bosnia And Herzegovina"+'</option>'+
+                        ''+
+                        '<option codes="267" value="29">'+"Botswana"+'</option>'+
+                        ''+
+                        '<option codes="" value="30">'+"Bouvet Island"+'</option>'+
+                        ''+
+                        '<option codes="55" value="31">'+"Brazil"+'</option>'+
+                        ''+
+                        '<option codes="246" value="32">'+"British Indian Ocean Territory"+'</option>'+
+                        ''+
+                        '<option codes="673" value="33">'+"Brunei Darussalam"+'</option>'+
+                        ''+
+                        '<option codes="359" value="34">'+"Bulgaria"+'</option>'+
+                        ''+
+                        '<option codes="226" value="35">'+"Burkina Faso"+'</option>'+
+                        ''+
+                        '<option codes="257" value="36">'+"Burundi"+'</option>'+
+                        ''+
+                        '<option codes="855" value="37">'+"Cambodia"+'</option>'+
+                        ''+
+                        '<option codes="237" value="38">'+"Cameroon"+'</option>'+
+                        ''+
+                        '<option codes="1" value="39">'+"Canada"+'</option>'+
+                        ''+
+                        '<option codes="238" value="40">'+"Cape Verde"+'</option>'+
+                        ''+
+                        '<option codes="1345" value="41">'+"Cayman Islands"+'</option>'+
+                        ''+
+                        '<option codes="236" value="42">'+"Central African Republic"+'</option>'+
+                        ''+
+                        '<option codes="235" value="43">'+"Chad"+'</option>'+
+                        ''+
+                        '<option codes="56" value="44">'+"Chile"+'</option>'+
+                        ''+
+                        '<option codes="86" value="45">'+"China"+'</option>'+
+                        ''+
+                        '<option codes="61" value="46">'+"Christmas Island"+'</option>'+
+                        ''+
+                        '<option codes="61" value="47">'+"Cocos (Keeling) Islands"+'</option>'+
+                        ''+
+                        '<option codes="57" value="48">'+"Colombia"+'</option>'+
+                        ''+
+                        '<option codes="269" value="49">'+"Comoros"+'</option>'+
+                        ''+
+                        '<option codes="682" value="50">'+"Cook Islands"+'</option>'+
+                        ''+
+                        '<option codes="506" value="51">'+"Costa Rica"+'</option>'+
+                        ''+
+                        '<option codes="225" value="52">'+"Cote D\'ivoire"+'</option>'+
+                        ''+
+                        '<option codes="385" value="53">'+"Croatia"+'</option>'+
+                        ''+
+                        '<option codes="53" value="54">'+"Cuba"+'</option>'+
+                        ''+
+                        '<option codes="357" value="55">'+"Cyprus"+'</option>'+
+                        ''+
+                        '<option codes="420" value="56">'+"Czech Republic"+'</option>'+
+                        ''+
+                        '<option codes="243" value="57">'+"Democratic Republic of the Congo"+'</option>'+
+                        ''+
+                        '<option codes="45" value="58">'+"Denmark"+'</option>'+
+                        ''+
+                        '<option codes="253" value="59">'+"Djibouti"+'</option>'+
+                        ''+
+                        '<option codes="1767" value="60">'+"Dominica"+'</option>'+
+                        ''+
+                        '<option codes="1809" value="61">'+"Dominican Republic"+'</option>'+
+                        ''+
+                        '<option codes="593" value="62">'+"Ecuador"+'</option>'+
+                        ''+
+                        '<option codes="20" value="63">'+"Egypt"+'</option>'+
+                        ''+
+                        '<option codes="503" value="64">'+"El Salvador"+'</option>'+
+                        ''+
+                        '<option codes="240" value="65">'+"Equatorial Guinea"+'</option>'+
+                        ''+
+                        '<option codes="291" value="66">'+"Eritrea"+'</option>'+
+                        ''+
+                        '<option codes="372" value="67">'+"Estonia"+'</option>'+
+                        ''+
+                        '<option codes="251" value="68">'+"Ethiopia"+'</option>'+
+                        ''+
+                        '<option codes="500" value="69">'+"Falkland Islands (malvinas)"+'</option>'+
+                        ''+
+                        '<option codes="298" value="70">'+"Faroe Islands"+'</option>'+
+                        ''+
+                        '<option codes="679" value="71">'+"Fiji"+'</option>'+
+                        ''+
+                        '<option codes="358" value="72">'+"Finland"+'</option>'+
+                        ''+
+                        '<option codes="33" value="73">'+"France"+'</option>'+
+                        ''+
+                        '<option codes="594" value="74">'+"French Guiana"+'</option>'+
+                        ''+
+                        '<option codes="689" value="75">'+"French Polynesia"+'</option>'+
+                        ''+
+                        '<option codes="596" value="76">'+"French Southern Territories"+'</option>'+
+                        ''+
+                        '<option codes="241" value="77">'+"Gabon"+'</option>'+
+                        ''+
+                        '<option codes="220" value="78">'+"Gambia"+'</option>'+
+                        ''+
+                        '<option codes="995" value="79">'+"Georgia"+'</option>'+
+                        ''+
+                        '<option codes="49" value="80">'+"Germany"+'</option>'+
+                        ''+
+                        '<option codes="233" value="81">'+"Ghana"+'</option>'+
+                        ''+
+                        '<option codes="350" value="82">'+"Gibraltar"+'</option>'+
+                        ''+
+                        '<option codes="30" value="83">'+"Greece"+'</option>'+
+                        ''+
+                        '<option codes="299" value="84">'+"Greenland"+'</option>'+
+                        ''+
+                        '<option codes="1473" value="85">'+"Grenada"+'</option>'+
+                        ''+
+                        '<option codes="590" value="86">'+"Guadeloupe"+'</option>'+
+                        ''+
+                        '<option codes="1671" value="87">'+"Guam"+'</option>'+
+                        ''+
+                        '<option codes="502" value="88">'+"Guatemala"+'</option>'+
+                        ''+
+                        '<option codes="224" value="89">'+"Guinea"+'</option>'+
+                        ''+
+                        '<option codes="245" value="90">'+"Guinea-bissau"+'</option>'+
+                        ''+
+                        '<option codes="592" value="91">'+"Guyana"+'</option>'+
+                        ''+
+                        '<option codes="509" value="92">'+"Haiti"+'</option>'+
+                        ''+
+                        '<option codes="" value="93">'+"Heard Island and McDonald Islands"+'</option>'+
+                        ''+
+                        '<option codes="379" value="94">'+"Holy See (vatican City State)"+'</option>'+
+                        ''+
+                        '<option codes="504" value="95">'+"Honduras"+'</option>'+
+                        ''+
+                        '<option codes="852" value="96">'+"Hong Kong"+'</option>'+
+                        ''+
+                        '<option codes="36" value="97">'+"Hungary"+'</option>'+
+                        ''+
+                        '<option codes="354" value="98">'+"Iceland"+'</option>'+
+                        ''+
+                        '<option codes="91" value="99">'+"India"+'</option>'+
+                        ''+
+                        '<option codes="62" value="100">'+"Indonesia"+'</option>'+
+                        ''+
+                        '<option codes="98" value="101">'+"Iran"+'</option>'+
+                        ''+
+                        '<option codes="964" value="102">'+"Iraq"+'</option>'+
+                        ''+
+                        '<option codes="353" value="103">'+"Ireland"+'</option>'+
+                        ''+
+                        '<option codes="44" value="104">'+"Isle Of Man"+'</option>'+
+                        ''+
+                        '<option codes="972" value="105">'+"Israel"+'</option>'+
+                        ''+
+                        '<option codes="39" value="106">'+"Italy"+'</option>'+
+                        ''+
+                        '<option codes="1876" value="107">'+"Jamaica"+'</option>'+
+                        ''+
+                        '<option codes="81" value="108">'+"Japan"+'</option>'+
+                        ''+
+                        '<option codes="962" value="109">'+"Jordan"+'</option>'+
+                        ''+
+                        '<option codes="7" value="110">'+"Kazakhstan"+'</option>'+
+                        ''+
+                        '<option codes="254" value="111">'+"Kenya"+'</option>'+
+                        ''+
+                        '<option codes="686" value="112">'+"Kiribati"+'</option>'+
+                        ''+
+                        '<option codes="82" value="113">'+"Korea"+'</option>'+
+                        ''+
+                        '<option codes="965" value="114">'+"Kuwait"+'</option>'+
+                        ''+
+                        '<option codes="996" value="115">'+"Kyrgyzstan"+'</option>'+
+                        ''+
+                        '<option codes="856" value="116">'+"Lao People\'s Democratic Republic"+'</option>'+
+                        ''+
+                        '<option codes="371" value="117">'+"Latvia"+'</option>'+
+                        ''+
+                        '<option codes="961" value="118">'+"Lebanon"+'</option>'+
+                        ''+
+                        '<option codes="266" value="119">'+"Lesotho"+'</option>'+
+                        ''+
+                        '<option codes="231" value="120">'+"Liberia"+'</option>'+
+                        ''+
+                        '<option codes="218" value="121">'+"Libyan Arab Jamahiriya"+'</option>'+
+                        ''+
+                        '<option codes="423" value="122">'+"Liechtenstein"+'</option>'+
+                        ''+
+                        '<option codes="370" value="123">'+"Lithuania"+'</option>'+
+                        ''+
+                        '<option codes="352" value="124">'+"Luxembourg"+'</option>'+
+                        ''+
+                        '<option codes="853" value="125">'+"Macao"+'</option>'+
+                        ''+
+                        '<option codes="389" value="126">'+"Macedonia"+'</option>'+
+                        ''+
+                        '<option codes="261" value="127">'+"Madagascar"+'</option>'+
+                        ''+
+                        '<option codes="265" value="128">'+"Malawi"+'</option>'+
+                        ''+
+                        '<option codes="60" value="129">'+"Malaysia"+'</option>'+
+                        ''+
+                        '<option codes="960" value="130">'+"Maldives"+'</option>'+
+                        ''+
+                        '<option codes="223" value="131">'+"Mali"+'</option>'+
+                        ''+
+                        '<option codes="356" value="132">'+"Malta"+'</option>'+
+                        ''+
+                        '<option codes="692" value="133">'+"Marshall Islands"+'</option>'+
+                        ''+
+                        '<option codes="596" value="134">'+"Martinique"+'</option>'+
+                        ''+
+                        '<option codes="222" value="135">'+"Mauritania"+'</option>'+
+                        ''+
+                        '<option codes="230" value="136">'+"Mauritius"+'</option>'+
+                        ''+
+                        '<option codes="269" value="137">'+"Mayotte"+'</option>'+
+                        ''+
+                        '<option codes="52" value="138">'+"Mexico"+'</option>'+
+                        ''+
+                        '<option codes="691" value="139">'+"Micronesia"+'</option>'+
+                        ''+
+                        '<option codes="373" value="140">'+"Moldova"+'</option>'+
+                        ''+
+                        '<option codes="377" value="141">'+"Monaco"+'</option>'+
+                        ''+
+                        '<option codes="976" value="142">'+"Mongolia"+'</option>'+
+                        ''+
+                        '<option codes="382" value="143">'+"Montenegro"+'</option>'+
+                        ''+
+                        '<option codes="1664" value="144">'+"Montserrat"+'</option>'+
+                        ''+
+                        '<option codes="212" value="145">'+"Morocco"+'</option>'+
+                        ''+
+                        '<option codes="258" value="146">'+"Mozambique"+'</option>'+
+                        ''+
+                        '<option codes="95" value="147">'+"Myanmar"+'</option>'+
+                        ''+
+                        '<option codes="264" value="148">'+"Namibia"+'</option>'+
+                        ''+
+                        '<option codes="674" value="149">'+"Nauru"+'</option>'+
+                        ''+
+                        '<option codes="977" value="150">'+"Nepal"+'</option>'+
+                        ''+
+                        '<option codes="31" value="151">'+"Netherlands"+'</option>'+
+                        ''+
+                        '<option codes="599" value="152">'+"Netherlands Antilles"+'</option>'+
+                        ''+
+                        '<option codes="687" value="153">'+"New Caledonia"+'</option>'+
+                        ''+
+                        '<option codes="64" value="154">'+"New Zealand"+'</option>'+
+                        ''+
+                        '<option codes="505" value="155">'+"Nicaragua"+'</option>'+
+                        ''+
+                        '<option codes="227" value="156">'+"Niger"+'</option>'+
+                        ''+
+                        '<option codes="234" value="157">'+"Nigeria"+'</option>'+
+                        ''+
+                        '<option codes="683" value="158">'+"Niue"+'</option>'+
+                        ''+
+                        '<option codes="6723" value="159">'+"Norfolk Island"+'</option>'+
+                        ''+
+                        '<option codes="850" value="160">'+"North Korea"+'</option>'+
+                        ''+
+                        '<option codes="1" value="161">'+"Northern Mariana Islands"+'</option>'+
+                        ''+
+                        '<option codes="47" value="162">'+"Norway"+'</option>'+
+                        ''+
+                        '<option codes="968" value="163">'+"Oman"+'</option>'+
+                        ''+
+                        '<option codes="92" value="164">'+"Pakistan"+'</option>'+
+                        ''+
+                        '<option codes="680" value="165">'+"Palau"+'</option>'+
+                        ''+
+                        '<option codes="970" value="166">'+"Palestinian Territory"+'</option>'+
+                        ''+
+                        '<option codes="507" value="167">'+"Panama"+'</option>'+
+                        ''+
+                        '<option codes="63" value="168">'+"Papua New Guinea"+'</option>'+
+                        ''+
+                        '<option codes="595" value="169">'+"Paraguay"+'</option>'+
+                        ''+
+                        '<option codes="51" value="170">'+"Peru"+'</option>'+
+                        ''+
+                        '<option codes="63" value="171">'+"Philippines"+'</option>'+
+                        ''+
+                        '<option codes="64" value="172">'+"Pitcairn Islands"+'</option>'+
+                        ''+
+                        '<option codes="48" value="173">'+"Poland"+'</option>'+
+                        ''+
+                        '<option codes="351" value="174">'+"Portugal"+'</option>'+
+                        ''+
+                        '<option codes="1787" value="175">'+"Puerto Rico"+'</option>'+
+                        ''+
+                        '<option codes="974" value="176">'+"Qatar"+'</option>'+
+                        ''+
+                        '<option codes="242" value="177">'+"Republic of the Congo"+'</option>'+
+                        ''+
+                        '<option codes="262" value="178">'+"Reunion"+'</option>'+
+                        ''+
+                        '<option codes="40" value="179">'+"Romania"+'</option>'+
+                        ''+
+                        '<option codes="7" value="180">'+"Russian Federation"+'</option>'+
+                        ''+
+                        '<option codes="250" value="181">'+"Rwanda"+'</option>'+
+                        ''+
+                        '<option codes="1869" value="182">'+"Saint Kitts And Nevis"+'</option>'+
+                        ''+
+                        '<option codes="1758" value="183">'+"Saint Lucia"+'</option>'+
+                        ''+
+                        '<option codes="1784" value="184">'+"Saint Vincent And The Grenadines"+'</option>'+
+                        ''+
+                        '<option codes="508" value="185">'+"Saint-Pierre and Miquelon"+'</option>'+
+                        ''+
+                        '<option codes="685" value="186">'+"Samoa"+'</option>'+
+                        ''+
+                        '<option codes="378" value="187">'+"San Marino"+'</option>'+
+                        ''+
+                        '<option codes="239" value="188">'+"Sao Tome And Principe"+'</option>'+
+                        ''+
+                        '<option codes="966" value="189">'+"Saudi Arabia"+'</option>'+
+                        ''+
+                        '<option codes="221" value="190">'+"Senegal"+'</option>'+
+                        ''+
+                        '<option codes="381" value="191">'+"Serbia"+'</option>'+
+                        ''+
+                        '<option codes="248" value="192">'+"Seychelles"+'</option>'+
+                        ''+
+                        '<option codes="232" value="193">'+"Sierra Leone"+'</option>'+
+                        ''+
+                        '<option codes="65" value="194">'+"Singapore"+'</option>'+
+                        ''+
+                        '<option codes="421" value="195">'+"Slovakia"+'</option>'+
+                        ''+
+                        '<option codes="386" value="196">'+"Slovenia"+'</option>'+
+                        ''+
+                        '<option codes="677" value="197">'+"Solomon Islands"+'</option>'+
+                        ''+
+                        '<option codes="252" value="198">'+"Somalia"+'</option>'+
+                        ''+
+                        '<option codes="27" value="199">'+"South Africa"+'</option>'+
+                        ''+
+                        '<option codes="995" value="200">'+"South Georgia And The South Sandwich Islands"+'</option>'+
+                        ''+
+                        '<option codes="34" value="201">'+"Spain"+'</option>'+
+                        ''+
+                        '<option codes="94" value="202">'+"Sri Lanka"+'</option>'+
+                        ''+
+                        '<option codes="290" value="203">'+"St. Helena & Dependencies"+'</option>'+
+                        ''+
+                        '<option codes="249" value="204">'+"Sudan"+'</option>'+
+                        ''+
+                        '<option codes="597" value="205">'+"Suriname"+'</option>'+
+                        ''+
+                        '<option codes="47" value="206">'+"Svalbard and Jan Mayen Islands"+'</option>'+
+                        ''+
+                        '<option codes="268" value="207">'+"Swaziland"+'</option>'+
+                        ''+
+                        '<option codes="46" value="208">'+"Sweden"+'</option>'+
+                        ''+
+                        '<option codes="41" value="209">'+"Switzerland"+'</option>'+
+                        ''+
+                        '<option codes="963" value="210">'+"Syrian Arab Republic"+'</option>'+
+                        ''+
+                        '<option codes="886" value="211">'+"Taiwan"+'</option>'+
+                        ''+
+                        '<option codes="992" value="212">'+"Tajikistan"+'</option>'+
+                        ''+
+                        '<option codes="255" value="213">'+"Tanzania"+'</option>'+
+                        ''+
+                        '<option codes="66" value="214">'+"Thailand"+'</option>'+
+                        ''+
+                        '<option codes="670" value="215">'+"Timor-Leste (East Timor)"+'</option>'+
+                        ''+
+                        '<option codes="228" value="216">'+"Togo"+'</option>'+
+                        ''+
+                        '<option codes="690" value="217">'+"Tokelau"+'</option>'+
+                        ''+
+                        '<option codes="676" value="218">'+"Tonga"+'</option>'+
+                        ''+
+                        '<option codes="1868" value="219">'+"Trinidad And Tobago"+'</option>'+
+                        ''+
+                        '<option codes="216" value="220">'+"Tunisia"+'</option>'+
+                        ''+
+                        '<option codes="90" value="221">'+"Turkey"+'</option>'+
+                        ''+
+                        '<option codes="993" value="222">'+"Turkmenistan"+'</option>'+
+                        ''+
+                        '<option codes="1649" value="223">'+"Turks And Caicos Islands"+'</option>'+
+                        ''+
+                        '<option codes="688" value="224">'+"Tuvalu"+'</option>'+
+                        ''+
+                        '<option codes="256" value="225">'+"Uganda"+'</option>'+
+                        ''+
+                        '<option codes="380" value="226">'+"Ukraine"+'</option>'+
+                        ''+
+                        '<option codes="971" value="227">'+"United Arab Emirates"+'</option>'+
+                        ''+
+                        '<option codes="44" value="228">'+"United Kingdom"+'</option>'+
+                        ''+
+                        '<option codes="1" value="229">'+"United States"+'</option>'+
+                        ''+
+                        '<option codes="" value="230">'+"United States Minor Outlying Islands"+'</option>'+
+                        ''+
+                        '<option codes="598" value="231">'+"Uruguay"+'</option>'+
+                        ''+
+                        '<option codes="998" value="232">'+"Uzbekistan"+'</option>'+
+                        ''+
+                        '<option codes="678" value="233">'+"Vanuatu"+'</option>'+
+                        ''+
+                        '<option codes="58" value="234">'+"Venezuela"+'</option>'+
+                        ''+
+                        '<option codes="84" value="235">'+"Viet Nam"+'</option>'+
+                        ''+
+                        '<option codes="1340" value="236">'+"Virgin Islands"+'</option>'+
+                        ''+
+                        '<option codes="681" value="237">'+"Wallis and Futuna"+'</option>'+
+                        ''+
+                        '<option codes="212/213" value="238">'+"Western Sahara"+'</option>'+
+                        ''+
+                        '<option codes="967" value="239">'+"Yemen"+'</option>'+
+                        ''+
+                        '<option codes="338" value="240">'+"Yugoslavia"+'</option>'+
+                        ''+
+                        '<option codes="260" value="241">'+"Zambia"+'</option>'+
+                        ''+
+                        '<option codes="263" value="242">'+"Zimbabwe"+'</option>'+
+                        ''+
+                   '</select></div>'+
+                 '</li>'+
+                 '<li>'+
+                   '<span class="must">*</span><label>Province</label><br>'+
+                   '<div id="newaddress_state_box"><input type="text" name="state" /></div>'+
+                 '</li>'+
+                 '<li>'+
+                   '<span class="must">*</span><label>City</label><br>'+
+                   '<input type="text" name="city" />'+
+                 '</li>'+
+                  '<li>'+
+                   '<span class="must">*</span><label>Address</label><br>'+
+                   '<input type="text" name="address" />'+
+                 '</li>'+                                  
+                 '<li>'+
+                   '<span class="must">*</span><label>ZIP/Postal Code</label><br>'+
+                   '<input type="text" name="postcode" />'+
+                 '</li>'+
+                 '<li>'+
+                   '<span class="must">*</span><label>Phone Number</label><br>'+
+                   '<input type="text" name="mobilephone" />'+
+                 '</li>'+
+                 '<li>'+
+                   '<span class="must">*</span><label>E-mail</label><br>'+
+                   '<input type="text" name="email" value="lba8610@163.com" />'+
+                 '</li>'+                                 
+                 '<li>'+
+                   '<input type="hidden" name="address_id" value="0" />'+
+                   '<div class="clear"></div>'+
+                   '<div class="submit_btn"><a class="common_btn2" href="javascript:;">Sumbit</a></div>'+
+                   '<div class="cancel_btn"><a class="common_btn1" href="javascript:;">Cancel</a></div>'+    
+                   '<div class="clear"></div>'+                 
+                 '</li>'+
+              '</ul>'+
+           '</div>';
+    var newbillingaddress_str = '<div class="checkout_box">'+
+              '<h3>New a Billing address</h3>'+
+              '<ul class="newbillingaddress">'+
+                 '<li>'+
+                   '<div class="firstname">'+
+                       '<span class="must">*</span><label>First Name</label><br>'+
+                       '<input type="text" name="billing_first_name" />'+
+                   '</div>'+
+                   '<div class="lastname">'+
+                       '<span class="must">*</span><label>Last Name</label><br>'+
+                       '<input type="text" name="billing_last_name" />'+
+                   '</div>'+
+                 '</li>'+
+                 '<li>'+
+                   '<span class="must">*</span><label>Select Your Country/Region</label><br>'+
+                   '<div class="select"><select id="add_new_billing_address" name="billing_country_id" autocomplete="false" onchange="changeCountryToChangeSate(this.value,\'newbillingaddress_state_box\',\'billing_state\')">'+
+                        '<option value="0">Please select </option>'+
+                        ''+
+                        '<option codes="93" codes="93" value="1">'+"Afghanistan"+'</option>'+
+                        ''+
+                        '<option codes="358" codes="358" value="2">'+"Aland Islands"+'</option>'+
+                        ''+
+                        '<option codes="355" codes="355" value="3">'+"Albania"+'</option>'+
+                        ''+
+                        '<option codes="213" codes="213" value="4">'+"Algeria"+'</option>'+
+                        ''+
+                        '<option codes="1684" codes="1684" value="5">'+"American Samoa"+'</option>'+
+                        ''+
+                        '<option codes="376" codes="376" value="6">'+"Andorra"+'</option>'+
+                        ''+
+                        '<option codes="244" codes="244" value="7">'+"Angola"+'</option>'+
+                        ''+
+                        '<option codes="1264" codes="1264" value="8">'+"Anguilla"+'</option>'+
+                        ''+
+                        '<option codes="672" codes="672" value="9">'+"Antarctica"+'</option>'+
+                        ''+
+                        '<option codes="1268" codes="1268" value="10">'+"Antigua And Barbuda"+'</option>'+
+                        ''+
+                        '<option codes="54" codes="54" value="11">'+"Argentina"+'</option>'+
+                        ''+
+                        '<option codes="374" codes="374" value="12">'+"Armenia"+'</option>'+
+                        ''+
+                        '<option codes="297" codes="297" value="13">'+"Aruba"+'</option>'+
+                        ''+
+                        '<option codes="61" codes="61" value="14">'+"Australia"+'</option>'+
+                        ''+
+                        '<option codes="43" codes="43" value="15">'+"Austria"+'</option>'+
+                        ''+
+                        '<option codes="994" codes="994" value="16">'+"Azerbaijan"+'</option>'+
+                        ''+
+                        '<option codes="1242" codes="1242" value="17">'+"Bahamas"+'</option>'+
+                        ''+
+                        '<option codes="973" codes="973" value="18">'+"Bahrain"+'</option>'+
+                        ''+
+                        '<option codes="880" codes="880" value="19">'+"Bangladesh"+'</option>'+
+                        ''+
+                        '<option codes="1246" codes="1246" value="20">'+"Barbados"+'</option>'+
+                        ''+
+                        '<option codes="375" codes="375" value="21">'+"Belarus"+'</option>'+
+                        ''+
+                        '<option codes="32" codes="32" value="22">'+"Belgium"+'</option>'+
+                        ''+
+                        '<option codes="501" codes="501" value="23">'+"Belize"+'</option>'+
+                        ''+
+                        '<option codes="229" codes="229" value="24">'+"Benin"+'</option>'+
+                        ''+
+                        '<option codes="1441" codes="1441" value="25">'+"Bermuda"+'</option>'+
+                        ''+
+                        '<option codes="975" codes="975" value="26">'+"Bhutan"+'</option>'+
+                        ''+
+                        '<option codes="591" codes="591" value="27">'+"Bolivia"+'</option>'+
+                        ''+
+                        '<option codes="387" codes="387" value="28">'+"Bosnia And Herzegovina"+'</option>'+
+                        ''+
+                        '<option codes="267" codes="267" value="29">'+"Botswana"+'</option>'+
+                        ''+
+                        '<option codes="" codes="" value="30">'+"Bouvet Island"+'</option>'+
+                        ''+
+                        '<option codes="55" codes="55" value="31">'+"Brazil"+'</option>'+
+                        ''+
+                        '<option codes="246" codes="246" value="32">'+"British Indian Ocean Territory"+'</option>'+
+                        ''+
+                        '<option codes="673" codes="673" value="33">'+"Brunei Darussalam"+'</option>'+
+                        ''+
+                        '<option codes="359" codes="359" value="34">'+"Bulgaria"+'</option>'+
+                        ''+
+                        '<option codes="226" codes="226" value="35">'+"Burkina Faso"+'</option>'+
+                        ''+
+                        '<option codes="257" codes="257" value="36">'+"Burundi"+'</option>'+
+                        ''+
+                        '<option codes="855" codes="855" value="37">'+"Cambodia"+'</option>'+
+                        ''+
+                        '<option codes="237" codes="237" value="38">'+"Cameroon"+'</option>'+
+                        ''+
+                        '<option codes="1" codes="1" value="39">'+"Canada"+'</option>'+
+                        ''+
+                        '<option codes="238" codes="238" value="40">'+"Cape Verde"+'</option>'+
+                        ''+
+                        '<option codes="1345" codes="1345" value="41">'+"Cayman Islands"+'</option>'+
+                        ''+
+                        '<option codes="236" codes="236" value="42">'+"Central African Republic"+'</option>'+
+                        ''+
+                        '<option codes="235" codes="235" value="43">'+"Chad"+'</option>'+
+                        ''+
+                        '<option codes="56" codes="56" value="44">'+"Chile"+'</option>'+
+                        ''+
+                        '<option codes="86" codes="86" value="45">'+"China"+'</option>'+
+                        ''+
+                        '<option codes="61" codes="61" value="46">'+"Christmas Island"+'</option>'+
+                        ''+
+                        '<option codes="61" codes="61" value="47">'+"Cocos (Keeling) Islands"+'</option>'+
+                        ''+
+                        '<option codes="57" codes="57" value="48">'+"Colombia"+'</option>'+
+                        ''+
+                        '<option codes="269" codes="269" value="49">'+"Comoros"+'</option>'+
+                        ''+
+                        '<option codes="682" codes="682" value="50">'+"Cook Islands"+'</option>'+
+                        ''+
+                        '<option codes="506" codes="506" value="51">'+"Costa Rica"+'</option>'+
+                        ''+
+                        '<option codes="225" codes="225" value="52">'+"Cote D\'ivoire"+'</option>'+
+                        ''+
+                        '<option codes="385" codes="385" value="53">'+"Croatia"+'</option>'+
+                        ''+
+                        '<option codes="53" codes="53" value="54">'+"Cuba"+'</option>'+
+                        ''+
+                        '<option codes="357" codes="357" value="55">'+"Cyprus"+'</option>'+
+                        ''+
+                        '<option codes="420" codes="420" value="56">'+"Czech Republic"+'</option>'+
+                        ''+
+                        '<option codes="243" codes="243" value="57">'+"Democratic Republic of the Congo"+'</option>'+
+                        ''+
+                        '<option codes="45" codes="45" value="58">'+"Denmark"+'</option>'+
+                        ''+
+                        '<option codes="253" codes="253" value="59">'+"Djibouti"+'</option>'+
+                        ''+
+                        '<option codes="1767" codes="1767" value="60">'+"Dominica"+'</option>'+
+                        ''+
+                        '<option codes="1809" codes="1809" value="61">'+"Dominican Republic"+'</option>'+
+                        ''+
+                        '<option codes="593" codes="593" value="62">'+"Ecuador"+'</option>'+
+                        ''+
+                        '<option codes="20" codes="20" value="63">'+"Egypt"+'</option>'+
+                        ''+
+                        '<option codes="503" codes="503" value="64">'+"El Salvador"+'</option>'+
+                        ''+
+                        '<option codes="240" codes="240" value="65">'+"Equatorial Guinea"+'</option>'+
+                        ''+
+                        '<option codes="291" codes="291" value="66">'+"Eritrea"+'</option>'+
+                        ''+
+                        '<option codes="372" codes="372" value="67">'+"Estonia"+'</option>'+
+                        ''+
+                        '<option codes="251" codes="251" value="68">'+"Ethiopia"+'</option>'+
+                        ''+
+                        '<option codes="500" codes="500" value="69">'+"Falkland Islands (malvinas)"+'</option>'+
+                        ''+
+                        '<option codes="298" codes="298" value="70">'+"Faroe Islands"+'</option>'+
+                        ''+
+                        '<option codes="679" codes="679" value="71">'+"Fiji"+'</option>'+
+                        ''+
+                        '<option codes="358" codes="358" value="72">'+"Finland"+'</option>'+
+                        ''+
+                        '<option codes="33" codes="33" value="73">'+"France"+'</option>'+
+                        ''+
+                        '<option codes="594" codes="594" value="74">'+"French Guiana"+'</option>'+
+                        ''+
+                        '<option codes="689" codes="689" value="75">'+"French Polynesia"+'</option>'+
+                        ''+
+                        '<option codes="596" codes="596" value="76">'+"French Southern Territories"+'</option>'+
+                        ''+
+                        '<option codes="241" codes="241" value="77">'+"Gabon"+'</option>'+
+                        ''+
+                        '<option codes="220" codes="220" value="78">'+"Gambia"+'</option>'+
+                        ''+
+                        '<option codes="995" codes="995" value="79">'+"Georgia"+'</option>'+
+                        ''+
+                        '<option codes="49" codes="49" value="80">'+"Germany"+'</option>'+
+                        ''+
+                        '<option codes="233" codes="233" value="81">'+"Ghana"+'</option>'+
+                        ''+
+                        '<option codes="350" codes="350" value="82">'+"Gibraltar"+'</option>'+
+                        ''+
+                        '<option codes="30" codes="30" value="83">'+"Greece"+'</option>'+
+                        ''+
+                        '<option codes="299" codes="299" value="84">'+"Greenland"+'</option>'+
+                        ''+
+                        '<option codes="1473" codes="1473" value="85">'+"Grenada"+'</option>'+
+                        ''+
+                        '<option codes="590" codes="590" value="86">'+"Guadeloupe"+'</option>'+
+                        ''+
+                        '<option codes="1671" codes="1671" value="87">'+"Guam"+'</option>'+
+                        ''+
+                        '<option codes="502" codes="502" value="88">'+"Guatemala"+'</option>'+
+                        ''+
+                        '<option codes="224" codes="224" value="89">'+"Guinea"+'</option>'+
+                        ''+
+                        '<option codes="245" codes="245" value="90">'+"Guinea-bissau"+'</option>'+
+                        ''+
+                        '<option codes="592" codes="592" value="91">'+"Guyana"+'</option>'+
+                        ''+
+                        '<option codes="509" codes="509" value="92">'+"Haiti"+'</option>'+
+                        ''+
+                        '<option codes="" codes="" value="93">'+"Heard Island and McDonald Islands"+'</option>'+
+                        ''+
+                        '<option codes="379" codes="379" value="94">'+"Holy See (vatican City State)"+'</option>'+
+                        ''+
+                        '<option codes="504" codes="504" value="95">'+"Honduras"+'</option>'+
+                        ''+
+                        '<option codes="852" codes="852" value="96">'+"Hong Kong"+'</option>'+
+                        ''+
+                        '<option codes="36" codes="36" value="97">'+"Hungary"+'</option>'+
+                        ''+
+                        '<option codes="354" codes="354" value="98">'+"Iceland"+'</option>'+
+                        ''+
+                        '<option codes="91" codes="91" value="99">'+"India"+'</option>'+
+                        ''+
+                        '<option codes="62" codes="62" value="100">'+"Indonesia"+'</option>'+
+                        ''+
+                        '<option codes="98" codes="98" value="101">'+"Iran"+'</option>'+
+                        ''+
+                        '<option codes="964" codes="964" value="102">'+"Iraq"+'</option>'+
+                        ''+
+                        '<option codes="353" codes="353" value="103">'+"Ireland"+'</option>'+
+                        ''+
+                        '<option codes="44" codes="44" value="104">'+"Isle Of Man"+'</option>'+
+                        ''+
+                        '<option codes="972" codes="972" value="105">'+"Israel"+'</option>'+
+                        ''+
+                        '<option codes="39" codes="39" value="106">'+"Italy"+'</option>'+
+                        ''+
+                        '<option codes="1876" codes="1876" value="107">'+"Jamaica"+'</option>'+
+                        ''+
+                        '<option codes="81" codes="81" value="108">'+"Japan"+'</option>'+
+                        ''+
+                        '<option codes="962" codes="962" value="109">'+"Jordan"+'</option>'+
+                        ''+
+                        '<option codes="7" codes="7" value="110">'+"Kazakhstan"+'</option>'+
+                        ''+
+                        '<option codes="254" codes="254" value="111">'+"Kenya"+'</option>'+
+                        ''+
+                        '<option codes="686" codes="686" value="112">'+"Kiribati"+'</option>'+
+                        ''+
+                        '<option codes="82" codes="82" value="113">'+"Korea"+'</option>'+
+                        ''+
+                        '<option codes="965" codes="965" value="114">'+"Kuwait"+'</option>'+
+                        ''+
+                        '<option codes="996" codes="996" value="115">'+"Kyrgyzstan"+'</option>'+
+                        ''+
+                        '<option codes="856" codes="856" value="116">'+"Lao People\'s Democratic Republic"+'</option>'+
+                        ''+
+                        '<option codes="371" codes="371" value="117">'+"Latvia"+'</option>'+
+                        ''+
+                        '<option codes="961" codes="961" value="118">'+"Lebanon"+'</option>'+
+                        ''+
+                        '<option codes="266" codes="266" value="119">'+"Lesotho"+'</option>'+
+                        ''+
+                        '<option codes="231" codes="231" value="120">'+"Liberia"+'</option>'+
+                        ''+
+                        '<option codes="218" codes="218" value="121">'+"Libyan Arab Jamahiriya"+'</option>'+
+                        ''+
+                        '<option codes="423" codes="423" value="122">'+"Liechtenstein"+'</option>'+
+                        ''+
+                        '<option codes="370" codes="370" value="123">'+"Lithuania"+'</option>'+
+                        ''+
+                        '<option codes="352" codes="352" value="124">'+"Luxembourg"+'</option>'+
+                        ''+
+                        '<option codes="853" codes="853" value="125">'+"Macao"+'</option>'+
+                        ''+
+                        '<option codes="389" codes="389" value="126">'+"Macedonia"+'</option>'+
+                        ''+
+                        '<option codes="261" codes="261" value="127">'+"Madagascar"+'</option>'+
+                        ''+
+                        '<option codes="265" codes="265" value="128">'+"Malawi"+'</option>'+
+                        ''+
+                        '<option codes="60" codes="60" value="129">'+"Malaysia"+'</option>'+
+                        ''+
+                        '<option codes="960" codes="960" value="130">'+"Maldives"+'</option>'+
+                        ''+
+                        '<option codes="223" codes="223" value="131">'+"Mali"+'</option>'+
+                        ''+
+                        '<option codes="356" codes="356" value="132">'+"Malta"+'</option>'+
+                        ''+
+                        '<option codes="692" codes="692" value="133">'+"Marshall Islands"+'</option>'+
+                        ''+
+                        '<option codes="596" codes="596" value="134">'+"Martinique"+'</option>'+
+                        ''+
+                        '<option codes="222" codes="222" value="135">'+"Mauritania"+'</option>'+
+                        ''+
+                        '<option codes="230" codes="230" value="136">'+"Mauritius"+'</option>'+
+                        ''+
+                        '<option codes="269" codes="269" value="137">'+"Mayotte"+'</option>'+
+                        ''+
+                        '<option codes="52" codes="52" value="138">'+"Mexico"+'</option>'+
+                        ''+
+                        '<option codes="691" codes="691" value="139">'+"Micronesia"+'</option>'+
+                        ''+
+                        '<option codes="373" codes="373" value="140">'+"Moldova"+'</option>'+
+                        ''+
+                        '<option codes="377" codes="377" value="141">'+"Monaco"+'</option>'+
+                        ''+
+                        '<option codes="976" codes="976" value="142">'+"Mongolia"+'</option>'+
+                        ''+
+                        '<option codes="382" codes="382" value="143">'+"Montenegro"+'</option>'+
+                        ''+
+                        '<option codes="1664" codes="1664" value="144">'+"Montserrat"+'</option>'+
+                        ''+
+                        '<option codes="212" codes="212" value="145">'+"Morocco"+'</option>'+
+                        ''+
+                        '<option codes="258" codes="258" value="146">'+"Mozambique"+'</option>'+
+                        ''+
+                        '<option codes="95" codes="95" value="147">'+"Myanmar"+'</option>'+
+                        ''+
+                        '<option codes="264" codes="264" value="148">'+"Namibia"+'</option>'+
+                        ''+
+                        '<option codes="674" codes="674" value="149">'+"Nauru"+'</option>'+
+                        ''+
+                        '<option codes="977" codes="977" value="150">'+"Nepal"+'</option>'+
+                        ''+
+                        '<option codes="31" codes="31" value="151">'+"Netherlands"+'</option>'+
+                        ''+
+                        '<option codes="599" codes="599" value="152">'+"Netherlands Antilles"+'</option>'+
+                        ''+
+                        '<option codes="687" codes="687" value="153">'+"New Caledonia"+'</option>'+
+                        ''+
+                        '<option codes="64" codes="64" value="154">'+"New Zealand"+'</option>'+
+                        ''+
+                        '<option codes="505" codes="505" value="155">'+"Nicaragua"+'</option>'+
+                        ''+
+                        '<option codes="227" codes="227" value="156">'+"Niger"+'</option>'+
+                        ''+
+                        '<option codes="234" codes="234" value="157">'+"Nigeria"+'</option>'+
+                        ''+
+                        '<option codes="683" codes="683" value="158">'+"Niue"+'</option>'+
+                        ''+
+                        '<option codes="6723" codes="6723" value="159">'+"Norfolk Island"+'</option>'+
+                        ''+
+                        '<option codes="850" codes="850" value="160">'+"North Korea"+'</option>'+
+                        ''+
+                        '<option codes="1" codes="1" value="161">'+"Northern Mariana Islands"+'</option>'+
+                        ''+
+                        '<option codes="47" codes="47" value="162">'+"Norway"+'</option>'+
+                        ''+
+                        '<option codes="968" codes="968" value="163">'+"Oman"+'</option>'+
+                        ''+
+                        '<option codes="92" codes="92" value="164">'+"Pakistan"+'</option>'+
+                        ''+
+                        '<option codes="680" codes="680" value="165">'+"Palau"+'</option>'+
+                        ''+
+                        '<option codes="970" codes="970" value="166">'+"Palestinian Territory"+'</option>'+
+                        ''+
+                        '<option codes="507" codes="507" value="167">'+"Panama"+'</option>'+
+                        ''+
+                        '<option codes="63" codes="63" value="168">'+"Papua New Guinea"+'</option>'+
+                        ''+
+                        '<option codes="595" codes="595" value="169">'+"Paraguay"+'</option>'+
+                        ''+
+                        '<option codes="51" codes="51" value="170">'+"Peru"+'</option>'+
+                        ''+
+                        '<option codes="63" codes="63" value="171">'+"Philippines"+'</option>'+
+                        ''+
+                        '<option codes="64" codes="64" value="172">'+"Pitcairn Islands"+'</option>'+
+                        ''+
+                        '<option codes="48" codes="48" value="173">'+"Poland"+'</option>'+
+                        ''+
+                        '<option codes="351" codes="351" value="174">'+"Portugal"+'</option>'+
+                        ''+
+                        '<option codes="1787" codes="1787" value="175">'+"Puerto Rico"+'</option>'+
+                        ''+
+                        '<option codes="974" codes="974" value="176">'+"Qatar"+'</option>'+
+                        ''+
+                        '<option codes="242" codes="242" value="177">'+"Republic of the Congo"+'</option>'+
+                        ''+
+                        '<option codes="262" codes="262" value="178">'+"Reunion"+'</option>'+
+                        ''+
+                        '<option codes="40" codes="40" value="179">'+"Romania"+'</option>'+
+                        ''+
+                        '<option codes="7" codes="7" value="180">'+"Russian Federation"+'</option>'+
+                        ''+
+                        '<option codes="250" codes="250" value="181">'+"Rwanda"+'</option>'+
+                        ''+
+                        '<option codes="1869" codes="1869" value="182">'+"Saint Kitts And Nevis"+'</option>'+
+                        ''+
+                        '<option codes="1758" codes="1758" value="183">'+"Saint Lucia"+'</option>'+
+                        ''+
+                        '<option codes="1784" codes="1784" value="184">'+"Saint Vincent And The Grenadines"+'</option>'+
+                        ''+
+                        '<option codes="508" codes="508" value="185">'+"Saint-Pierre and Miquelon"+'</option>'+
+                        ''+
+                        '<option codes="685" codes="685" value="186">'+"Samoa"+'</option>'+
+                        ''+
+                        '<option codes="378" codes="378" value="187">'+"San Marino"+'</option>'+
+                        ''+
+                        '<option codes="239" codes="239" value="188">'+"Sao Tome And Principe"+'</option>'+
+                        ''+
+                        '<option codes="966" codes="966" value="189">'+"Saudi Arabia"+'</option>'+
+                        ''+
+                        '<option codes="221" codes="221" value="190">'+"Senegal"+'</option>'+
+                        ''+
+                        '<option codes="381" codes="381" value="191">'+"Serbia"+'</option>'+
+                        ''+
+                        '<option codes="248" codes="248" value="192">'+"Seychelles"+'</option>'+
+                        ''+
+                        '<option codes="232" codes="232" value="193">'+"Sierra Leone"+'</option>'+
+                        ''+
+                        '<option codes="65" codes="65" value="194">'+"Singapore"+'</option>'+
+                        ''+
+                        '<option codes="421" codes="421" value="195">'+"Slovakia"+'</option>'+
+                        ''+
+                        '<option codes="386" codes="386" value="196">'+"Slovenia"+'</option>'+
+                        ''+
+                        '<option codes="677" codes="677" value="197">'+"Solomon Islands"+'</option>'+
+                        ''+
+                        '<option codes="252" codes="252" value="198">'+"Somalia"+'</option>'+
+                        ''+
+                        '<option codes="27" codes="27" value="199">'+"South Africa"+'</option>'+
+                        ''+
+                        '<option codes="995" codes="995" value="200">'+"South Georgia And The South Sandwich Islands"+'</option>'+
+                        ''+
+                        '<option codes="34" codes="34" value="201">'+"Spain"+'</option>'+
+                        ''+
+                        '<option codes="94" codes="94" value="202">'+"Sri Lanka"+'</option>'+
+                        ''+
+                        '<option codes="290" codes="290" value="203">'+"St. Helena & Dependencies"+'</option>'+
+                        ''+
+                        '<option codes="249" codes="249" value="204">'+"Sudan"+'</option>'+
+                        ''+
+                        '<option codes="597" codes="597" value="205">'+"Suriname"+'</option>'+
+                        ''+
+                        '<option codes="47" codes="47" value="206">'+"Svalbard and Jan Mayen Islands"+'</option>'+
+                        ''+
+                        '<option codes="268" codes="268" value="207">'+"Swaziland"+'</option>'+
+                        ''+
+                        '<option codes="46" codes="46" value="208">'+"Sweden"+'</option>'+
+                        ''+
+                        '<option codes="41" codes="41" value="209">'+"Switzerland"+'</option>'+
+                        ''+
+                        '<option codes="963" codes="963" value="210">'+"Syrian Arab Republic"+'</option>'+
+                        ''+
+                        '<option codes="886" codes="886" value="211">'+"Taiwan"+'</option>'+
+                        ''+
+                        '<option codes="992" codes="992" value="212">'+"Tajikistan"+'</option>'+
+                        ''+
+                        '<option codes="255" codes="255" value="213">'+"Tanzania"+'</option>'+
+                        ''+
+                        '<option codes="66" codes="66" value="214">'+"Thailand"+'</option>'+
+                        ''+
+                        '<option codes="670" codes="670" value="215">'+"Timor-Leste (East Timor)"+'</option>'+
+                        ''+
+                        '<option codes="228" codes="228" value="216">'+"Togo"+'</option>'+
+                        ''+
+                        '<option codes="690" codes="690" value="217">'+"Tokelau"+'</option>'+
+                        ''+
+                        '<option codes="676" codes="676" value="218">'+"Tonga"+'</option>'+
+                        ''+
+                        '<option codes="1868" codes="1868" value="219">'+"Trinidad And Tobago"+'</option>'+
+                        ''+
+                        '<option codes="216" codes="216" value="220">'+"Tunisia"+'</option>'+
+                        ''+
+                        '<option codes="90" codes="90" value="221">'+"Turkey"+'</option>'+
+                        ''+
+                        '<option codes="993" codes="993" value="222">'+"Turkmenistan"+'</option>'+
+                        ''+
+                        '<option codes="1649" codes="1649" value="223">'+"Turks And Caicos Islands"+'</option>'+
+                        ''+
+                        '<option codes="688" codes="688" value="224">'+"Tuvalu"+'</option>'+
+                        ''+
+                        '<option codes="256" codes="256" value="225">'+"Uganda"+'</option>'+
+                        ''+
+                        '<option codes="380" codes="380" value="226">'+"Ukraine"+'</option>'+
+                        ''+
+                        '<option codes="971" codes="971" value="227">'+"United Arab Emirates"+'</option>'+
+                        ''+
+                        '<option codes="44" codes="44" value="228">'+"United Kingdom"+'</option>'+
+                        ''+
+                        '<option codes="1" codes="1" value="229">'+"United States"+'</option>'+
+                        ''+
+                        '<option codes="" codes="" value="230">'+"United States Minor Outlying Islands"+'</option>'+
+                        ''+
+                        '<option codes="598" codes="598" value="231">'+"Uruguay"+'</option>'+
+                        ''+
+                        '<option codes="998" codes="998" value="232">'+"Uzbekistan"+'</option>'+
+                        ''+
+                        '<option codes="678" codes="678" value="233">'+"Vanuatu"+'</option>'+
+                        ''+
+                        '<option codes="58" codes="58" value="234">'+"Venezuela"+'</option>'+
+                        ''+
+                        '<option codes="84" codes="84" value="235">'+"Viet Nam"+'</option>'+
+                        ''+
+                        '<option codes="1340" codes="1340" value="236">'+"Virgin Islands"+'</option>'+
+                        ''+
+                        '<option codes="681" codes="681" value="237">'+"Wallis and Futuna"+'</option>'+
+                        ''+
+                        '<option codes="212/213" codes="212/213" value="238">'+"Western Sahara"+'</option>'+
+                        ''+
+                        '<option codes="967" codes="967" value="239">'+"Yemen"+'</option>'+
+                        ''+
+                        '<option codes="338" codes="338" value="240">'+"Yugoslavia"+'</option>'+
+                        ''+
+                        '<option codes="260" codes="260" value="241">'+"Zambia"+'</option>'+
+                        ''+
+                        '<option codes="263" codes="263" value="242">'+"Zimbabwe"+'</option>'+
+                        ''+
+                   '</select></div>'+
+                 '</li>'+
+                 '<li>'+
+                   '<span class="must">*</span><label>Province</label><br>'+
+                   '<div id="newbillingaddress_state_box"><input type="text" name="billing_state" /></div>'+
+                 '</li>'+
+                 '<li>'+
+                   '<span class="must">*</span><label>City</label><br>'+
+                   '<input type="text" name="billing_city" />'+
+                 '</li>'+
+                 '<li>'+
+                   '<span class="must">*</span><label>Address</label><br>'+
+                   '<input type="text" name="billing_address" />'+
+                 '</li>'+                                  
+                 '<li>'+
+                   '<span class="must">*</span><label>ZIP/Postal Code</label><br>'+
+                   '<input type="text" name="billing_postcode" />'+
+                 '</li>'+
+                 '<li>'+
+                   '<span class="must">*</span><label>Phone Number</label><br>'+
+                   '<input type="text" name="billing_mobilephone" />'+
+                 '</li>'+
+                 '<li>'+
+                   '<span class="must">*</span><label>E-mail</label><br>'+
+                   '<input type="text" name="billing_email" value="lba8610@163.com" />'+
+                 '</li>'+                                  
+                 '<li>'+
+                   '<input type="hidden" name="billing_id" value="0" />'+
+                   '<div class="clear"></div>'+
+                   '<div class="submit_btn"><a class="common_btn2" href="javascript:;">Sumbit</a></div>'+
+                   '<div class="cancel_btn"><a class="common_btn1" href="javascript:;">Cancel</a></div>'+    
+                   '<div class="clear"></div>'+                 
+                 '</li>'+
+              '</ul>'+
+           '</div>';
+    function showPopup(html)
+    {
+        $('.popupBoxBg').remove();
+        $('.popupBox').remove();
+        $(document.body).append('<div class="popupBoxBg"></div><div class="popupBox"></div>');
+        $('.popupBox').html(html);
+        scroll(0,0);            
+    }
+    function closePopup()
+    {
+        $('.popupBoxBg').remove();
+        $('.popupBox').remove();      
+    }
+    $('.btn_new_shipping_address').click(function(){
+        showPopup(newaddress_str)
+        var obj=$('.popupBox ul.newaddress');
+        obj.find('.cancel_btn a').click(function(){
+            closePopup();
+        });
+                   $("#add_new_shipping_address option[value='45']").attr("selected", "selected");
+           changeCountryToChangeSate('45','newaddress_state_box')
+                saveAddress(obj);
+    });
+    saveAddress($('ul.newaddress'));
+    $('.btn_new_billing_address').click(function(){
+        showPopup(newbillingaddress_str)
+        var obj=$('.popupBox ul.newbillingaddress');
+        obj.find('.cancel_btn a').click(function(){
+            closePopup();
+        });
+        $('input[name="billing_id"]').val('');
+                $("#add_new_billing_address option[value='45']").attr("selected", "selected");
+        changeCountryToChangeSate('45','new_billing_address_state','billing_state')
+                saveBillingAddress(obj);
+                $("#add_new_billing_address option[value='45']").attr("selected", "selected");
+        changeCountryToChangeSate('45','newbillingaddress_state_box','billing_state')
+            });
+    saveBillingAddress($('ul.newbillingaddress'));
+    $('.btn_edit').click(function(){
+        showPopup(newaddress_str);
+        var obj=$('.popupBox ul.newaddress');
+        obj.find('.cancel_btn a').click(function(){
+            closePopup();
+        });
+        var _val = $(this).attr('data_id');
+        var address_id = obj.find('input[name="address_id"]');
+        var firstname  = obj.find('input[name="first_name"]');
+        var lastname   = obj.find('input[name="last_name"]');
+        var country_id = obj.find('select[name="country_id"]');
+        var state      = obj.find('input[name="state"]');
+        if(state.length <= 0)
+            state      = $('select[name="state"]');
+        var city       = obj.find('input[name="city"]');
+        var postcode   = obj.find('input[name="postcode"]');
+        var address    = obj.find('input[name="address"]');
+        var address_spare  = obj.find('input[name="address_spare"]');
+        var email          = obj.find('input[name="email"]');
+        var mobilephone    = obj.find('input[name="mobilephone"]');
+        var telphone       = obj.find('input[name="telephone"]');
+        $.ajax({                 
+            url :'/m-user-getAddressById.html',
+            type:'POST',
+            data:{id:_val},
+            dataType: 'json',
+            cache: false,
+            success: function(res) { 
+                if(res)
+                {
+                    address_id.attr('value', res.id);
+                    firstname.attr('value', res.first_name);
+                    lastname.attr('value', res.last_name);
+                    country_id.attr('value', res.country_id);
+                    city.attr('value', res.city);
+                    postcode.attr('value', res.postcode);
+                    email.attr('value', res.email);
+                    mobilephone.attr('value', res.mobilephone);
+                    telphone.attr('value', res.telphone);
+                    address.attr('value', res.address);
+                    address_spare.attr('value', res.address_spare);
+                    state.attr('value', res.state);
+                    country_id.change();
+                }
+                else{
+                    $.Prompt('illegal operation!');
+                    closePopup();
+                    return;
+                }
+            },
+                beforeSend: function(){
+                    createAjaxLoading();
+                },
+                complete: function(){
+                    removeAjaxLoading();
+                }   
+        });
+        saveAddress(obj);
+    });
+    $('.billing_btn_edit').click(function(){
+        showPopup(newbillingaddress_str);
+        var obj=$('.popupBox ul.newbillingaddress');
+        obj.find('.cancel_btn a').click(function(){
+            closePopup();
+        });
+        var _val = $(this).attr('data_id');    
+        var _id = $(this).attr('id');
+        var address_id = obj.find('input[name="billing_id"]');
+        var firstname  = obj.find('input[name="billing_first_name"]');
+        var lastname   = obj.find('input[name="billing_last_name"]');
+        var country_id = obj.find('select[name="billing_country_id"]');
+        var state      = obj.find('input[name="billing_state"]');
+        if(state.length <= 0)
+            state      = $('select[name="billing_state"]');
+        var city       = obj.find('input[name="billing_city"]');
+        var postcode   = obj.find('input[name="billing_postcode"]');
+        var address    = obj.find('input[name="billing_address"]');
+        var address_spare  = obj.find('input[name="billing_address_spare"]');
+        var email          = obj.find('input[name="billing_email"]');
+        var mobilephone    = obj.find('input[name="billing_mobilephone"]');
+        var telphone       = obj.find('input[name="billing_telephone"]');
+        $.ajax({                 
+            url :'/m-user-getAddressById.html',
+            type:'POST',
+            data:{id:_val},
+            dataType: 'json',
+            cache: false,
+            success: function(res) { 
+                if(res)
+                {
+                    if(_id=='billing_btn_edit_0')
+                    {
+                        address_id.attr('value', '');
+                    }
+                    else
+                    {
+                        address_id.attr('value', res.id);
+                    }  
+                    firstname.attr('value', res.first_name);
+                    lastname.attr('value', res.last_name);
+                    country_id.attr('value', res.country_id);
+                    city.attr('value', res.city);
+                    postcode.attr('value', res.postcode);
+                    email.attr('value', res.email);
+                    mobilephone.attr('value', res.mobilephone);
+                    telphone.attr('value', res.telphone);
+                    address.attr('value', res.address);
+                    address_spare.attr('value', res.address_spare);
+                    state.attr('value', res.state);
+                    country_id.change();
+                }
+                else{
+                    $.Prompt('illegal operation!');
+                    closePopup();
+                    return;
+                }
+            },
+                beforeSend: function(){
+                    createAjaxLoading();
+                },
+                complete: function(){
+                    removeAjaxLoading();
+                }   
+        });
+        saveBillingAddress(obj);
+    });
+    function saveAddress(obj)
+    {
+        obj.find('.submit_btn a').click(function(){
+            var address_id = obj.find('input[name="address_id"]').val();
+            var firstname  = obj.find('input[name="first_name"]').val();
+            var lastname   = obj.find('input[name="last_name"]').val();
+            var country_id = obj.find('select[name="country_id"]').val();
+            var state      = obj.find('input[name="state"]').val();
+            if(!state)
+                state      = $('select[name="state"]').val();
+            var city       = obj.find('input[name="city"]').val();
+            var postcode   = obj.find('input[name="postcode"]').val();
+            var address    = obj.find('input[name="address"]').val();
+            var address_spare  = obj.find('input[name="address_spare"]').val();
+            var email          = obj.find('input[name="email"]').val();
+            var mobilephone    = obj.find('input[name="mobilephone"]').val();
+            var telphone       = obj.find('input[name="telephone"]').val();      
+            if(!firstname)
+            {       
+                $.Prompt('Please enter first name');
+                return;
+            }
+            if(!lastname)
+            {
+                $.Prompt('Please enter last name');
+                return;
+            }    
+            if (country_id==0)
+            {
+                $.Prompt('Please select country');
+                return;
+            }
+            if(!state)
+            {
+                $.Prompt('Please enter state/provice');
+                return;
+            }
+            if(!city)
+            {
+                $.Prompt('Please enter city');
+                return;
+            }
+            if(!address)
+            {
+                $.Prompt('Please enter address');
+                return;
+            }
+            if(!postcode)
+            {
+                $.Prompt('Please enter postcode');
+                return;
+            }
+            if(!mobilephone || mobilephone.length < 7)
+            {
+                $.Prompt('Please enter mobilephone');
+                return;
+            }     
+            if(!email)
+            {
+                $.Prompt('Please enter email');
+                return;
+            }
+            if(!isEmail(email))
+            {
+                $.Prompt('E-mail format error!');
+                return;
+            } 
+            $.ajax({                 
+                url :'/m-user-addAddress.html',
+                type:'POST',
+                data:{
+                    id         : address_id ? address_id : 0,
+                    first_name : firstname,
+                    last_name  : lastname,
+                    country_id : country_id,
+                    state      : state,
+                    city       : city,
+                    postcode   : postcode,
+                    address    : address,
+                    address_spare: address_spare,
+                    email      : email,
+                    mobilephone: mobilephone,
+                    telephone  : telphone,
+                    is_master  : 1
+                },
+                dataType: 'json',
+                cache: false,
+                success: function(res) { 
+                    if(res.status == '1')
+                    {
+                        if(res.isreg)
+                        window.location.href="/h-order-add.html?showprofile=1"; 
+                        else
+                        window.location.href="/h-order-add.html";
+//                        window.location.reload(true); 
+                        return false;
+                    }
+                    else{
+                        $.Prompt(res.msg);
+                    }
+                },
+                beforeSend: function(){
+                    createAjaxLoading();
+                },
+                complete: function(){
+                    removeAjaxLoading();
+                }   
+            });
+            return false;
+        });
+    }
+    function saveBillingAddress(obj)
+    {
+        obj.find('.submit_btn a').click(function(){
+            var address_id = obj.find('input[name="billing_id"]').val();
+            var firstname  = obj.find('input[name="billing_first_name"]').val();
+            var lastname   = obj.find('input[name="billing_last_name"]').val();
+            var country_id = obj.find('select[name="billing_country_id"]').val();
+            var state      = obj.find('input[name="billing_state"]').val();
+            if(!state)
+                state      = $('select[name="billing_state"]').val();
+            var city       = obj.find('input[name="billing_city"]').val();
+            var postcode   = obj.find('input[name="billing_postcode"]').val();
+            var address    = obj.find('input[name="billing_address"]').val();
+            var address_spare  = obj.find('input[name="billing_address_spare"]').val();
+            var email          = obj.find('input[name="billing_email"]').val();
+            var mobilephone    = obj.find('input[name="billing_mobilephone"]').val();
+            var telphone       = obj.find('input[name="billing_telephone"]').val();      
+            if(!firstname)
+            {       
+                $.Prompt('Please enter first name');
+                return;
+            }
+            if(!lastname)
+            {
+                $.Prompt('Please enter last name');
+                return;
+            }     
+            if (country_id==0)
+            {
+                $.Prompt('Please select country');
+                return;
+            }
+            if(!state)
+            {
+                $.Prompt('Please enter state/provice');
+                return;
+            }
+            if(!city)
+            {
+                $.Prompt('Please enter city');
+                return;
+            }
+            if(!address)
+            {
+                $.Prompt('Please enter address');
+                return;
+            }
+            if(!postcode)
+            {
+                $.Prompt('Please enter postcode');
+                return;
+            }
+            if(!mobilephone || mobilephone.length < 7)
+            {
+                $.Prompt('Please enter mobilephone');
+                return;
+            }     
+            if(!email)
+            {
+                $.Prompt('Please enter email');
+                return;
+            }
+            if(!isEmail(email))
+            {
+                $.Prompt('E-mail format error!');
+                return;
+            }
+            $.ajax({                 
+                url :'/m-user-addAddress.html',
+                type:'POST',
+                data:{
+                    id         : address_id ? address_id : 0,
+                    first_name : firstname,
+                    last_name  : lastname,
+                    country_id : country_id,
+                    state      : state,
+                    city       : city,
+                    postcode   : postcode,
+                    address    : address,
+                    address_spare: address_spare,
+                    email      : email,
+                    mobilephone: mobilephone,
+                    telephone  : telphone,
+                    is_master  : 1,
+                    address_type  : 1
+                },
+                dataType: 'json',
+                cache: false,
+                success: function(res) { 
+                    if(res.status == '1')
+                    {
+                        if(res.isreg)
+                        window.location.href="/h-order-add.html?showprofile=1"; 
+                        else
+                        window.location.href="/h-order-add.html";
+//                        window.location.reload(true); 
+                        return false;
+                    }
+                    else{
+                        $.Prompt(res.msg);
+                    }
+                },
+                beforeSend: function(){
+                    createAjaxLoading();
+                },
+                complete: function(){
+                    removeAjaxLoading();
+                }   
+            });
+            return false;
+        });
+    }
+    $('.checkout').click(function(){
+        var address  = false;
+        var shipping = false;
+        var payment = false;
+        $('input[name="shipping_address"]').each(function(){
+            if(($(this).attr("checked") || $(this).attr("checked") == 'checked') && $(this).val()){
+                address = true;   
+            }
+        });
+        if($('input[name="shipping_id"]:checked').val())
+        {
+            shipping = true;
+        }
+        if($('#payment_id').val())
+        {
+            payment = true;
+        }
+        if(!address){
+            $.Prompt('Please select shipping address');
+            return false;
+        }
+        if(!shipping){
+            $.Prompt('Please Select Shipping Method');
+            return false;
+        }
+        if(!payment){
+            $.Prompt('Please Select Payment Method');
+            return false;
+        }
+        $(this).attr("disabled", true);
+        $.ajax({
+            url :'/m-order-step1.html',
+            type:'POST',
+            data:{
+                payment_id  : $('#payment_id').val(),
+                shipping_id  : $('input[name="shipping_id"]:checked').val(),
+                insurance  : $('#insurance').attr("checked") ? 1:0,
+                shipping_address  : $('#shipping_address_id').find("option:selected").val(),
+                order_remark : $('#order_remark').val(),
+                use_credit : $('input[name="use_credit"]').val(),
+                billing_address_id  : $('#billing_address_id').find("option:selected").val()
+            },
+            dataType: 'json',
+            cache: false,
+            success: function(res) { 
+                    if(res.status)
+                    {
+                        if(!res.result.form_html)
+                        {
+                            location.href='/m-order-showPaymentInfo.html?itemno='+res.result.itemno;
+                        }
+                        else
+                        {
+                            //$('#oshtml').hide();
+                            //$('#payiframe').show();
+                            //$('#payiframe').attr('src','/m-order-paymentInterface.html?itemno='+res.result.itemno);
+                            $('#order_payment').html(res.result.form_html);
+                            $("#payment_form").attr('target','_self')
+                            $("#payment_form").submit();
+                        }
+                    }
+                    else
+                    {
+                         $.Prompt(res.msg);
+						 removeAjaxLoading();
+						 window.location.href=window.location.href;
+                    }                 
+            },
+                beforeSend: function(){
+                    $('.checkout').css('background','#666');
+                    createAjaxLoading();
+                },
+                complete: function(){
+                    removeAjaxLoading();
+                }   
+        });
+    });
+    $('input[name="shipping_address"]').each(function(){
+        if($(this).attr('checked') == 'checked')
+        {
+            getShippingInfo($(this).attr('data_id'));
+            $('#billing_address_0').val($(this).val());  
+            $('#billing_btn_edit_0').attr('data_id',$(this).val());
+            if($(this).val()==''){
+                $('.billing_btn_edit').attr("data_id", $(this).val());
+            }
+        }
+    });
+
+    /*选择配送方式激活事件*/
+    $('.shipping_method').live('click', function(){
+        var shipping_id       = $(this).val();
+        var shipping_priceobj    = $('#shipping_price');
+        var order_total_priceobj = $('#order_totalprice');
+        if(shipping_id)
+        {
+            $.ajax({                 
+                    url :'/m-order-getShippingFee.html',
+                    type:'POST',
+                    data:{
+                        shipping_id  : shipping_id
+                    },
+                    dataType: 'json',
+                    cache: false,
+                    success: function(res) { 
+                        if(res){
+                            order_total_priceobj.text(res.payment_amount);
+                            $('#shippingmethodselected').text($("#shipping_id option:selected").text());
+                            if(res.shipping_fee>0)
+                            {
+                                $('#shipfee').text('Shipping Price : US$ '+res.shipping_fee+'');
+                                shipping_priceobj.text(res.shipping_fee);
+                            }else{
+                                $('#shipfee').text('Free Shipping');
+                                shipping_priceobj.text('0');
+                            }
+                            if(parseInt($("#shipping_id option:selected").attr('data_discount'))<100)
+                            {
+                                $('#shipdiscout').html('( '+(100-parseInt($("#shipping_id option:selected").attr('data_discount')))+'% OFF )');
+                            }
+                            else
+                            {
+                                $('#shipdiscout').html('');
+                            }
+                            $('#checkout_totalprice').text(res.payment_amount);
+                            if(res.is_show_credit)
+                            {
+                                $('#total_useful_credit').text(res.total_credit);
+                                $('#max_exp_credit').text(res.max_exp_credit);
+                                if(res.total_credit>0)
+                                $('.creditbox').show(); 
+                            }
+                            else
+                            {
+                                $('#use_credit_text').val('');
+                                $('#total_useful_credit').text(0);
+                                $('#max_exp_credit').text(0);
+                                $('.creditbox').hide(); 
+                            }
+
+                            if(res.insurance_fee > 0)
+                            {
+                                $('#insurance_box').show();
+                                $('#insurance_price').text(res.insurance_fee);
+                                if(res.insurance_default == 1) { 
+                                     $("#insurance").attr("checked", 'checked');                       
+                                  }
+                            }
+                            else
+                            {
+                                $('#insurance_box').hide();
+                                $('#insurance_price').text(0);
+                            }
+                            calInsuanceFee();
+                        }
+                        setTotalprice();
+                        //$('#billing_address_box').show();
+                    },
+                beforeSend: function(){
+                    createAjaxLoading();
+                },
+                complete: function(){
+                    removeAjaxLoading();
+                }   
+             });   
+        }
+        else
+        {
+            $('#shippingmethodselected').html('Please Select Shipping Method');
+            $('#shipdiscout').html('');
+            $('#shipfee').html('');
+            $('#shipping_price').html('0');
+            setTotalprice();
+        }
+    }); 
+    $('#insurance').click(function(){
+           var shipping_id = 0;
+           shipping_id=$('input[name="shipping_id"]:checked').val();
+           if(shipping_id){
+               calInsuanceFee();
+           }
+           else{
+            $('#insurance').attr("checked",false);
+            $.Prompt('Please Select Shipping Method');
+           }
+           
+    });
+    function calInsuanceFee()
+    {
+           var ischecked   = $('#insurance').attr("checked");
+           var shipping_id = 0;
+           shipping_id=$('input[name="shipping_id"]:checked').val();
+           if(shipping_id){
+            $.ajax({                 
+                url :'/m-order-validInsurance.html',
+                type:'POST',
+                data:{
+                    shipping_id  : shipping_id,
+                    insurance    : ischecked == 'checked' ? 1 : 0
+                },
+                dataType: 'json',
+                cache: false,
+                success: function(res) { 
+                    if(res){
+                        $('#shipping_insurance').text(res.insurance_fee);
+                        $('#payment_fee').text(0);
+                        $('#payment_id').val(0);
+                        $('#payment_id').change(); 
+                        setTotalprice();
+                    }                         
+                },
+                beforeSend: function(){
+                    createAjaxLoading();
+                },
+                complete: function(){
+                    removeAjaxLoading();
+                }  
+         });    
+        }
+    }
+    var credit_blur = 0;
+    $('#use_credit_text').blur(function(){
+	$('#credits_total_tr').show();
+        if(!credit_blur)
+        {
+            return;
+        }
+        credit_blur = 0;
+        var _this = $(this);
+        var shipping_id = parseInt($('input[name="shipping_id"]:checked').val());
+        if(_this.val()=="")
+        {
+                _this.val(0);	
+        }
+        var credit_val  = _this.val();
+        var insurance_selected = 0;
+        if($("#insurance").attr("checked"))
+        {
+            insurance_selected = 1;
+        }
+        if(!shipping_id){
+            _this.val(0);
+            $.Prompt('Please select shipping method');
+            return false;
+        }
+        if(shipping_id){
+            $.ajax({                 
+                url :'/m-order-validExpCredit.html',
+                type:'POST',
+                data:{
+                    shipping_id  : shipping_id,
+                    insurance_selected  : insurance_selected,
+                    credit:credit_val
+                },
+                dataType: 'json',
+                cache: false,
+                success: function(res) { 
+                    if(res.status == 2){
+                            $('#credits_value_amount').text(res.amount);
+                            $('.exp_amount').text("US$ "+res.amount);
+                    }else{
+                            $('#credits_value_amount').text(res.amount);
+                            $('.exp_amount').text("US$ "+res.amount);
+                        _this.attr('value', res.credit);
+                         alert(res.msg);
+                      }          
+                          $('#payment_id').val(0);
+                          $('#payment_id').change();   
+                      setTotalprice();
+                },
+                beforeSend: function(){
+                    createAjaxLoading();
+                },
+                complete: function(){
+                    removeAjaxLoading();
+                }  
+         });    
+        }else{
+            $.Prompt('Please select shipping method');
+        }
+    });
+    
+    $('.use_btn').click(function(){
+        credit_blur = 1;
+        $('#use_credit_text').blur();
+    });
+
+    /*选择付款方式激活事件*/
+    $('#payment_id').live('change', function(){
+        if(!$('input[name="shipping_id"]:checked').val())
+        {
+            $.Prompt('Please select the shipping method after then select payment method!');
+            $('#payment_id').val('');  
+            $('#payment_fee').text(0);
+            setTotalprice();
+            return;
+        }
+        var is_billing = $('#payment_id').find("option:selected").attr("data_id");
+        if(is_billing==1){
+            $('#billing_address_box').show();
+        }else{
+            $('#billing_address_box').hide();
+        }
+        var shipping_id       = $('input[name="shipping_id"]:checked').val()
+        var payment_id       = $(this).val();
+        var insurance_selected = 0;
+        if($("#insurance").attr("checked"))
+        {
+            insurance_selected = 1;
+        }
+        if(payment_id)
+        {
+            $.ajax({                 
+                url :'/m-order-getPaymentFee.html',
+                type:'POST',
+                data:{
+                    payment_id  : payment_id,
+                    shipping_id  : shipping_id,
+                    insurance_selected  : insurance_selected,
+                    credits_value_amount : parseFloat($('#credits_value_amount').text()),
+                    subtotal  : parseFloat($('#shipping_price').text())+parseFloat($('#shipping_insurance').text())+parseFloat('492.1')
+                },
+                dataType: 'json',
+                cache: false,
+                success: function(res) { 
+                        if(res.status)
+                        {
+                            $('#payment_fee').text(res.fee);
+                        }
+                        else
+                        {
+                            $('#payment_fee').text(0);
+                            $.Prompt('Error please try again!');
+                            $('#payment_id').val('');
+                        }                     
+                        setTotalprice();
+                },
+                beforeSend: function(){
+                    createAjaxLoading();
+                },
+                complete: function(){
+                    removeAjaxLoading();
+                }   
+            });
+        }
+        else{
+            $('#payment_fee').text(0);
+            setTotalprice();
+        }
+    });
+    function setTotalprice()
+    {
+            var totalprice=parseFloat($('#payment_fee').text())+parseFloat($('#shipping_price').text())+parseFloat($('#shipping_insurance').text())+parseFloat('492.1')-parseFloat($('#credits_value_amount').text());
+            totalprice = Math.round(totalprice*100)/100
+            $('#order_totalprice').text(totalprice);
+            $('#checkout_totalprice').text(totalprice);
+    }
+    function getShippingInfo(country_id)
+    {
+        if(country_id == 'new_address'){
+            showAll($('#new_shipping_address'));
+            $('.shipping_delivery').find('p').text('Please select shipping address after');
+            $('.shipping_delivery').find('table').empty();
+        }else{
+            $('#new_shipping_address').hide();
+            $.ajax({                 
+                url :'/m-order-shippingInfo.html',
+                type:'GET',
+                data:{
+                    country_id  : country_id
+                },
+                dataType: 'json',
+                cache: false,
+                success: function(res) { 
+                    if(res)
+                    {
+                        var creat_shipping = '<option value="">Please Select Shipping Method</option>';
+                        var creat_shipping = '';
+                        var i=1;
+                        var free=1;
+                        $.each(res, function(key, value){
+                             creat_shipping += '<li><input valign="center" name="shipping_id" type="radio" class="radio shipping_method" value="'+value.id+'" data_price="'+ value.price + '" data_discount="'+ value.discount + '" id="shipping_' + value.id + '"'; 
+                            if(free && !value.price){
+                                creat_shipping += ' checked="checked"';
+                                free = 0;
+                            }
+                            creat_shipping += '><label for="shipping_' + value.id + '"> ' + value.base_name + '</label>&nbsp;&nbsp;<label style="float:right;">' + value.detail +'</label>';
+                            //if(value.price)
+                            //    creat_shipping +=  '<span class="red">US$ '+value.price+'</span>';
+                            //else
+                            //    creat_shipping +=  '<span class="col_green">Free Shipping</span>';
+                            creat_shipping += '</li>';
+                        })
+                        if(creat_shipping){
+                            $('#shippingmethodselected').html('Choose your delivery');
+                            $('#shippinglist').empty();
+                            $('#shippinglist').append(creat_shipping);
+                        }else{
+                            $('#shippingmethodselected').html('Sorry, The address is not within the scope of the distribution');
+                        }
+                        //触发配送方式点击事件
+                        $('.shipping_method').each(function(){
+                            if($(this).attr('checked') == 'checked')
+                            {
+                                $(this).click();
+                            }
+                        });
+                    }
+                },
+                beforeSend: function(){
+                    createAjaxLoading();
+                },
+                complete: function(){
+                    removeAjaxLoading();
+                }   
+            });
+        }
+    }
+    $('#use_credit_btn').click(function(){
+        var _this    = $(this);
+        var hasClass = _this.hasClass('use_credit_link');
+        if(hasClass)
+        {
+            $('.credit_use_box').show();
+             $('#credits_total_tr').show();
+            _this.removeClass('use_credit_link').addClass('open_credit');
+        }
+        else
+        {
+            $('.credit_use_box').hide();
+            _this.addClass('use_credit_link').removeClass('open_credit');   
+        }
+    });
+    $('#message_header').toggle(
+        function () {
+          $('#message_box').show();
+          $(this).find('span').text("-");
+        },
+        function () {
+          $(this).find('span').text("+");
+          $('#message_box').hide();
+        }
+    );
+    /*选择配送地址*/
+    $('#shipping_address_id').live('change', function(){
+        var shipping_address_id = $(this).val();
+        $('.btn_edit').attr("data_id", shipping_address_id);
+        $('#shipping_address').attr("value", shipping_address_id);
+        if(shipping_address_id==''){
+            $('.billing_btn_edit').attr("data_id", shipping_address_id);
+        }
+        var country_id = $('#shipping_address_id').find("option:selected").attr("data_id");
+        $('#billing_address_0').val($(this).val());    
+        $('#billing_btn_edit_0').attr('data_id',$(this).val());
+        getShippingInfo(country_id);
+
+    });
+     /*选择账单地址*/
+    $('#billing_address_id').live('change', function(){
+        var billing_address_id = $(this).val();
+        $('.billing_btn_edit').attr("data_id", billing_address_id);
+    });
+        $("#add_new_billing_address option[value='45']").attr("selected", "selected");
+    changeCountryToChangeSate('45','new_billing_address_state','billing_state')
+    </script>
+</div>
+<div class="clear15"></div>
+<div id="bottom_box">
+<!--    <div class="wrap link">
+        
+         
+    </div>-->
+    <div class="wrap copyright"></div>
+</div>
+<script type="text/javascript">
+    $(window).resize(function() {
+        reLayout(".common_pro_list1", 400, 400);
+    });
+    reLayout(".common_pro_list1", 400, 400);
+</script>
+</body>
+</html>

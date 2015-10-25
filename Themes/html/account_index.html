@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Account Center - m1736.newdemo.zhcart.com</title>
+        <meta content="charset=utf-8" />
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <meta content="false" id="twcClient" name="twcClient" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon-precomposed" href="/res/front/m1736/statics/images/touch_icon_57.png" />
+        <link rel="apple-touch-icon" size="72x72" href="/res/front/m1736/statics/images/touch_icon_72.png" />
+        <link rel="apple-touch-icon" size="114x114" href="/res/front/m1736/statics/images/touch_icon_114.png" />
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link href="css/tips.css" type="text/css"  rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="font_icon/style.css">
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/reLayout.js"></script>
+        <script type="text/javascript" src="js/common.js"></script>
+        <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
+        <script type="text/javascript" src="js/jq.puzz.js"></script>
+        <script type="text/javascript" src="js/gentimer.js"></script>
+        <script type="text/javascript" src="js/jquery.prompt.min.js"></script>
+        <script type="text/javascript" src="js/dialog.js"></script>
+    </head>
+
+    <body>
+        <div id="top_box">
+            <div class="top_wrap">
+            	 	<div class="navbtn help"><a href="/m-navpage-help.html"><i class="icon-favorite"></i></a></div>
+                    <div class="navbtn menber"><a href="/m-account-index.html"><i class="icon-user3"></i></a></div>
+                <div id="logo"><a href="/"><img src="css/img/logo.png" /></a></div>
+                <div class="navbtn searchformbtn"><i class="icon-search2"></i></div>
+                    <div class="navbtn cart_box">
+                        <div class="cart_txt"><a href="/m-cart-list.html">
+                                <i class="icon-cart8">
+                                                                    </i>
+                            </a>
+                           </div>
+                    </div>
+                    
+                    <!--<div class="navbtn likebox"><a  href="/m-account-favorites.html"><i class="icon-favorite2"></i></a></div>-->
+               
+            </div>
+            <div class="clearboth"></div>
+</div>
+<div class="clear"></div>
+<div class="topsearchform">
+	<div class="searchform_box">
+        <form id="autocomplete-submit" class="searchform" action="/m-product-search.html" method="get">
+            <input type="text" name="keywords" autocomplete="off" id="autocomplete-ajax" class="search_input"  value=""/>
+            <button type="submit"  value="GO" id="btn-autocomplete" class="btn_search">Search</button>
+        </form>
+    </div>
+</div>
+<div class="topcategorieswrap">
+            <div class="topcategorieswrapbg"></div>
+        	<ul class="topcategories">
+                <li class="allcategories"><a href="/m-category-default.html"><i class="arr icon-right2"></i></a></li>
+                
+                <li><a href="/cateList-888.html">Women's Dresses<i class="arr icon-right2"></i></a></li>
+                
+                <li><a href="/cateList-909.html">Wedding Dresses<i class="arr icon-right2"></i></a></li>
+                
+                <li><a href="/cateList-910.html">Party & Occasions<i class="arr icon-right2"></i></a></li>
+                
+                <li><a href="/cateList-911.html">Shoes & Boots<i class="arr icon-right2"></i></a></li>
+                
+                <li><a href="/cateList-912.html">Men's Clothes<i class="arr icon-right2"></i></a></li>
+                
+                <li><a href="/cateList-914.html">Health and Beauty<i class="arr icon-right2"></i></a></li>
+                
+                <li><a href="/cateList-915.html">Cosplay and Costumes<i class="arr icon-right2"></i></a></li>
+                
+                <li><a href="/cateList-916.html">Watch & Jewelry<i class="arr icon-right2"></i></a></li>
+                
+                <li><a href="/cateList-917.html">Trends<i class="arr icon-right2"></i></a></li>
+                
+                <li><a href="/cateList-934.html">Fashion Bags<i class="arr icon-right2"></i></a></li>
+                
+            </ul>
+          
+        </div>        
+
+<script>
+$('#autocomplete-ajax').autocomplete({
+    serviceUrl: '/m-product-autocomplete.html',
+    onSelect: function(suggestion) {
+        var keywords = $('#autocomplete-ajax').val();
+        keywords = encodeURIComponent(suggestion.value);
+        window.location.href = "/Search/" + keywords + "/list-r1.html";
+    }
+});
+$('#btn-autocomplete').click(function() {
+    var keywords = $('#autocomplete-ajax').val();
+    if(keywords == ""){
+        $.Prompt('Please enter a keyword!');
+        return false;
+    }
+    keywords = encodeURIComponent(suggestion.value);
+    $('#autocomplete-submit').attr('action', '/Search/' + keywords + '/list-r1.html');
+});
+$(document).click(function() {
+    $(".keywords_box").hide();
+    $('#body_box').css('display', '');
+    $('#inner_body_box').css('display', '');
+    $('#account_body_box').css('display', '');
+    $('#comment_body_box').css('display', '');
+    $('footer').css('display', '');
+});
+$("input[name='keywords']").click(function(e) {
+    e.stopPropagation();
+});
+$(".keywords_box").click(function(e) {
+    e.stopPropagation();
+});
+
+</script>
+<script type="text/javascript">
+        $(function(){
+			var window_h=$(window).height();
+			$(".topcategorieswrap").css("height",window_h);
+			$(".topcategorieswrapbg").css("height",window_h);
+			$(".topcategories").css({"height":window_h,"overflow-y":"auto"})
+			
+			
+			$("#top_box .categoriesbtn").click(function(){
+				$(".topcategorieswrap").toggle(500);
+				$(this).toggleClass("oncategoriesbtn");
+				if($(".topcategorieswrap").css("display")=="block"){
+					$(document.body).css("height",window_h).css({"overflow":"hidden"});
+				}else{$(document.body).css("height","auto").css({"overflow":"auto"});}
+			});
+			$("#top_box .categoriesbtn").click(function(e){
+			var e=window.event || e;
+			if(e.stopPropagation){
+			e.stopPropagation();
+			}else{
+			e.cancelBubble = true;
+			}							   
+			});
+			$(document).click(function(){
+			$(".topcategorieswrap").hide(500);
+			$("#top_box .categoriesbtn").removeClass("oncategoriesbtn");
+			$(document.body).css("height","auto").css({"overflow":"auto"});
+			});
+			
+			$("#top_box .searchformbtn").click(
+				function(){
+					$(".topsearchform").toggle();
+					$(this).toggleClass("onsearchformbtn");
+				}
+			);
+			$("#top_box .searchformbtn").click(function(e){
+		//阻止冒泡
+			var e=window.event || e;
+			if(e.stopPropagation){
+			e.stopPropagation();
+			}else{
+			e.cancelBubble = true;
+			}							   
+			});
+			$(document).click(function(){
+			$(".topsearchform").hide();
+			});
+		})
+        </script>
+       
+
+<div id="body_box" class="account_index common_top common_account_box">
+    	<div class="wrap myaccount">
+    	<ul class="no_mar_top">
+        	<li class="last"><a href="/m-account-orders.html">My Orders<i></i></a></li>
+        </ul>
+        <ul>
+        	<li><a href="/m-account-profile.html">My Profile<i></i></a></li>
+            <li><a href="/m-account-changepwd.html">Change Password<i></i></a></li>
+            <li class="last"><a href="/m-account-newsletter.html">Newsletter Subscription<i></i></a></li>
+        </ul>
+        <ul>
+        	<li><a href="/m-cart-list.html">My Shopping Cart<i></i></a></li>
+            <li><a href="/m-account-address.html">My Address Books<i></i></a></li>
+            <li><a href="/m-account-billingAddress.html">My  Billing Address<i></i></a></li>
+            <li class="last"><a href="/m-account-mymessage.html">My Message<i></i></a></li>
+        </ul>
+        <ul>
+        	<li><a href="/m-account-favorites.html">My Wishlist<i></i></a></li>
+            <li class="last"><a href="/m-history-list.html">Recently Viewed<i></i></a></li>
+        </ul>
+        <ul>
+        	<li><a href="/m-account-creditList.html">My Credit<i></i></a></li>
+            <li><a href="/m-account-couponList.html">My Coupon Codes<i></i></a></li>
+            <li><a href="/m-account-growthList.html">My Growth<i></i></a></li>
+            <li class="last"><a href="/m-account-comments.html">My Comments<i></i></a></li>
+        </ul>
+        <div class="clear15"></div>
+        <button class="common_btn2" onclick="window.location.href='/m-user-logout.html'">Log Out</button>
+    </div>
+</div>
+<div class="clear15"></div>
+<div id="bottom_box">
+    <div class="wrap copyright"></div>
+</div>
+</body>
+</html>

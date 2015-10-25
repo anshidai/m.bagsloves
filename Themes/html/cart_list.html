@@ -1,0 +1,694 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Shopcart - m1736.newdemo.zhcart.com</title>
+        <meta content="charset=utf-8" />
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <meta content="false" id="twcClient" name="twcClient" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon-precomposed" href="images/touch_icon_57.png" />
+        <link rel="apple-touch-icon" size="72x72" href="images/touch_icon_72.png" />
+        <link rel="apple-touch-icon" size="114x114" href="images/touch_icon_114.png" />
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link href="css/tips.css" type="text/css"  rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="font_icon/style.css">
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/reLayout.js"></script>
+        <script type="text/javascript" src="js/common.js"></script>
+        <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
+        <script type="text/javascript" src="js/jq.puzz.js"></script>
+        <script type="text/javascript" src="js/gentimer.js"></script>
+        <script type="text/javascript" src="js/jquery.prompt.min.js"></script>
+        <script type="text/javascript" src="js/dialog.js"></script>
+    </head>
+
+    <body>
+        <div id="top_box">
+            <div class="top_wrap">
+            	 	<div class="navbtn help"><a href="/m-navpage-help.html"><i class="icon-favorite"></i></a></div>
+                    <div class="navbtn menber"><a href="/m-account-index.html"><i class="icon-user3"></i></a></div>
+                <div id="logo"><a href="/"><img src="css/img/logo.png" /></a></div>
+                <div class="navbtn searchformbtn"><i class="icon-search2"></i></div>
+                    <div class="navbtn cart_box">
+                        <div class="cart_txt"><a href="/m-cart-list.html">
+                                <i class="icon-cart8">
+                                                                                                                                                            <span id="shopping_cart_count">4</span>
+                                                                                                            </i>
+                            </a>
+                           </div>
+                    </div>
+                    
+                    <!--<div class="navbtn likebox"><a  href="/m-account-favorites.html"><i class="icon-favorite2"></i></a></div>-->
+               
+            </div>
+            <div class="clearboth"></div>
+</div>
+<div class="clear"></div>
+<div class="topsearchform">
+	<div class="searchform_box">
+        <form id="autocomplete-submit" class="searchform" action="/m-product-search.html" method="get">
+            <input type="text" name="keywords" autocomplete="off" id="autocomplete-ajax" class="search_input"  value=""/>
+            <button type="submit"  value="GO" id="btn-autocomplete" class="btn_search">Search</button>
+        </form>
+    </div>
+</div>
+<div class="topcategorieswrap">
+            <div class="topcategorieswrapbg"></div>
+        	<ul class="topcategories">
+                <li class="allcategories"><a href="/m-category-default.html"><i class="arr icon-right2"></i></a></li>
+                
+                <li><a href="/cateList-888.html">Women's Dresses<i class="arr icon-right2"></i></a></li>
+                
+                <li><a href="/cateList-909.html">Wedding Dresses<i class="arr icon-right2"></i></a></li>
+                
+                <li><a href="/cateList-910.html">Party & Occasions<i class="arr icon-right2"></i></a></li>
+                
+                <li><a href="/cateList-911.html">Shoes & Boots<i class="arr icon-right2"></i></a></li>
+                
+                <li><a href="/cateList-912.html">Men's Clothes<i class="arr icon-right2"></i></a></li>
+                
+                <li><a href="/cateList-914.html">Health and Beauty<i class="arr icon-right2"></i></a></li>
+                
+                <li><a href="/cateList-915.html">Cosplay and Costumes<i class="arr icon-right2"></i></a></li>
+                
+                <li><a href="/cateList-916.html">Watch & Jewelry<i class="arr icon-right2"></i></a></li>
+                
+                <li><a href="/cateList-917.html">Trends<i class="arr icon-right2"></i></a></li>
+                
+                <li><a href="/cateList-934.html">Fashion Bags<i class="arr icon-right2"></i></a></li>
+                
+            </ul>
+          
+        </div>        
+
+<script>
+$('#autocomplete-ajax').autocomplete({
+    serviceUrl: '/m-product-autocomplete.html',
+    onSelect: function(suggestion) {
+        var keywords = $('#autocomplete-ajax').val();
+        keywords = encodeURIComponent(suggestion.value);
+        window.location.href = "/Search/" + keywords + "/list-r1.html";
+    }
+});
+$('#btn-autocomplete').click(function() {
+    var keywords = $('#autocomplete-ajax').val();
+    if(keywords == ""){
+        $.Prompt('Please enter a keyword!');
+        return false;
+    }
+    keywords = encodeURIComponent(suggestion.value);
+    $('#autocomplete-submit').attr('action', '/Search/' + keywords + '/list-r1.html');
+});
+$(document).click(function() {
+    $(".keywords_box").hide();
+    $('#body_box').css('display', '');
+    $('#inner_body_box').css('display', '');
+    $('#account_body_box').css('display', '');
+    $('#comment_body_box').css('display', '');
+    $('footer').css('display', '');
+});
+$("input[name='keywords']").click(function(e) {
+    e.stopPropagation();
+});
+$(".keywords_box").click(function(e) {
+    e.stopPropagation();
+});
+
+</script>
+<script type="text/javascript">
+        $(function(){
+			var window_h=$(window).height();
+			$(".topcategorieswrap").css("height",window_h);
+			$(".topcategorieswrapbg").css("height",window_h);
+			$(".topcategories").css({"height":window_h,"overflow-y":"auto"})
+			
+			
+			$("#top_box .categoriesbtn").click(function(){
+				$(".topcategorieswrap").toggle(500);
+				$(this).toggleClass("oncategoriesbtn");
+				if($(".topcategorieswrap").css("display")=="block"){
+					$(document.body).css("height",window_h).css({"overflow":"hidden"});
+				}else{$(document.body).css("height","auto").css({"overflow":"auto"});}
+			});
+			$("#top_box .categoriesbtn").click(function(e){
+			var e=window.event || e;
+			if(e.stopPropagation){
+			e.stopPropagation();
+			}else{
+			e.cancelBubble = true;
+			}							   
+			});
+			$(document).click(function(){
+			$(".topcategorieswrap").hide(500);
+			$("#top_box .categoriesbtn").removeClass("oncategoriesbtn");
+			$(document.body).css("height","auto").css({"overflow":"auto"});
+			});
+			
+			$("#top_box .searchformbtn").click(
+				function(){
+					$(".topsearchform").toggle();
+					$(this).toggleClass("onsearchformbtn");
+				}
+			);
+			$("#top_box .searchformbtn").click(function(e){
+		//阻止冒泡
+			var e=window.event || e;
+			if(e.stopPropagation){
+			e.stopPropagation();
+			}else{
+			e.cancelBubble = true;
+			}							   
+			});
+			$(document).click(function(){
+			$(".topsearchform").hide();
+			});
+		})
+        </script>
+       
+
+<div id="body_box" class="cart_list">
+    <form action="/m-order-add.html" method="post" id="cart_checkout_form">
+    <div class="wrap common_shoppingcart_box">
+        <ul class="common_bor_wrap bor_top">
+                        <li class="cart_pro">
+                <span class="close_btn remove" data_id="10413" data_code="429_427" data_sku_id="4608"></span>
+                <a href="javascript:void(0)" class="pic"><img src="images/index_02.jpg" alt="Mermaid Applique Chapel Train Ivory Bridal Wedding Gown with V-Neck Spaghetti Strap" /></a>
+                <div class="name"><a class="product_name" href="/Mermaid-Applique-Chapel-Train-Ivory-Bridal-Wedding-Gown-with-V-Neck-Spaghetti-Strap-p10413.html">Mermaid Applique Chapel Train Ivory...</a></div>
+                <div class="price" data_subtotal="585.6">US$ 292.80</div>
+                <div class="styles">
+                                        <span>Color - write</span> &nbsp;  
+                                        <span>Size - l</span> &nbsp;  
+                                    </div>
+                                <dl class="quantityform_box">
+                    <dt>QTY</dt>
+                    <dd>
+                        <div class="quantityform">
+                            <a href="javascript:;" class="reduce minus"></a>
+                            <input name="quantity" class="num" type="text" value="2" data_id="10413" data_code="429_427" />
+                            <a href="javascript:;" class="plus"></a>
+                        </div>
+                    </dd>
+                </dl>
+                                <div>
+                                </div>
+                <div class="clearboth"></div>
+            </li>
+                                                                <li class="cart_pro">
+                <span class="close_btn remove" data_id="10396" data_code="429_428" data_sku_id="4547"></span>
+                <a href="javascript:void(0)" class="pic"><img src="images/index_01.jpg" alt="Sheath Flower Chapel Train Ivory Wedding Dress For Bride with Sweetheart Strapless Neck" /></a>
+                <div class="name"><a class="product_name" href="/Sheath-Flower-Chapel-Train-Ivory-Wedding-Dress-For-Bride-with-Sweetheart-Strapless-Neck-p10396.html">Sheath Flower Chapel Train Ivory...</a></div>
+                <div class="price" data_subtotal="169.99">US$ 169.99</div>
+                <div class="styles">
+                                        <span>Size - xl</span> &nbsp;  
+                                        <span>Color - write</span> &nbsp;  
+                                    </div>
+                                <dl class="quantityform_box">
+                    <dt>QTY</dt>
+                    <dd>
+                        <div class="quantityform">
+                            <a href="javascript:;" class="reduce minus"></a>
+                            <input name="quantity" class="num" type="text" value="1" data_id="10396" data_code="429_428" />
+                            <a href="javascript:;" class="plus"></a>
+                        </div>
+                    </dd>
+                </dl>
+                                <div>
+                                </div>
+                <div class="clearboth"></div>
+            </li>
+                                                                <li class="cart_pro">
+                <span class="close_btn remove" data_id="10406" data_code="429_428" data_sku_id="4583"></span>
+                <a href="javascript:void(0)" class="pic"><img src="images/index_03.jpg" alt="Court Train Ivory Wedding Dress For Bride with V-Neck Mermaid Buttons" /></a>
+                <div class="name"><a class="product_name" href="/Court-Train-Ivory-Wedding-Dress-For-Bride-with-V-Neck-Mermaid-Buttons-p10406.html">Court Train Ivory Wedding Dress For...</a></div>
+                <div class="price" data_subtotal="322.11">US$ 322.11</div>
+                <div class="styles">
+                                        <span>Size - xl</span> &nbsp;  
+                                        <span>Color - write</span> &nbsp;  
+                                    </div>
+                                <dl class="quantityform_box">
+                    <dt>QTY</dt>
+                    <dd>
+                        <div class="quantityform">
+                            <a href="javascript:;" class="reduce minus"></a>
+                            <input name="quantity" class="num" type="text" value="1" data_id="10406" data_code="429_428" />
+                            <a href="javascript:;" class="plus"></a>
+                        </div>
+                    </dd>
+                </dl>
+                                <div>
+                                </div>
+                <div class="clearboth"></div>
+            </li>
+                                                                <li class="cartlist_box">
+                              <div class="coupon_validatebox">
+                 <p><label>Coupon Code Discount : </label>
+                                </p>
+                 <p><a href="javascript:;" class="validatelink">USE COUPON CODE</a></p>
+              </div>
+           </li>
+            <li class="totalprice">
+                <dl>
+                    <dt>Sub Total :</dt>
+                    <dd class="price"><span id="cart_totalprice">US$ 1077.7</span></dd>
+                </dl>
+                <dl style="display: none;">
+                    <dt>Promotion Discount :</dt>
+                    <dd class="price"><span id="cart_promotionsave_amount">US$ 0</span></dd>
+                </dl>
+                <dl style="display: none;">
+                    <dt>Coupon Code Discount :</dt>
+                    <dd class="price"><span id="cart_promotionsave_amount"US$ 0</span></dd>
+                </dl>
+                <dl>
+                    <dt>Cart Total :</dt>
+                    <dd class="price"><span class="cart_total">US$ <span id="order_totalprice">1077.70</span></span></dd>
+                </dl>
+                <div class="checkout_box_btns">
+                <div class="clear"></div>
+                                                    
+                                        
+                                    <input id="totalsaveprice" type="hidden" value="146.40" />
+                               <button class="common_btn2" id="cart_checkout">Checkout </button>
+                                                </div>
+            </li>
+        </ul>
+    </div>
+    </form>
+    <div class="valide_coupon_box" style="display: none;">
+        <span class="close_coupon_box"></span>
+        <h3><div class="title_box">Have a coupon code?</div><span class="coupon_tip">(One code per order)</span></h3>
+        <form><input name="coupon_code" type="text" data_id="4" class="coupon_code_input" /><button class="common_btn2 valide_coupon_btn">Validate</button></form>
+    </div>
+
+    <script type="text/javascript">
+
+        $('a.plus').click(function() {
+            var qtyobj = $(this).siblings('input.num');
+            var qty = parseInt(qtyobj.val()) + 1;
+            $.ajax({
+                url: "m-cart-changeSkuNumInCart.html",
+                type: 'POST',
+                data: {
+                    goods_id: qtyobj.attr('data_id'),
+                    sku_code: qtyobj.attr('data_code'),
+                    qty: qty
+                },
+                dataType: 'json',
+                cache: false,
+                success: function(rs) {
+                    if (rs.status == '1') {
+                        window.location.reload();
+                        qtyobj.val(qty);
+                    } else if (rs.msg) {
+                        $.Prompt(rs.msg);
+                    }
+                },
+                beforeSend: function() {
+                    createAjaxLoading();
+                },
+                complete: function() {
+                    removeAjaxLoading();
+                }
+            });
+        });
+        $('a.minus').click(function() {
+            var qtyobj = $(this).siblings('input.num');
+            var qty = parseInt(qtyobj.val()) - 1;
+            if (qty > 0) {
+                $.ajax({
+                    url: "/m-cart-changeSkuNumInCart.html",
+                    type: 'POST',
+                    data: {
+                        goods_id: qtyobj.attr('data_id'),
+                        sku_code: qtyobj.attr('data_code'),
+                        qty: qty
+                    },
+                    dataType: 'json',
+                    cache: false,
+                    success: function(rs) {
+                        if (rs.status == '1') {
+                            window.location.reload();
+                            qtyobj.val(qty);
+                        } else if (rs.msg) {
+                            $.Prompt(rs.msg);
+                        }
+                    },
+                    beforeSend: function() {
+                        createAjaxLoading();
+                    },
+                    complete: function() {
+                        removeAjaxLoading();
+                    }
+                });
+            }
+        });
+        $('input.num').bind('blur', function() {
+            var _this = $(this);
+            var _val = this.defaultValue;
+            var qty = parseInt(_this.val());
+            if (qty != _val) {
+                $.ajax({
+                    url: "m-cart-changeSkuNumInCart.html",
+                    type: 'POST',
+                    data: {
+                        goods_id: _this.attr('data_id'),
+                        sku_code: _this.attr('data_code'),
+                        qty: qty
+                    },
+                    dataType: 'json',
+                    cache: false,
+                    success: function(rs) {
+                        if (rs.status == '1') {
+                            window.location.reload();
+                        } else if (rs.msg) {
+                            $.Prompt(rs.msg);
+                            _this.attr('value', _val);
+                        }
+                    },
+                    beforeSend: function() {
+                        createAjaxLoading();
+                    },
+                    complete: function() {
+                        removeAjaxLoading();
+                    }
+                });
+            }
+        });
+
+        $('#cart_promotion').change(function() {
+            var _this = $(this);
+            var offer_id = _this.val();
+            var totalobj = $('#order_totalprice');
+            var saveObj = $('#cart_Preferential_amount');
+            $.ajax({
+                url: "/m-cart-cartOffer.html",
+                type: 'POST',
+                data: {
+                    offer_id: offer_id ? offer_id : 0,
+                    totalqty: _this.attr('data_id'),
+                    totalprice: totalobj.text()
+                },
+                dataType: 'json',
+                cache: false,
+                success: function(rs) {
+                    if (rs.status == '1') {
+                        $('.cartgift').remove();
+                        if (rs.gifts) {
+                            var creat_gift = '';
+                            $.each(rs.gifts, function(key, value) {
+                                creat_gift += '<li class="cartgift">';
+                                creat_gift += '<a href="/m-product-detail.html?goods_id=' + value.goods_id + '" class="pic"><img src="/upload/thumb/84x84/' + value.image + '" alt="' + value.base_name + '" /></a>';
+                                creat_gift += '<div class="product_info">';
+                                creat_gift += '<a class="name" href="/m-product-detail.html?goods_id=' + value.goods_id + '">' + value.base_name + '</a>';
+                                creat_gift += '<div><span class="price fl mr5"><strong>US$ ' + value.price + '</strong></span><a href="#" class="btn_gifts">Gift</a></div>';
+                                creat_gift += '<p class="gifts_select"><select name="gift_sku_code" class="gift_sku_code" data_id="' + value.goods_id + '" data_sku_id="cart">' + value.attr + '</select></p>';
+                                creat_gift += '<div><label class="fl">QTY:</label><span>' + value.num + '</span></div></div>';
+                                creat_gift += '</li>';
+                            });
+                            $('ul.cartlist').append(creat_gift);
+                        }
+                        totalobj.text(rs.subtotalprice);
+                        saveObj.text(rs.cart_save);
+                        $('#cart_promotionsave_amount').text(rs.promotion_save);
+                        if (rs.promotion_save > 0)
+                        {
+                            $('#cart_promotionsave_amount').parent().parent().show();
+                        }
+                        else
+                        {
+                            $('#cart_promotionsave_amount').parent().parent().hide();
+                        }
+                        $(document.body).hide();
+                        window.location.reload();
+                    } else if (rs.status == '2') {
+                        $.Prompt('Illegal Parameters.');
+                    } else if (rs.status == '3') {
+                        $.Prompt('Only one promotion can be selected');
+                    } else {
+                        window.location.reload();
+                    }
+                },
+                beforeSend: function() {
+                    createAjaxLoading();
+                },
+                complete: function() {
+                    removeAjaxLoading();
+                }
+            });
+
+        });
+
+        $('.product_promotion').change(function() {
+            var _this = $(this);
+            var sku_id = _this.attr('data_id');
+            var offer_id = _this.val();
+            var qty = _this.parents('.product_info').find('input.num').val();
+            var subobj = _this.parents('.product_info').find('.price');
+            var saveObj = $('#cart_Preferential_amount');
+            var totalobj = $('#totalprice');
+            //var subtotalobj = $('#subtotalprice');
+            var totalsave = saveObj.val();
+            var totalprice = totalobj.text();
+            ;
+            $.ajax({
+                url: "/m-cart-productOffer.html",
+                type: 'POST',
+                data: {
+                    sku_id: sku_id,
+                    offer_id: offer_id ? offer_id : 0,
+                    qty: qty,
+                    subtotal: subobj.attr('data_subtotal'),
+                    totalsave: totalsave,
+                    totalprice: totalprice
+                },
+                dataType: 'json',
+                cache: false,
+                success: function(rs) {
+                    if (rs.status == '1') {
+                        $('.' + sku_id + '_gift').remove();
+                        if (rs.gifts) {
+                            var creat_gift = '';
+                            $.each(rs.gifts, function(key, value) {
+                                creat_gift += '<li class="' + sku_id + '_gift' + '">';
+                                creat_gift += '<a href="/m-product-detail.html?goods_id=' + value.goods_id + '" class="pic"><img src="/upload/thumb/84x84/' + value.image + '" alt="' + value.base_name + '" /></a>';
+                                creat_gift += '<div class="product_info">';
+                                creat_gift += '<a class="name" href="/m-product-detail.html?goods_id=' + value.goods_id + '">' + value.base_name + '</a>';
+                                creat_gift += '<div><span class="price mr5"><strong>US$ ' + value.price + '</strong></span><a href="#" class="btn_gifts">Gift</a></div>';
+                                creat_gift += '<p class="gifts_select"><select name="gift_sku_code" class="gift_sku_code" data_id="' + value.goods_id + '" data_sku_id="' + sku_id + '">' + value.attr + '</select></p>';
+                                creat_gift += '<div><label class="fl">QTY:</label><span>' + value.num + '</span></div></div>';
+                                creat_gift += '</li>';
+                            });
+                            _this.parents('li').after(creat_gift);
+                        }
+                        subobj.attr('data_subtotal', rs.subtotal);
+                        saveObj.val(rs.totalsave);
+                        totalobj.text(rs.totalprice);
+                        //subtotalobj.text(rs.totalprice);
+                        $('#cart_promotion').attr('value', '');
+                        $('#cart_coupon').attr('value', '');
+                        $(document.body).hide();
+                        window.location.reload();
+                    } else {
+                        $.Prompt('Illegal Parameters.');
+                    }
+                },
+                beforeSend: function() {
+                    createAjaxLoading();
+                },
+                complete: function() {
+                    removeAjaxLoading();
+                }
+            });
+        });
+
+        $('.gift_sku_code').live('change', function() {
+            var _this = $(this);
+            var sku_code = _this.val();
+            var goods_id = _this.attr('data_id');
+            var sku_id = _this.attr('data_sku_id');
+            $.ajax({
+                url: "/m-cart-setGiftSkuCode.html",
+                type: 'POST',
+                data: {
+                    sku_code: sku_code,
+                    goods_id: goods_id,
+                    sku_id: sku_id
+                },
+                dataType: 'json',
+                cache: false,
+                success: function(rs) {
+                    $(document.body).hide();
+                    window.location.reload();
+                },
+                beforeSend: function() {
+                    createAjaxLoading();
+                },
+                complete: function() {
+                    removeAjaxLoading();
+                }
+            });
+        });
+
+        $('.remove').live('click', function() {
+            var _this = $(this);
+            var goods_id = _this.attr('data_id');
+            var code = _this.attr('data_code');
+            var sku_id = _this.attr('data_sku_id');
+            $.ajax({
+                url: '/m-cart-del.html',
+                type: 'POST',
+                data: {
+                    goods_id: goods_id,
+                    code: code,
+                    sku_id: sku_id
+                },
+                dataType: 'json',
+                cache: false,
+                success: function(res) {
+                    window.location.reload();
+                },
+                beforeSend: function() {
+                    createAjaxLoading();
+                },
+                complete: function() {
+                    removeAjaxLoading();
+                }
+            });
+        });
+        $('#cart_checkout').click(function() {
+            var _form = $('#cart_checkout_form');
+            var user_id = '1';
+            if (user_id > 0)
+            {
+                _form.submit();
+            }
+            else
+            {
+                var ref = encodeURIComponent(location.protocol + '//' + window.location.host + '/m-order-add.html')
+                window.location.href = '/m-user-login.html?ref=' + ref;
+            }
+        });
+
+
+        $('#cart_coupon').change(function() {
+            var _this = $(this);
+            var offer_id = _this.val();
+            var totalobj = $('#order_totalprice');
+            var saveObj = $('#cart_Preferential_amount');
+            $.ajax({
+                url: "/m-cart-cartCoupon.html",
+                type: 'POST',
+                data: {
+                    offer_id: offer_id ? offer_id : 0,
+                    totalqty: _this.attr('data_id'),
+                    totalprice: '1077.70'
+                },
+                dataType: 'json',
+                cache: false,
+                success: function(rs) {
+                    if (rs.status == '1') {
+                        totalobj.text(rs.subtotalprice);
+                        saveObj.text(rs.cart_save);
+                        $('#cart_couponsave_amount').text(rs.coupon_save);
+                        if (rs.coupon_save > 0)
+                        {
+                            $(document.body).hide();
+                            window.location.reload();
+                            $('#cart_couponsave_amount').parent().parent().show();
+                        }
+                        else
+                        {
+                            alert(rs.msg);
+                            _this.val('');
+                            $('#cart_couponsave_amount').parent().parent().hide();
+                        }
+                    } else if (rs.status == '2') {
+                        alert('This coupon do not exist or is invalid');
+                    } else if (rs.status == '3') {
+                        alert('This Coupon can not be used during promotion.');
+                        window.location.reload();
+                    } else if (rs.status == '5') {
+                        window.location.reload();
+                    }
+                    else
+                    {
+                        alert('Sorry, your shopping cart did not meet the conditions of use of this coupon.');
+                        _this.val('');
+                        $('#cart_couponsave_amount').parent().parent().hide();
+                    }
+                },
+                beforeSend: function() {
+                    createAjaxLoading();
+                },
+                complete: function() {
+                    removeAjaxLoading();
+                }
+            });
+        });
+        $('.valide_coupon_btn').click(function() {
+            var callback = function(user) {
+                var totalobj = $('#order_totalprice');
+                //      var subtotalobj = $('#subtotalprice');
+                var codeobj = $('.coupon_code_input');
+                if (codeobj.val()) {
+                    $.ajax({
+                        url: "h-user-actCoupon.html",
+                        type: 'POST',
+                        data: {
+                            code: codeobj.val(),
+                            qty: codeobj.attr('data_id'),
+                            total_price: '1077.70'
+                        },
+                        dataType: 'json',
+                        cache: false,
+                        success: function(rs) {
+                            if (rs.status == '1') {
+                                //window.location.reload();
+                            } else if (rs.msg) {
+                                $.Prompt(rs.msg);
+                            }
+                        },
+                        beforeSend: function() {
+                            createAjaxLoading();
+                        },
+                        complete: function() {
+                            removeAjaxLoading();
+                        }
+                    });
+                }
+            }
+            userFastLogin.exec(callback);//未登录的先登录
+        });
+
+        var CouponDialog;
+        $('.validatelink').click(function() {
+            if (!CouponDialog)
+            {
+                CouponDialog = $('.valide_coupon_box').dialog({
+                    drag: 'div.title_box',
+                    buttons: '.close_coupon_box',
+                    noLeft: true
+                });
+            }
+            CouponDialog.open();
+        });
+
+    </script>
+</div>
+<div class="clear15"></div>
+<div id="bottom_box">
+<!--    <div class="wrap link">
+        
+         
+    </div>-->
+    <div class="wrap copyright"></div>
+</div>
+<script type="text/javascript">
+    $(window).resize(function() {
+        reLayout(".common_pro_list1", 400, 400);
+    });
+    reLayout(".common_pro_list1", 400, 400);
+</script>
+</body>
+</html>
