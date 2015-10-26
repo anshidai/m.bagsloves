@@ -15,7 +15,10 @@ return array(
     'DEFAULT_ACTION' => 'index', // 默认操作名称
 	
 	// 默认模板文件后缀
-	'TMPL_TEMPLATE_SUFFIX' => '.tpl', 
+	'TMPL_TEMPLATE_SUFFIX' => '.tpl',
+		
+	//设置模板文件命名  原来的./Themes/default/Index/index.tpl 变成了./Themes/default/Index-index.tpl
+	'TMPL_FILE_DEPR' => '-',
 	
 	//解析标签
     'TMPL_L_DELIM' => '{',
@@ -32,16 +35,17 @@ return array(
 	'URL_MODEL' =>2, //URL访问模式 默认为PATHINFO 模式 0 (普通模式); 1 (PATHINFO 模式); 2 (REWRITE  模式); 3 (兼容模式)  
 	'URL_ROUTER_ON' => false, //开启路由
 	//路由规则
-	'URL_ROUTE_RULES' =>	array(),	
+	'URL_ROUTE_RULES' => array(),	
 	
 	//设置模板目录
 	'VIEW_PATH' => THEMES_PATH,  
 	
 	//模板相关配置, 在模板中直接使用 如: __IMG__ 
     'TMPL_PARSE_STRING' => array(
-        '__IMG__'    => __ROOT__ . '/Public/'. SKIN_NAME .'/images',
-        '__CSS__'    => __ROOT__ . '/Public/'. SKIN_NAME .'/css',
-        '__JS__'     => __ROOT__ . '/Public/'. SKIN_NAME .'/js',
+        '__SKIN__' => __ROOT__ . '/Public/'. SKIN_NAME,
+        '__IMG__' => __ROOT__ . '/Public/'. SKIN_NAME .'/images',
+        '__CSS__' => __ROOT__ . '/Public/'. SKIN_NAME .'/css',
+        '__JS__'  => __ROOT__ . '/Public/'. SKIN_NAME .'/js',
     ),
 
     //全局过滤配置

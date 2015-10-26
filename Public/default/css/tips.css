@@ -1,0 +1,109 @@
+/*气泡提示*/
+.popup-tip-all{position:absolute;font: 12px/1 verdana;left:200px;top:300px;z-index:999;}
+.popup-tip-body{border:1px solid #D5B058;background:#FFFFDD url("img/tip-ico-q.png") no-repeat 8px 6px;padding:7px 7px 7px 30px;margin:7px 0;color:#AD723A;}
+.popup-tip-arrows{position:absolute;bottom:0;background:url("img/tip-arrows.png") no-repeat;width:14px;height:10px;left:15px;z-index:14;overflow:hidden;}
+.popup-tip-arrows-up{top:0;background:url("img/tip-arrows.png") no-repeat 100% 0;}
+/*弹窗登陆*/
+.dlg-body{border:2px solid #26537d;background:#fff;position:fixed;_position:absolute;box-shadow:2px 2px 3px #666;display:none;}
+.dlg-header{background:#F4F4F5 url("img/bg_dlg_header.png") repeat-x;height:32px;line-height:30px;font-size:14px;color:#FFF;padding-left:10px;}
+.dlg-header .dlg-close{cursor:pointer;position:absolute;right: 5px;top: 6px;}
+.dlg-clear{clear:both;overflow:hidden;height:0;}
+.dlg-login-btn{width:87px;height:32px;float:left;display:inline;background:url("img/btn_signin.jpg") no-repeat;cursor:pointer;}
+.dlg-login-opts td{padding:4px;}
+.dlg-login-opts{margin:18px;font-size:14px;}
+.dlg-login-opts label{color:#aaa;font-size:12px;}
+.dlg-login-opts label input{position:relative;top:-1px;}
+.dlg-login-opts .input-box{border:1px solid #C7C7C7;margin:7px 0;float:left;*display:inline;position:relative;zoom:1;}
+.dlg-login-opts .input-box input{border:1px solid #EBEBEB;border-width:2px 0 0 2px;width:260px;height:28px;line-height :18px;outline:none;}
+.dlg-login-opts label.error {position:absolute;left:0;top:-22px;color:#ea6c27;background:none;padding-left:0;font-weight:normal;}
+.dlg-lost-pwd{margin-left:10px;font-size:12px;position:relative;top: 4px;text-decoration:none;}
+.dlg-lost-pwd:hover{color:red;}
+.dlg-login-err{color:red;font-size:12px;position:relative;top:5px;display:none;}
+.lg-other-acc {margin:5px 10px 18px 10px;padding:0 8px;line-height:24px;border-top:1px dotted #aaa;}
+.lg-other-acc p {margin:5px 0;color:#666;}
+.lg-other-acc img {vertical-align:middle;}
+.dlg-body2 {border:1px solid #c3c3c5;box-shadow:none;}
+.dlg-body2 .dlg-header {background:#f3f3f3;height:27px;line-height:27px;color:#313131;border-bottom:1px solid #c3c3c5;}
+/*提示框*/
+.message_div{width:300px;border-radius:5px;border: 1px solid #c6c6c6; margin-left:-150px; position:relative; left:50%; top:28%;}
+.message_tpl{width:290px; padding:4px;  background:#f6f6f6; border-radius:5px; border: 1px solid #ebebeb}
+.message_tpl_info{padding:30px; background:#fff; border-top-right-radius:5px; border-top-left-radius:5px;}
+.message_tpl_info .information,
+.message_tpl_info .caution,
+.message_tpl_info .success,
+.message_tpl_info .error{padding-left:58px; height:50px; line-height:50px; font-size:15px;}
+.message_tpl_info .information{ background:url("img/tip_information.jpg") no-repeat; }
+.message_tpl_info .caution{ background:url("img/tip_caution.jpg") no-repeat;}
+.message_tpl_info .success{ background:url("img/tip_success.jpg") no-repeat;}
+.message_tpl_info .error{ background:url("img/tip_error.jpg") no-repeat;}
+.message_tpl_bom{line-height:28px; text-align:center; background:#fffed6; border-bottom-right-radius:5px; border-bottom-left-radius:5px; border-top: 1px solid #e2e2e2}
+.message_tpl_bom a{ color:#1D7EA9;}
+
+/*提示框改*/
+.message_div_box{ background-color:#ededed; text-align:center; margin:0; padding:0; padding:30px 0;height:300px;}
+.message_tpl_box{ width:90%; min-height:160px; border:1px solid #d5d5d5;margin:0 auto; height:auto;}
+.message_tpl_box_top{width: 100%;height: 120px; background-color:#ffffff;border-bottom:1px solid #e1e1e1; font-size:22px;}
+.message_tpl_img{ text-align:right;width:25%;}
+.message_tpl_img img{width:40px;height:40px;marght-right:10px;}
+.message_tpl_text{ text-align:left; padding-left:20px;}
+.message_tpl_box_top span{letter-spacing:1px;font-size:14px;}
+.message_tpl_box_bottom{ width:100%; min-height:30px; line-height:25px;padding:5px 0 5px;background-color:#F5F5F7;height:auto;}
+.message_tpl_click a{ font-size:15px; color:#333}
+
+/*添加购物车弹出层*/
+/*.add_cart_tip{ width:300px; background:url(img/cart_tip_buttom.png) no-repeat left bottom; padding-bottom:8px; position:absolute; margin-top:48px; z-index:999; +margin-top:48px; overfolw:visible}
+.add_cart_tip .top{ width:300px; height:14px; background:url(img/cart_tip_top.png) no-repeat left top;}
+.add_cart_tip .mid{ width:270px; background:url(img/cart_tip_mid.png) repeat-y left top; padding:5px 18px; overflow:hidden; line-height:18px; text-align:right; font-weight:bold;height: 100px;}
+.add_cart_tip .mid .left{width: 39px; height: 100%;text-align: center;float: left; background:url(img/succeed.png) no-repeat left center; display:block}
+.add_cart_tip .mid .right{text-align: left;margin-left: 50px;}
+.add_cart_tip .mid .right strong{font-size: 14px; font-weight: bold;}
+.add_cart_tip .mid .right p{font-size: 12px;margin-top: 10px;}
+.add_cart_tip a{ color:#0099D6; text-decoration:underline;}*/
+
+.add_cart p span,.go_cart{ font-weight:bold;}
+#add_cart_box{ width:90%; margin:auto; background:#000; opacity:0.8; position:absolute; top:15%; left:0; right:0; text-align:center; border-radius:10px; color:#fff; font-size:14px;z-index:999;}
+.add_cart{ padding:20px 50px;}
+.add_cart p{ padding-bottom:12px;}
+.add_cart p span{ color:#e50d20;}
+.add_cart .or{ padding-bottom:5px;}
+.go_cart{ margin: 0 auto;display: block; opacity: 1;width:165px; height:35px; line-height:35px; color:#fff; font-size:16px; text-align:center; background:#ce0d1e; border:none; margin-bottom:14px; border-radius:6px; cursor:pointer; font-family:Arial, Helvetica, sans-serif;}
+.continue{ color:#ff8a00; text-decoration:underline;}
+.continue:hover{ color:#e50d20;}
+
+
+﻿/*弹出层插件样式开始*/
+.Prompt_floatBoxBg{display:none;width:100%;height:100%;background:#000;position:fixed !important;/*ie7 ff*/position:absolute;top:0;left:0;filter:alpha(opacity=0);opacity:0; z-index:999990;}
+.Prompt_floatBox{
+z-index:999900;
+position: absolute;
+padding:6px;
+text-align:center;
+top: 10%;
+left: 50%;
+height: auto;
+width: 220px;
+margin-left: -110px;
+z-index: 10000000;
+word-wrap: break-word;
+-webkit-box-shadow: rgba(0, 0, 0, 0.498039) 0px 0px 15px;
+box-shadow: rgba(0, 0, 0, 0.498039) 0px 0px 15px;
+border-top-left-radius: 6px;
+border-top-right-radius: 6px;
+border-bottom-right-radius: 6px;
+border-bottom-left-radius: 6px;
+background-color: white;
+opacity: 1;
+}
+.Prompt_floatBox .content{padding:10px;background:#fff;overflow-x:hidden;overflow-y: auto;}
+/*弹出层插件样式结束*/
+/*弹出模态层*/
+.popupBoxBg{width:100%;height:100%;background:#000;position:fixed !important;/*ie7 ff*/position:absolute;top:0;left:0;filter:alpha(opacity=90);opacity:0.9; z-index:9990;}
+.popupBox{width:100%;height:100%;position:absolute;top:0;left:0; z-index:10000;}
+.popupBoxFloat{width:100%;height:100%;position:fixed !important;/*ie7 ff*/position:absolute;top:0;left:0; z-index:1000;}
+/*滑动下拉刷新*/
+#touchdown{background:#FFF; height:0px; border-bottom:1px #CCC solid; display:none; padding-left:70px; position:relative; overflow:hidden;}
+#touchdown span{width:10px; height:30px; background:url("img/pull-down-refresh.png") no-repeat; background-size:30px 30px; position:absolute; left:10px; top:50%; margin-top:-15px;}
+#touchdown span.pulldown{background-position:0px -1px;}
+#touchdown span.updown{background-position:-20px -1px;}
+#touchdown #touchdown_tips{text-align:center; top:50%; left:50%; margin-left:-50px; margin-top:-25px; line-height:50px; color:#333; font-size:14px; position:absolute;}
+#touchdown_loading{background:url("img/wap-loading-ico.gif") 10px center no-repeat #FFF; text-align:center; line-height:50px; color:#333; font-size:14px; border-bottom:1px #CCC solid; display:none;z-index: 10000;}
