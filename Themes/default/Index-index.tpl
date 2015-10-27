@@ -22,9 +22,7 @@
 <script type="text/javascript" src="__JS__/touchCarousel.js"></script>
 </head>
 <body>
-<include file="Public:header" />
-
-<div class="clear"></div>
+<include file="Themes/default/Public/header.tpl" />
 <div class="topsearchform">
 	<div class="searchform_box">
         <form id="autocomplete-submit" class="searchform" action="/m-product-search.html" method="get">
@@ -34,34 +32,21 @@
     </div>
 </div>
 <div class="topcategorieswrap">
-            <div class="topcategorieswrapbg"></div>
-        	<ul class="topcategories">
-                <li class="allcategories"><a href="/m-category-default.html">All Categories<i class="arr icon-right2"></i></a></li>
-                
-                <li><a href="/cateList-888.html">Women's Dresses<i class="arr icon-right2"></i></a></li>
-                
-                <li><a href="/cateList-909.html">Wedding Dresses<i class="arr icon-right2"></i></a></li>
-                
-                <li><a href="/cateList-910.html">Party & Occasions<i class="arr icon-right2"></i></a></li>
-                
-                <li><a href="/cateList-911.html">Shoes & Boots<i class="arr icon-right2"></i></a></li>
-                
-                <li><a href="/cateList-912.html">Men's Clothes<i class="arr icon-right2"></i></a></li>
-                
-                <li><a href="/cateList-914.html">Health and Beauty<i class="arr icon-right2"></i></a></li>
-                
-                <li><a href="/cateList-915.html">Cosplay and Costumes<i class="arr icon-right2"></i></a></li>
-                
-                <li><a href="/cateList-916.html">Watch & Jewelry<i class="arr icon-right2"></i></a></li>
-                
-                <li><a href="/cateList-917.html">Trends<i class="arr icon-right2"></i></a></li>
-                
-                <li><a href="/cateList-934.html">Fashion Bags<i class="arr icon-right2"></i></a></li>
-                
-            </ul>
-          
-        </div>        
-
+	<div class="topcategorieswrapbg"></div>
+	<ul class="topcategories">
+		<li class="allcategories"><a href="/m-category-default.html">All Categories<i class="arr icon-right2"></i></a></li>
+		<li><a href="/cateList-888.html">Women's Dresses<i class="arr icon-right2"></i></a></li>
+		<li><a href="/cateList-909.html">Wedding Dresses<i class="arr icon-right2"></i></a></li>
+		<li><a href="/cateList-910.html">Party & Occasions<i class="arr icon-right2"></i></a></li>
+		<li><a href="/cateList-911.html">Shoes & Boots<i class="arr icon-right2"></i></a></li>
+		<li><a href="/cateList-912.html">Men's Clothes<i class="arr icon-right2"></i></a></li>
+		<li><a href="/cateList-914.html">Health and Beauty<i class="arr icon-right2"></i></a></li>
+		<li><a href="/cateList-915.html">Cosplay and Costumes<i class="arr icon-right2"></i></a></li>
+		<li><a href="/cateList-916.html">Watch & Jewelry<i class="arr icon-right2"></i></a></li>
+		<li><a href="/cateList-917.html">Trends<i class="arr icon-right2"></i></a></li>
+		<li><a href="/cateList-934.html">Fashion Bags<i class="arr icon-right2"></i></a></li>
+	</ul>
+</div>        
 <script>
 $('#autocomplete-ajax').autocomplete({
     serviceUrl: '/m-product-autocomplete.html',
@@ -94,98 +79,86 @@ $("input[name='keywords']").click(function(e) {
 $(".keywords_box").click(function(e) {
     e.stopPropagation();
 });
-
 </script>
 <script type="text/javascript">
-        $(function(){
-			var window_h=$(window).height();
-			$(".topcategorieswrap").css("height",window_h);
-			$(".topcategorieswrapbg").css("height",window_h);
-			$(".topcategories").css({"height":window_h,"overflow-y":"auto"})
-			
-			
-			$("#top_box .categoriesbtn").click(function(){
-				$(".topcategorieswrap").toggle(500);
-				$(this).toggleClass("oncategoriesbtn");
-				if($(".topcategorieswrap").css("display")=="block"){
-					$(document.body).css("height",window_h).css({"overflow":"hidden"});
-				}else{$(document.body).css("height","auto").css({"overflow":"auto"});}
-			});
-			$("#top_box .categoriesbtn").click(function(e){
-			var e=window.event || e;
-			if(e.stopPropagation){
-			e.stopPropagation();
-			}else{
-			e.cancelBubble = true;
-			}							   
-			});
-			$(document).click(function(){
-			$(".topcategorieswrap").hide(500);
-			$("#top_box .categoriesbtn").removeClass("oncategoriesbtn");
-			$(document.body).css("height","auto").css({"overflow":"auto"});
-			});
-			
-			$("#top_box .searchformbtn").click(
-				function(){
-					$(".topsearchform").toggle();
-					$(this).toggleClass("onsearchformbtn");
-				}
-			);
-			$("#top_box .searchformbtn").click(function(e){
-		//阻止冒泡
-			var e=window.event || e;
-			if(e.stopPropagation){
-			e.stopPropagation();
-			}else{
-			e.cancelBubble = true;
-			}							   
-			});
-			$(document).click(function(){
-			$(".topsearchform").hide();
-			});
-		})
-        </script>
+$(function(){
+	var window_h=$(window).height();
+	$(".topcategorieswrap").css("height",window_h);
+	$(".topcategorieswrapbg").css("height",window_h);
+	$(".topcategories").css({"height":window_h,"overflow-y":"auto"})
+	
+	
+	$("#top_box .categoriesbtn").click(function(){
+		$(".topcategorieswrap").toggle(500);
+		$(this).toggleClass("oncategoriesbtn");
+		if($(".topcategorieswrap").css("display")=="block"){
+			$(document.body).css("height",window_h).css({"overflow":"hidden"});
+		}else{$(document.body).css("height","auto").css({"overflow":"auto"});}
+	});
+	$("#top_box .categoriesbtn").click(function(e){
+	var e=window.event || e;
+	if(e.stopPropagation){
+	e.stopPropagation();
+	}else{
+	e.cancelBubble = true;
+	}							   
+	});
+	$(document).click(function(){
+	$(".topcategorieswrap").hide(500);
+	$("#top_box .categoriesbtn").removeClass("oncategoriesbtn");
+	$(document.body).css("height","auto").css({"overflow":"auto"});
+	});
+	
+	$("#top_box .searchformbtn").click(
+		function(){
+			$(".topsearchform").toggle();
+			$(this).toggleClass("onsearchformbtn");
+		}
+	);
+	$("#top_box .searchformbtn").click(function(e){
+//阻止冒泡
+	var e=window.event || e;
+	if(e.stopPropagation){
+	e.stopPropagation();
+	}else{
+	e.cancelBubble = true;
+	}							   
+	});
+	$(document).click(function(){
+	$(".topsearchform").hide();
+	});
+})
+</script>
        
-
 <div id="body_box" class="index_default">
     <div id="carousel" class="touchcarousel MB15 lazyload" style="overflow: visible;">
     <div class="touchcarousel-wrapper grab-cursor">
         <ul class="touchcarousel-container">
-            
-            <li class="touchcarousel-item" >
-                <a onclick="" href="">
-                    <img src="__IMG__/slide-1.jpg" width="100%"/>
-                </a>
-            </li>
-            
+            <li class="touchcarousel-item" ><a onclick="" href=""><img src="__IMG__/slide-1.jpg" width="100%"/></a></li>
         </ul>
     </div>
 </div>
 
 <script>
 $(function() {
-        $("#carousel").touchCarousel({
-                itemsPerMove:1,
-                pagingNav: 1,
-                scrollbar: 0,
-                directionNav: 0,
-                directionNav:true,
-                itemLikeWindowWidth: 1,
-                directionNavAutoHide:false,
-                autoplay:true,
-                directionNav:false,
-                pagingNavControls:true
-        });
-        
+	$("#carousel").touchCarousel({
+			itemsPerMove:1,
+			pagingNav: 1,
+			scrollbar: 0,
+			directionNav: 0,
+			directionNav:true,
+			itemLikeWindowWidth: 1,
+			directionNavAutoHide:false,
+			autoplay:true,
+			directionNav:false,
+			pagingNavControls:true
+	});     
 });
 window.onload=function(){
     $(".touchcarousel-container li").show()
 }
 </script>  
-
-
 <div class="clear"></div>
-
 <div class="pro_deals">
     <h3 class="commonh3_1 tit"><a href="/Deals/c0/list-r1.html">FLASH SALE<i class="arr icon-right"></i></a></h3>
 </div>
@@ -208,9 +181,6 @@ window.onload=function(){
 <div class="select_content" id="skucontent10413"  goods_id="10413" style="display:none">
     <div class="checkmain"></div>
 </div>
-
- 
-        
         <li>
     <a class="pic" href="/White-Off-The-Shoulder-Wedding-Dress-p10412.html" title="White Off-The-Shoulder Wedding Dress"><img src="__IMG__/index_02.jpg" alt="White Off-The-Shoulder Wedding Dress" title="White Off-The-Shoulder Wedding Dress"></a>
     <a class="name" href="/White-Off-The-Shoulder-Wedding-Dress-p10412.html" title="White Off-The-Shoulder Wedding Dress">White Off-The-Shoulder Wedding Dress</a>
@@ -224,9 +194,6 @@ window.onload=function(){
 <div class="select_content" id="skucontent10412"  goods_id="10412" style="display:none">
     <div class="checkmain"></div>
 </div>
-
- 
-        
         <li>
     <a class="pic" href="/Graceful-Ivory-Mermaid-Strapless-Lace-Tulle-Wedding-Dress-For-Bride-p10411.html" title="Graceful Ivory Mermaid Strapless Lace Tulle Wedding Dress For Bride"><img src="__IMG__/index_03.jpg" alt="Graceful Ivory Mermaid Strapless Lace Tulle Wedding Dress For Bride" title="Graceful Ivory Mermaid Strapless Lace Tulle Wedding Dress For Bride"></a>
     <a class="name" href="/Graceful-Ivory-Mermaid-Strapless-Lace-Tulle-Wedding-Dress-For-Bride-p10411.html" title="Graceful Ivory Mermaid Strapless Lace Tulle Wedding Dress For Bride">Graceful Ivory Mermaid Strapless Lace Tulle Wedding Dress For Bride</a>
@@ -445,56 +412,10 @@ window.onload=function(){
         })
     </script>
 
-
-
-
-
-
-
     <div class="clear"></div>
-    <div class="wrap currency_box">
-        <p>Change Currency</p>
-        <div class="select">
-        <select id="cursel" class="text-arrow-bg changegourl">
-            
-            <option value="/index.php?m=home&c=Changecurrency&a=&currency=USD" selected="selected">Dollar</option>
-            
-        </select>
-            </div>
-        <script>
-            $(".changegourl").change(function() {
-                if($(this).attr("value") != ""){
-                    window.location.href = $(this).attr("value");
-                }
-                
-            });
-        </script>
-    </div>
-    <div class="clear"></div>
-    <div class="wrap menber_center">
-        <dl>
-            <dd>
-                
-                                <a href="/m-user-login.html" class="menber"><i></i>My Account</a>
-                                
-                <a href="/m-cart-list.html" class="shopcart"><i></i>Shopping Cart</a>
-                <a href="/m-account-orders.html" class="myorder"><i></i>My Order</a>
-                
-                                
-                <a href="/m-account-trackingOrder.html" class="tracking"><i></i>Tracking Order</a>
-                <a href="/m-account-favorites.html" class="myfavorites"><i></i>My Favorites</a>
-                <a href="/m-history-list.html" class="recently"><i></i>Recently Viewed</a>
-                <a href="/m-navpage-help.html" class="none help"><i></i>Help Center</a>
-            </dd>
-        </dl>
-    </div>
-    <div class="clear"></div>
+	<include file="Themes/default/Public/front_footer.tpl" />
 
-
-<!--    <div class="wrap link">
-        
-         
-    </div>-->
+	<!--<div class="wrap link"></div>-->
     <div class="wrap copyright"></div>
 </div>
 

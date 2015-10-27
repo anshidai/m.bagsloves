@@ -17,3 +17,4 @@
 	<div class="clearboth"></div>
 </div>
 <!-- top_box end-->
+<div class="clear"></div>
