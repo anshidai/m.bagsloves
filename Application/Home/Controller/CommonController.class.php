@@ -7,6 +7,7 @@ use Think\Controller;
 class CommonController extends Controller {
 	
 	protected static $Model = null;	//数据Model
+	protected $ProModel = null;
 	public $sessionID,$memberID,$memberInfo,$memberShippingAddress;
 	
 	public function _initialize()
@@ -65,6 +66,14 @@ class CommonController extends Controller {
 		$this->memberGropuInfo = get_members_group($this->memberID);
 		$this->isVip = $this->memberGropuInfo? 1: 0;
 		
+		$this->ProModel = D('Products');
+		$this->assign('catetree', get_catetree());
+
+	}
+	
+	private function _common_cache()
+	{
+
 	}
 	
 }

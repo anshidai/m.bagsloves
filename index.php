@@ -9,7 +9,9 @@ define('APP_PATH', './Application/');
 //缓存目录设置,  此目录必须可写，建议移动到非WEB目录
 define('RUNTIME_PATH', './Runtime/');
 
-//define('BIND_MODULE','Home');
+define('BIND_MODULE','Home');
+
+define('IMG_DOMAIN', 'http://www.bagsloves.com');
 
 //风格模板
 define('SKIN_NAME',  'default');

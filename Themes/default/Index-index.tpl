@@ -23,28 +23,21 @@
 </head>
 <body>
 <include file="Themes/default/Public/header.tpl" />
-<div class="topsearchform">
-	<div class="searchform_box">
-        <form id="autocomplete-submit" class="searchform" action="/m-product-search.html" method="get">
-            <input type="text" name="keywords" autocomplete="off" id="autocomplete-ajax" class="search_input"  value=""/>
-            <button type="submit"  value="GO" id="btn-autocomplete" class="btn_search">Search</button>
-        </form>
-    </div>
-</div>
 <div class="topcategorieswrap">
 	<div class="topcategorieswrapbg"></div>
 	<ul class="topcategories">
-		<li class="allcategories"><a href="/m-category-default.html">All Categories<i class="arr icon-right2"></i></a></li>
-		<li><a href="/cateList-888.html">Women's Dresses<i class="arr icon-right2"></i></a></li>
-		<li><a href="/cateList-909.html">Wedding Dresses<i class="arr icon-right2"></i></a></li>
-		<li><a href="/cateList-910.html">Party & Occasions<i class="arr icon-right2"></i></a></li>
-		<li><a href="/cateList-911.html">Shoes & Boots<i class="arr icon-right2"></i></a></li>
-		<li><a href="/cateList-912.html">Men's Clothes<i class="arr icon-right2"></i></a></li>
-		<li><a href="/cateList-914.html">Health and Beauty<i class="arr icon-right2"></i></a></li>
-		<li><a href="/cateList-915.html">Cosplay and Costumes<i class="arr icon-right2"></i></a></li>
-		<li><a href="/cateList-916.html">Watch & Jewelry<i class="arr icon-right2"></i></a></li>
-		<li><a href="/cateList-917.html">Trends<i class="arr icon-right2"></i></a></li>
-		<li><a href="/cateList-934.html">Fashion Bags<i class="arr icon-right2"></i></a></li>
+		<li class="allcategories"><a href="{:build_url('','cate_url')}">All Categories<i></i></a></li>
+        <notempty name="catetree">
+		<foreach name="catetree" item="vo">
+		<li <if condition="$vo['id'] eq $cid">class="actived"</if>>
+			<notempty name="vo.sub">
+			<a href="{:build_url($vo,'cate_url')}">{:build_url($vo,'cate_name')}<i class="arr icon-right2"></i></a>
+			<else/>
+			<a href="{:build_url($vo,'cate_list_url')}">{:build_url($vo,'cate_name')}<i class="arr icon-right2"></i></a>
+			</notempty>
+		</li>
+		</foreach>
+		</notempty>
 	</ul>
 </div>        
 <script>
@@ -163,169 +156,73 @@ window.onload=function(){
     <h3 class="commonh3_1 tit"><a href="/Deals/c0/list-r1.html">FLASH SALE<i class="arr icon-right"></i></a></h3>
 </div>
 <div class="clear10"></div>
-<h3 class="commonh3_1 tit">	Best Sellers<a class="more" href="/Narrow/t1/list-r1.html">more >></a></h3>
+<h3 class="commonh3_1 tit">	Best Sellers<!--<a class="more" href="/Narrow/t1/list-r1.html">more >></a>--></h3>
 <div class="wrap pro_box">
     <ul class="common_pro_list1">
         <div class="select_box" style="display:none"></div>
-        
+        <notempty name="new_products">
+		<foreach name="new_products" item="vo">
         <li>
-    <a class="pic" href="/Mermaid-Applique-Chapel-Train-Ivory-Bridal-Wedding-Gown-with-V-Neck-Spaghetti-Strap-p10413.html" title="Mermaid Applique Chapel Train Ivory Bridal Wedding Gown with V-Neck Spaghetti Strap"><img src="__IMG__/index_01.jpg" alt="Mermaid Applique Chapel Train Ivory Bridal Wedding Gown with V-Neck Spaghetti Strap" title="Mermaid Applique Chapel Train Ivory Bridal Wedding Gown with V-Neck Spaghetti Strap"></a>
-    <a class="name" href="/Mermaid-Applique-Chapel-Train-Ivory-Bridal-Wedding-Gown-with-V-Neck-Spaghetti-Strap-p10413.html" title="Mermaid Applique Chapel Train Ivory Bridal Wedding Gown with V-Neck Spaghetti Strap">Mermaid Applique Chapel Train Ivory Bridal Wedding Gown with V-Neck Spaghetti Strap</a>
-    <div class="price">
-        <span>US$ 292.80</span>
-        <span> </span>        <span class="oldprice">US$ 366.00</span>    </div>
-              
-       <div class="discount"><span>20%</span>OFF</div>
+		<a class="pic" href="{:build_url($vo,'pro_url')}"><img src="{:build_url($vo,'pro_smallimage')}" alt="{:build_url($vo,'pro_name')}"></a>
+		<a class="name" href="{:build_url($vo,'pro_url')}">{:build_url($vo,'pro_name')}</a>
+		<div class="price">
+			<span>{:getprice($vo['price'],$vo['pricespe'],false)}</span>
+			<span> </span>
+			<span class="oldprice">{:getprice_str($vo['price'])}</span>
+		</div>
+       <!--<div class="discount"><span>20%</span>OFF</div>-->
     </li>
-
-<div class="select_content" id="skucontent10413"  goods_id="10413" style="display:none">
-    <div class="checkmain"></div>
-</div>
-        <li>
-    <a class="pic" href="/White-Off-The-Shoulder-Wedding-Dress-p10412.html" title="White Off-The-Shoulder Wedding Dress"><img src="__IMG__/index_02.jpg" alt="White Off-The-Shoulder Wedding Dress" title="White Off-The-Shoulder Wedding Dress"></a>
-    <a class="name" href="/White-Off-The-Shoulder-Wedding-Dress-p10412.html" title="White Off-The-Shoulder Wedding Dress">White Off-The-Shoulder Wedding Dress</a>
-    <div class="price">
-        <span>US$ 292.80</span>
-        <span> </span>        <span class="oldprice">US$ 366.00</span>    </div>
-              
-       <div class="discount"><span>20%</span>OFF</div>
-    </li>
-
-<div class="select_content" id="skucontent10412"  goods_id="10412" style="display:none">
-    <div class="checkmain"></div>
-</div>
-        <li>
-    <a class="pic" href="/Graceful-Ivory-Mermaid-Strapless-Lace-Tulle-Wedding-Dress-For-Bride-p10411.html" title="Graceful Ivory Mermaid Strapless Lace Tulle Wedding Dress For Bride"><img src="__IMG__/index_03.jpg" alt="Graceful Ivory Mermaid Strapless Lace Tulle Wedding Dress For Bride" title="Graceful Ivory Mermaid Strapless Lace Tulle Wedding Dress For Bride"></a>
-    <a class="name" href="/Graceful-Ivory-Mermaid-Strapless-Lace-Tulle-Wedding-Dress-For-Bride-p10411.html" title="Graceful Ivory Mermaid Strapless Lace Tulle Wedding Dress For Bride">Graceful Ivory Mermaid Strapless Lace Tulle Wedding Dress For Bride</a>
-    <div class="price">
-        <span>US$ 292.80</span>
-        <span> </span>        <span class="oldprice">US$ 366.00</span>    </div>
-              
-       <div class="discount"><span>20%</span>OFF</div>
-    </li>
-
-<div class="select_content" id="skucontent10411"  goods_id="10411" style="display:none">
-    <div class="checkmain"></div>
-</div>
-
- 
-        
-        <li>
-    <a class="pic" href="/Ivory-Beading-Strapless-Mermaid-Wedding-Dress-p10410.html" title="Ivory Beading Strapless Mermaid Wedding Dress"><img src="__IMG__/index_04.jpg" alt="Ivory Beading Strapless Mermaid Wedding Dress" title="Ivory Beading Strapless Mermaid Wedding Dress"></a>
-    <a class="name" href="/Ivory-Beading-Strapless-Mermaid-Wedding-Dress-p10410.html" title="Ivory Beading Strapless Mermaid Wedding Dress">Ivory Beading Strapless Mermaid Wedding Dress</a>
-    <div class="price">
-        <span>US$ 566.00</span>
-        <span> </span>    </div>
-        </li>
-
-<div class="select_content" id="skucontent10410"  goods_id="10410" style="display:none">
-    <div class="checkmain"></div>
-</div>
-
- 
-        
+	<div class="select_content" id="skucontent{$vo.id}"  goods_id="{$vo.id}" style="display:none"><div class="checkmain"></div></div>
+	</foreach>
+	</notempty>  
     </ul>
 </div>
-
 
 <div class="clear10"></div>
-<h3 class="commonh3_1 tit">Hot Items<a class="more" href="/Narrow/t5/list-r1.html">more >></a></h3>
+<h3 class="commonh3_1 tit">Hot Items <!--<a class="more" href="/Narrow/t5/list-r1.html">more >></a>--></h3>
 <div class="wrap pro_box">
-    
     <ul class="common_pro_list1">
         <div class="select_box" style="display:none"></div>
         
-        <li>
-    <a class="pic" href="/Ivory-Mermaid-Backless-Jewel-Neck-Lace-Sweep-Satin-Wedding-Dress-p10388.html" title="Ivory Mermaid Backless Jewel Neck Lace Sweep Satin Wedding Dress"><img src="__IMG__/index_05.jpg" alt="Ivory Mermaid Backless Jewel Neck Lace Sweep Satin Wedding Dress" title="Ivory Mermaid Backless Jewel Neck Lace Sweep Satin Wedding Dress"></a>
-    <a class="name" href="/Ivory-Mermaid-Backless-Jewel-Neck-Lace-Sweep-Satin-Wedding-Dress-p10388.html" title="Ivory Mermaid Backless Jewel Neck Lace Sweep Satin Wedding Dress">Ivory Mermaid Backless Jewel Neck Lace Sweep Satin Wedding Dress</a>
-    <div class="price">
-        <span>US$ 142.49</span>
-        <span> </span>    </div>
-        </li>
-
-<div class="select_content" id="skucontent10388"  goods_id="10388" style="display:none">
-    <div class="checkmain"></div>
-</div>
-
- 
-        
-        <li>
-    <a class="pic" href="/A-Line-Strapless-Wedding-Dress-with-Ruffles-p10387.html" title="A Line Strapless Wedding Dress with Ruffles"><img src="__IMG__/index_06.jpg" alt="A Line Strapless Wedding Dress with Ruffles" title="A Line Strapless Wedding Dress with Ruffles"></a>
-    <a class="name" href="/A-Line-Strapless-Wedding-Dress-with-Ruffles-p10387.html" title="A Line Strapless Wedding Dress with Ruffles">A Line Strapless Wedding Dress with Ruffles</a>
-    <div class="price">
-        <span>US$ 94.99</span>
-        <span> </span>    </div>
-        </li>
-
-<div class="select_content" id="skucontent10387"  goods_id="10387" style="display:none">
-    <div class="checkmain"></div>
-</div>
-
- 
-        
-        <li>
-    <a class="pic" href="/Court-Train-Ivory-Brides-Wedding-Dress-with-Jewel-Neck-A-line-Bow-p10386.html" title="Court Train Ivory Brides Wedding Dress with Jewel Neck A-line Bow"><img src="__IMG__/index_07.jpg" alt="Court Train Ivory Brides Wedding Dress with Jewel Neck A-line Bow" title="Court Train Ivory Brides Wedding Dress with Jewel Neck A-line Bow"></a>
-    <a class="name" href="/Court-Train-Ivory-Brides-Wedding-Dress-with-Jewel-Neck-A-line-Bow-p10386.html" title="Court Train Ivory Brides Wedding Dress with Jewel Neck A-line Bow">Court Train Ivory Brides Wedding Dress with Jewel Neck A-line Bow</a>
-    <div class="price">
-        <span>US$ 169.99</span>
-        <span> </span>    </div>
-        </li>
-
-<div class="select_content" id="skucontent10386"  goods_id="10386" style="display:none">
-    <div class="checkmain"></div>
-</div>
-
- 
-        
-        <li>
-    <a class="pic" href="/Slimming-Trendy-Hooded-Personality-Color-Splicing-Long-Sleeves-Thicken-Hoodies-For-Men-p10385.html" title="Slimming Trendy Hooded Personality Color Splicing Long Sleeves Thicken Hoodies For Men"><img src="__IMG__/index_08.jpg" alt="Slimming Trendy Hooded Personality Color Splicing Long Sleeves Thicken Hoodies For Men" title="Slimming Trendy Hooded Personality Color Splicing Long Sleeves Thicken Hoodies For Men"></a>
-    <a class="name" href="/Slimming-Trendy-Hooded-Personality-Color-Splicing-Long-Sleeves-Thicken-Hoodies-For-Men-p10385.html" title="Slimming Trendy Hooded Personality Color Splicing Long Sleeves Thicken Hoodies For Men">Slimming Trendy Hooded Personality Color Splicing Long Sleeves Thicken Hoodies For Men</a>
-    <div class="price">
-        <span>US$ 78.90</span>
-        <span> </span>    </div>
-        </li>
-
-<div class="select_content" id="skucontent10385"  goods_id="10385" style="display:none">
-    <div class="checkmain"></div>
-</div>
-
- 
-        
+        <notempty name="hot_products">
+		<foreach name="hot_products" item="vo">
+		<li>
+		<a class="pic" href="{:build_url($vo,'pro_url')}"><img src="{:build_url($vo,'pro_smallimage')}" alt="{:build_url($vo,'pro_name')}"></a>
+		<a class="name" href="{:build_url($vo,'pro_url')}">{:build_url($vo,'pro_name')}</a>
+		<div class="price">
+			<span>{:getprice($vo['price'],$vo['pricespe'],false)}</span>
+			<span> </span>
+			<span class="oldprice">{:getprice_str($vo['price'])}</span>
+		</div>
+	   <!--<div class="discount"><span>20%</span>OFF</div>-->
+		</li>
+		<div class="select_content" id="skucontent{$vo.id}"  goods_id="{$vo.id}" style="display:none"><div class="checkmain"></div></div>
+		</foreach>
+		</notempty>  
     </ul>
 </div>
-        <script>
-            $(function(){
-                $(".select_content").css("left",(parseInt($("html").width()) - 300)/2 + "px");
-                $(".select_box").height($("html").height());
-            });
-        </script>
-
+<script>
+	$(function(){
+		$(".select_content").css("left",(parseInt($("html").width()) - 300)/2 + "px");
+		$(".select_box").height($("html").height());
+	});
+</script>
 
 <div class="clear"></div>
 <div class="categories_box">
     <ul class="categories">
-        <li class="allcategories"><a href="/m-category-default.html">All Categories<i></i></a></li>
-        
-        <li><a href="/cateList-888.html">Women's Dresses <i></i></a></li>
-        
-        <li><a href="/cateList-909.html">Wedding Dresses <i></i></a></li>
-        
-        <li><a href="/cateList-910.html">Party & Occasions <i></i></a></li>
-        
-        <li><a href="/cateList-911.html">Shoes & Boots <i></i></a></li>
-        
-        <li><a href="/cateList-912.html">Men's Clothes <i></i></a></li>
-        
-        <li><a href="/cateList-914.html">Health and Beauty <i></i></a></li>
-        
-        <li><a href="/cateList-915.html">Cosplay and Costumes <i></i></a></li>
-        
-        <li><a href="/cateList-916.html">Watch & Jewelry <i></i></a></li>
-        
-        <li><a href="/cateList-917.html">Trends <i></i></a></li>
-        
-        <li><a href="/cateList-934.html">Fashion Bags <i></i></a></li>
-        
+        <li class="allcategories"><a href="{:build_url('','cate_url')}">All Categories<i></i></a></li>
+        <notempty name="catetree">
+		<foreach name="catetree" item="vo">
+		<li <if condition="$vo['id'] eq $cid">class="actived"</if>>
+			<notempty name="vo.sub">
+			<a href="{:build_url($vo,'cate_url')}">{:build_url($vo,'cate_name')}<i class="arr icon-right2"></i></a>
+			<else/>
+			<a href="{:build_url($vo,'cate_list_url')}">{:build_url($vo,'cate_name')}<i class="arr icon-right2"></i></a>
+			</notempty>
+		</li>
+		</foreach>
+		</notempty>
     </ul>
 </div>  
 </div>

@@ -6,7 +6,7 @@
 		<div class="navbtn searchformbtn"><i class="icon-search2"></i></div>
 		<div class="navbtn cart_box">
 			<div class="cart_txt">
-				<a href="/m-cart-list.html"><i class="icon-cart8"><span id="shopping_cart_count">2</span></i></a>
+				<a href="/m-cart-list.html"><i class="icon-cart8"><span id="shopping_cart_count">{:itemCount()}</span></i></a>
 			</div>
 		</div>
 		<!--<div class="navbtn likebox">
@@ -18,3 +18,12 @@
 </div>
 <!-- top_box end-->
 <div class="clear"></div>
+
+<div class="topsearchform">
+	<div class="searchform_box">
+        <form id="autocomplete-submit" class="searchform" action="/m-product-search.html" method="get">
+            <input type="text" name="keywords" autocomplete="off" id="autocomplete-ajax" class="search_input"  value=""/>
+            <button type="submit"  value="GO" id="btn-autocomplete" class="btn_search">Search</button>
+        </form>
+    </div>
+</div>

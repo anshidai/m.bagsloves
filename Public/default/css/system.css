@@ -95,7 +95,7 @@ a.common_btn1:hover,a.common_btn2:hover,a.common_btn3:hover{display:block;width:
 .categories li a{ display:block; padding:0 5px; }
 .categories li a i{ width:11px; height:16px; background-position:-139px -48px; float:right; margin-top:15px;}
 .categories li.actived a i{ width:16px; height:11px; background-position:-134px -69px;}
-.categories li .category_son{ background:#eeeeee;}
+.categories li .category_son{ background:#eeeeee;display:none;}
 .categories li .category_son dl dd{ border-top:1px solid #cdcdcd;}
 .categories li .category_son dl dd a{ padding:0 12px;}
 

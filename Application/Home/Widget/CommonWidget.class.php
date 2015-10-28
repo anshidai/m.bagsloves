@@ -4,18 +4,9 @@ namespace Home\Widget;
 
 use Think\Controller;
 
-/**
- * 分类widget
- * 用于动态调用分类信息
- */
-
 class CommonWidget extends Controller{
-		
-	public function CartTotal()
-	{
-		
-	}
 	
+	protected static $Model = null;	//数据Model	
 	
 	public function Menu()
 	{
