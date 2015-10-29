@@ -67,13 +67,13 @@ function build_url($vo, $type)
 {
 	switch($type) {
 		case 'pro_url':
-			$url = U(tourlstr($vo['name']).'/pid/'.$vo['id']);
+			$url = U('Products/detail', array('pid'=>$vo['id']));
 			return $url;
 		case 'pid':
-			$url = U(tourlstr($vo['name']).'/pid/'.$vo['pid']);
+			$url = U('Products/detail', array('pid'=>$vo['id']));
 			return $url;
 		case 'products_id':
-			$url = U(tourlstr($vo['name']).'/pid/'.$vo['products_id']);
+			$url = U('Products/detail', array('pid'=>$vo['products_id']));
 			return $url;
 		case 'pro_name':
 			return $vo['name'];
@@ -218,21 +218,21 @@ function tourlstr($string){
 function getprice($price, $spe, $discount = true)
 {
 	//如果没有选择汇率，读取系统默认汇率
-	$currencies=get_currencies_arr();
-	if (! isset ( $_SESSION ['currency'] )) {
-		for($row = 0; $row < count ( $currencies ); $row ++) {
-			if ($currencies [$row] ['symbol'] == C ( 'DEFAULT_CURRENCIES_SYMBOL' )) {
-				$_SESSION ['currency'] = $currencies [$row];
+	$currencies = get_currencies_arr();
+	if (!isset($_SESSION['currency'])) {
+		for($row = 0; $row < count ($currencies); $row ++) {
+			if ($currencies[$row]['symbol'] == C('DEFAULT_CURRENCIES_SYMBOL')) {
+				$_SESSION['currency'] = $currencies[$row];
 			}
 		}
 	}
-	if ( $spe >=$price) {
+	if($spe >=$price) {
 		//货币汇率
-		$re= $_SESSION ['currency'] ['code'] . (sprintf("%01.2f", $spe * $_SESSION ['currency'] ['rate']));
-		$r_price=$price;
+		$re= $_SESSION['currency']['code'] . (sprintf("%01.2f", $spe * $_SESSION['currency']['rate']));
+		$r_price = $price;
 	} else {
-		$price *= $_SESSION ['currency'] ['rate'];
-		$spe *= $_SESSION ['currency'] ['rate'];
+		$price *= $_SESSION['currency']['rate'];
+		$spe *= $_SESSION['currency']['rate'];
         $spe = sprintf("%01.2f", $spe);
         $price = sprintf("%01.2f", $price);
 		if($discount){
@@ -245,7 +245,7 @@ function getprice($price, $spe, $discount = true)
 	}
 	$memberID = session('memberID');
 	//在价格里头显示vip价格
-	if (!$memberID) {
+	if(!$memberID) {
 		$memberID = 0;
 	}
 	$ginfo=get_members_group($memberID);
@@ -277,6 +277,12 @@ function get_real_price($price,$pricespe)
 	else{
 		return $price;
 	}
+}
+
+//获取价格折扣比例
+function get_pricediscount($pricespe, $price)
+{
+	return sprintf("%01.0f", (1 - $pricespe/$price) * 100);
 }
 
 

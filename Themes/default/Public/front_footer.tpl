@@ -28,3 +28,6 @@
 	</dl>
 </div>
 <div class="clear"></div>
+
+<!--<div class="wrap link"></div>-->
+<div class="wrap copyright"></div>

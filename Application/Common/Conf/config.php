@@ -14,4 +14,7 @@ return array(
     'DB_PORT'   => '3306', // 端口
     'DB_PREFIX' => 'pre_', // 数据库表前缀
 	
+	
+	'DEFAULT_CURRENCIES_SYMBOL' => 'USD',
+	
 );
