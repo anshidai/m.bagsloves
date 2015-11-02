@@ -18,7 +18,7 @@ class ProductsController extends CommonController {
 		}
 		
 		$attrs = $model->get_attrs($info['cateid'], $info['id']);
-		
+		//dump($attrs);
 		
 		$related_products_id = D('Products_related')->where("products_id={$pid}")->select();
 		
@@ -30,10 +30,12 @@ class ProductsController extends CommonController {
 		}
 		sort($product_ids);
 		
-		dump($attrs);exit;
+		$related_attrs = D('ProductsAttr')->get_attrs($product_ids);
 		
 		$this->assign('attrs', $attrs);
+		$this->assign('related_attrs', $related_attrs);
 		$this->assign('info', $info);
+		$this->assign('pid', $info['id']);
 		$this->display();
 	}
 	

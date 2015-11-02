@@ -9,11 +9,11 @@ class ProductsModel extends CommonModel {
 		$typeid = D('Cate')->field('type_id')->where("id='{$cateid}'")->find();
 		$type_attr = D('TypeAttr')->getTypeAll($typeid['type_id']);
 		if($type_attr) {
-			foreach($type_attr as $k=>$val) {
-				$attrs[$val['name']] = D('Products_attr')->where("products_id='{$pid}' AND attr_id='{$val['id']}'")->find();
+			foreach($type_attr as $k=>$v) {
+				$data[$v['name']] = D('Products_attr')->where("products_id='{$pid}' AND attr_id='{$v['id']}'")->find();
 			} 
 		}
-		return $attrs? $attrs: '';
+		return $data? $data: '';
 	}
 
 	

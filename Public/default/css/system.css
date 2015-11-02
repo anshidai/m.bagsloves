@@ -42,6 +42,9 @@ div span span i{background:none}
 .common_bor_wrap li.last{ border:0;}
 /*------------------------*/
 
+#shareicon i{background:url(img/shareicon.png) no-repeat left center;width: 17px;height: 20px;display:inline-block;margin-bottom:-5px;}
+#shareicon a{display:inline-block;}
+#shareicon .addthis_sharing_toolbox{position:absolute;right:5px;top:7px}
 
 /*or分割线*/
 .common_or{ border-bottom:1px solid #898989; margin: 25px 0 20px 0;}
@@ -664,11 +667,6 @@ ul.leaveamessage li .submit_btn{background:#CE3939; text-align: center; height:4
 .shares img{width:37px;float:left;margin-right:2px;position:relative;top:-1px;}
 
 
-
-
-
-
-
 .search_hot{display:block;width:100%;height:45px;}
 
 .index_default .pro_box .tit i{ width:15px; height:15px; background-position: -89px -81px; float:right; margin:13px 5px 0 0;}
@@ -725,12 +723,6 @@ ul.leaveamessage li input.topic_input{border: 1px #CCC solid;width: 100%;float: 
 .search_default .common_nav a.on{color: #ea361a;border-bottom: 2px solid #ea361a;}
 .search_default .common_nav a{border:0px;}
 .search_default .common_nav i{border-right: #b4b4b4 1px solid;display: block;width: 1px;float: left;height: 17px;margin-top: 15px;}
-
-
-
-#shareicon i{background:url("img/shareicon.png") no-repeat left center;width: 17px;height: 20px;display:inline-block;margin-bottom:-5px;}
-#shareicon a{display:inline-block;}
-#shareicon .addthis_sharing_toolbox{position:absolute;right:5px;top:7px}
 
 .module_app_download{padding-top: 36px;}
 .app_download .banner_box .banner{ position:relative;}

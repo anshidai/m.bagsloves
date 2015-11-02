@@ -24,6 +24,7 @@
 <script type="text/javascript" src="__JS__/touchCarousel.js"></script>
 <script type="text/javascript" src="__JS__/mobile.zoom.js"></script>
 <script type="text/javascript" src="__JS__/iscroll.js"></script>
+<script type="text/javascript" src="__JS__/goods.js"></script>
 
 <!--share-->
 <style type="text/css">
@@ -117,90 +118,44 @@
 					<span class="day_count">2</span>
 					<span class="day">days</span>
 					<span class="day_seconds">06:37:20</span>
-				</div>
-				
-                <script>
-                $('.discount-timer').each(function() {
-                    $(this).genTimer({
-                        beginTime: "2015/10/17 21:01:56",
-                        targetTime: $(this).attr('endTime'),
-                        callback: function(time) {
-                            this.html(time);
-                        }
-                    });
-                });
-            </script>-->
-			<!-- 促销倒计时 结束 -->
-                <li>
-            <input type="hidden" name="skulist" value='[{"0":"4614","id":"4614","1":"10414","goods_id":"10414","2":"1694","product_id":"1694","3":"429_425","sku_code":"429_425","4":"","sku_codeno":"","5":"1000","stock_nums":"1000","6":"1","status":"1","7":"0","delivery_nums":"0","8":"0","freeze_nums":"0","9":"266.9900","price":266.99,"10":"0.0000","old_price":0,"11":"213.5920","market_price":213.59,"12":"0.0000","cost_price":0,"13":"0.6000","weight":"0.6000","14":"0","update_time":"0","15":"1414983524","create_time":"1414983524","16":"1414983360_1694","codeno":"1414983360_1694","17":"213.5920","gmarket_price":"213.5920","18":"266.9900","gprice":"266.9900","19":"0.0000","gcost_price":"0.0000","20":"0.0000","gold_price":"0.0000","21":"0.6000","gweight":"0.6000","save_money":-266.99,"master_id":"429","sale_id":"425"},{"0":"4613","id":"4613","1":"10414","goods_id":"10414","2":"1694","product_id":"1694","3":"429_426","sku_code":"429_426","4":"","sku_codeno":"","5":"1000","stock_nums":"1000","6":"1","status":"1","7":"0","delivery_nums":"0","8":"0","freeze_nums":"0","9":"266.9900","price":266.99,"10":"0.0000","old_price":0,"11":"213.5920","market_price":213.59,"12":"0.0000","cost_price":0,"13":"0.6000","weight":"0.6000","14":"0","update_time":"0","15":"1414983524","create_time":"1414983524","16":"1414983360_1694","codeno":"1414983360_1694","17":"213.5920","gmarket_price":"213.5920","18":"266.9900","gprice":"266.9900","19":"0.0000","gcost_price":"0.0000","20":"0.0000","gold_price":"0.0000","21":"0.6000","gweight":"0.6000","save_money":-266.99,"master_id":"429","sale_id":"426"},{"0":"4612","id":"4612","1":"10414","goods_id":"10414","2":"1694","product_id":"1694","3":"429_427","sku_code":"429_427","4":"","sku_codeno":"","5":"1000","stock_nums":"1000","6":"1","status":"1","7":"0","delivery_nums":"0","8":"0","freeze_nums":"0","9":"266.9900","price":266.99,"10":"0.0000","old_price":0,"11":"213.5920","market_price":213.59,"12":"0.0000","cost_price":0,"13":"0.6000","weight":"0.6000","14":"0","update_time":"0","15":"1414983524","create_time":"1414983524","16":"1414983360_1694","codeno":"1414983360_1694","17":"213.5920","gmarket_price":"213.5920","18":"266.9900","gprice":"266.9900","19":"0.0000","gcost_price":"0.0000","20":"0.0000","gold_price":"0.0000","21":"0.6000","gweight":"0.6000","save_money":-266.99,"master_id":"429","sale_id":"427"},{"0":"4611","id":"4611","1":"10414","goods_id":"10414","2":"1694","product_id":"1694","3":"429_428","sku_code":"429_428","4":"","sku_codeno":"","5":"1000","stock_nums":"1000","6":"1","status":"1","7":"0","delivery_nums":"0","8":"0","freeze_nums":"0","9":"266.9900","price":266.99,"10":"0.0000","old_price":0,"11":"213.5920","market_price":213.59,"12":"0.0000","cost_price":0,"13":"0.6000","weight":"0.6000","14":"0","update_time":"0","15":"1414983524","create_time":"1414983524","16":"1414983360_1694","codeno":"1414983360_1694","17":"213.5920","gmarket_price":"213.5920","18":"266.9900","gprice":"266.9900","19":"0.0000","gcost_price":"0.0000","20":"0.0000","gold_price":"0.0000","21":"0.6000","gweight":"0.6000","save_money":-266.99,"master_id":"429","sale_id":"428"}]' id="skulist" />
-                        <input type="hidden" value="" name="master_sale_property_id" id="master_sale_property_id"/>
-                                    <input type="hidden" value="" name="sale_property_id" id="sale_property_id"/>
-                        <input type="hidden" name="goods_id" value='10414' id="goods_id" />
-                        <div class="ship_sel sel_color select" id="master_sale_property_box">
-                <select class="master_sale_property" name="master_sale_property">
-                    <option value="">Color</option>
-                                                            <option value="429">write</option>
-                                                        </select>
-            </div>
-                                    <div class="ship_sel sel_size select"  id="sale_property_box">
-                <select class="sale_property" name="sale_property">
-                    <option value="">Size</option>
-                                                            <option value="428">xl</option>
-                                        <option value="427">l</option>
-                                        <option value="426">m</option>
-                                        <option value="425">s</option>
-                                                        </select>                
-            </div>
-                        <dl class="quantityform_box">
+				</div>-->
+            <li>
+			<input type="hidden" name="id" value="{$info.id}">
+
+			<div class="ship_sel sel_size select" id="sale_property_box">
+				<select class="sale_property" name="attr[Size]">
+					<option value="">Size</option>
+					<notempty name="attrs.Size">
+					<option value="{$attrs.Size.attr_value}">{$attrs.Size.attr_value}</option>
+					</notempty>
+				</select>                
+			</div>
+			
+			<notempty name="related_attrs.Colors">
+			<div class="ship_sel sel_color select" id="master_sale_property_box">
+			<select class="master_sale_property" name="attr[Colors]">
+				<option value="">Color</option>
+				<foreach name="related_attrs.Colors" item="color">
+				<option value="{$color.attr_value}__{$color.attr_price}" <if condition="$color.products_id eq $pid">selected="selected"</if>>{$color.attr_value}</option>
+				</foreach>
+			</select>
+			</div>
+			</notempty>
+			
+			<dl class="quantityform_box">
                 <dt>QTY:</dt>
                 <dd>
                     <form class="quantityform">
                         <a href="javascript:;" class="reduce"></a>
-                        <input type="text" value="1" name="qty" class="buyskunums" id="buyskunums">
+                        <input type="text" value="1" name="count" class="buyskunums" id="buyskunums">
                         <a href="javascript:;" class="plus"></a>
                     </form>
-                    <script>
-                        $('a.plus').click(function() {
-                            var skulist = eval("(" + $("input[name='skulist']").val() + ")");
-                            var qty = parseInt($('#buyskunums').val());
-                            var goods_id = '10414';
-                            var master_sale_id = $('#master_sale_property_id').val();
-                            var sale_id = $('#sale_property_id').val();
-                            if (master_sale_id && sale_id) {
-                                $.each(skulist, function(index, item) {
-                                    var temp_property_id1 = item.sku_code.split('_')[0];
-                                    var temp_property_id2 = item.sku_code.split('_')[1];
-                                    if (item.status > 0 && item.stock_nums > 0 && parseInt(master_sale_id) == parseInt(temp_property_id1) && parseInt(sale_id) == parseInt(temp_property_id2))
-                                    {
-                                        if (qty < item.stock_nums)
-                                        {
-                                            $('#buyskunums').attr('value', qty + 1);
-                                        }
-                                        else
-                                        {
-                                            $.Prompt('Not enougn stock.');
-                                        }
-                                    }
-                                });
-                            } else {
-                                $('#buyskunums').attr('value', qty + 1);
-                            }
-                        });
-                        $('a.reduce').click(function() {
-                            var qty = parseInt($('#buyskunums').val());
-                            if (qty > 1) {
-                                $('#buyskunums').attr('value', qty - 1);
-                            }
-                        });
-                    </script>
-                    <span class="goods_stock">Stock (All:<font id="goods_stock_num">4000</font> pcs.)</span>
+                    <!--<span class="goods_stock">Stock (All:<font id="goods_stock_num">4000</font> pcs.)</span>-->
                 </dd>
             </dl>
             <div class="clearboth"></div>
         </li>
-                <li>
-                                                <button class="common_btn2 addtocart">Add to my cart</button>
-                                    </li>
+		<li><button class="common_btn2 addtocart">Add to my cart</button></li>
         <div id="add_cart_box" style="display: none;">
             <div class="add_cart">
                 <p>Item has been added to cart</p>
@@ -235,22 +190,20 @@
             </div>
         </div>
         <script type="text/javascript">var switchTo5x=true;</script>
-        
-                                                                                <li class="buyer_comments" id="shareicon">
+		<li class="buyer_comments" id="shareicon">
             <i></i>
             Share
             <div class="addthis_sharing_toolbox">
-                <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fm1736.newdemo.zhcart.com%2FA-line-Tiered-Lace-Floor-Length-Ivory-Bride-Wedding-Dress-with-Jewel-Neck-p10414.html%3Fsource_user%3D%26source%3Dsns_share_facebook&t=US%24%20266.9900%20A-line%20Tiered%20Lace%20Floor-Length%20Ivory%20Bride%20Wedding%20Dress%20with%20Jewel%20Neck" target="_blank"><span class="stButton"><span class="stLarge" style="background-image: url(css/img/share_facebook.png);"></span></span></a>
-                <a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fm1736.newdemo.zhcart.com%2FA-line-Tiered-Lace-Floor-Length-Ivory-Bride-Wedding-Dress-with-Jewel-Neck-p10414.html%3Fsource_user%3D%26source%3Dsns_share_twitter&text=US%24%20266.9900%20A-line%20Tiered%20Lace%20Floor-Length%20Ivory%20Bride%20Wedding%20Dress%20with%20Jewel%20Neck&url=http%3A%2F%2Fm1736.newdemo.zhcart.com%2FA-line-Tiered-Lace-Floor-Length-Ivory-Bride-Wedding-Dress-with-Jewel-Neck-p10414.html%3Fsource_user%3D%26source%3Dsns_share_twitter" target="_blank"><span class="stButton"><span class="stLarge" style="background-image: url(css/img/share_twitter.png);"></span></span></a>
-                <a href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fm1736.newdemo.zhcart.com%2FA-line-Tiered-Lace-Floor-Length-Ivory-Bride-Wedding-Dress-with-Jewel-Neck-p10414.html%3Fsource_user%3D%26source%3Dsns_share_pinterest&media=http%3A%2F%2Fm1736.newdemo.zhcart.com%2Fupload%2Fgoods%2Ftest%2FWeddingDresses%2Ffded5196-2989-47cf-8b2d-27b309c201c7.jpg&description=US%24%20266.9900%20A-line%20Tiered%20Lace%20Floor-Length%20Ivory%20Bride%20Wedding%20Dress%20with%20Jewel%20Neck" target="_blank"><span class="stButton"><span class="stLarge" style="background-image: url(css/img/share_pinterest.png);"></span></span></a>
-                <a href="https://plus.google.com/share?url=http%3A%2F%2Fm1736.newdemo.zhcart.com%2FA-line-Tiered-Lace-Floor-Length-Ivory-Bride-Wedding-Dress-with-Jewel-Neck-p10414.html%3Fsource_user%3D%26source%3Dsns_share_google" target="_blank"><span class="stButton"><span class="stLarge" style="background-image: url(css/img/share_google.png);"></span></span></a>
-                            </div>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fm1736.newdemo.zhcart.com%2FA-line-Tiered-Lace-Floor-Length-Ivory-Bride-Wedding-Dress-with-Jewel-Neck-p10414.html%3Fsource_user%3D%26source%3Dsns_share_facebook&t=US%24%20266.9900%20A-line%20Tiered%20Lace%20Floor-Length%20Ivory%20Bride%20Wedding%20Dress%20with%20Jewel%20Neck" target="_blank"><span class="stButton"><span class="stLarge" style="background-image: url(__CSS__/img/share_facebook.png);"></span></span></a>
+                <a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fm1736.newdemo.zhcart.com%2FA-line-Tiered-Lace-Floor-Length-Ivory-Bride-Wedding-Dress-with-Jewel-Neck-p10414.html%3Fsource_user%3D%26source%3Dsns_share_twitter&text=US%24%20266.9900%20A-line%20Tiered%20Lace%20Floor-Length%20Ivory%20Bride%20Wedding%20Dress%20with%20Jewel%20Neck&url=http%3A%2F%2Fm1736.newdemo.zhcart.com%2FA-line-Tiered-Lace-Floor-Length-Ivory-Bride-Wedding-Dress-with-Jewel-Neck-p10414.html%3Fsource_user%3D%26source%3Dsns_share_twitter" target="_blank"><span class="stButton"><span class="stLarge" style="background-image: url(__CSS__/img/share_twitter.png);"></span></span></a>
+                <a href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fm1736.newdemo.zhcart.com%2FA-line-Tiered-Lace-Floor-Length-Ivory-Bride-Wedding-Dress-with-Jewel-Neck-p10414.html%3Fsource_user%3D%26source%3Dsns_share_pinterest&media=http%3A%2F%2Fm1736.newdemo.zhcart.com%2Fupload%2Fgoods%2Ftest%2FWeddingDresses%2Ffded5196-2989-47cf-8b2d-27b309c201c7.jpg&description=US%24%20266.9900%20A-line%20Tiered%20Lace%20Floor-Length%20Ivory%20Bride%20Wedding%20Dress%20with%20Jewel%20Neck" target="_blank"><span class="stButton"><span class="stLarge" style="background-image: url(__CSS__/img/share_pinterest.png);"></span></span></a>
+                <a href="https://plus.google.com/share?url=http%3A%2F%2Fm1736.newdemo.zhcart.com%2FA-line-Tiered-Lace-Floor-Length-Ivory-Bride-Wedding-Dress-with-Jewel-Neck-p10414.html%3Fsource_user%3D%26source%3Dsns_share_google" target="_blank"><span class="stButton"><span class="stLarge" style="background-image: url(__CSS__/img/share_google.png);"></span></span></a>
+			</div>
         </li>
         <!--share end-->
-            <li class="buyer_comments"><a href="/m-product-specificat.html?goods_id=10414">Specifications <i class="arr"></i></a></li>
+        <li class="buyer_comments"><a href="/m-product-specificat.html?goods_id=10414">Specifications <i class="arr"></i></a></li>
         <li class="buyer_comments"><a href="/descript-10414.html">Product Description<i class="arr"></i></a></li>
-        
-                <div class="clear10"></div>
+		<div class="clear10"></div>
         <div class="last similar_products">
             <h3 class="commonh3_3">You May Also Like</h3>
             <div class="similar_products_box" style="overflow:hidden">
@@ -397,7 +350,6 @@
 </div>
 <script type="text/javascript">
 $(function(){
-    
     $('.similar_product_box').newMobileSlide({
       container:'.similar_products', 
       displaySlide:'.similar_products_box', 
