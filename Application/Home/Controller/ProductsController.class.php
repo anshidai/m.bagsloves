@@ -32,11 +32,25 @@ class ProductsController extends CommonController {
 		
 		$related_attrs = D('ProductsAttr')->get_attrs($product_ids);
 		
+		$randlist = $this->_rand_product($pid, 9);
+		
+		$this->assign('randlist', $randlist);
 		$this->assign('attrs', $attrs);
 		$this->assign('related_attrs', $related_attrs);
 		$this->assign('info', $info);
 		$this->assign('pid', $info['id']);
 		$this->display();
+	}
+	
+	public function _rand_product($products_id, $limit = 9)
+	{
+		$cachekey = "products_rand_{$products_id}_{$limit}";
+		$cachedata = S($cachekey);
+		if(!$cachedata) {
+			$cachedata = D('Products')->rand('id,cateid,name,price,pricespe,bigimage,smallimage', $limit);
+			S($cachedata, $cachekey);
+		}
+		return $cachedata;
 	}
 	
 }

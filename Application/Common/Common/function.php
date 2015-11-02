@@ -263,7 +263,7 @@ function getprice($price, $spe, $discount = true)
 function getprice_str($price, $is_string = true)
 {
 	if($is_string) {
-		return "<strong style='color:red;font-weight: bold;'>".$_SESSION ['currency'] ['code'] . (sprintf("%01.2f", $price * $_SESSION ['currency'] ['rate']))."</strong>";
+		return "<strong style='font-weight: bold;'>".$_SESSION ['currency'] ['code'] . (sprintf("%01.2f", $price * $_SESSION ['currency'] ['rate']))."</strong>";
 	}
 	return $_SESSION ['currency'] ['code'] . (sprintf("%01.2f", $price * $_SESSION ['currency'] ['rate']));
 	

@@ -15,6 +15,11 @@ class ProductsModel extends CommonModel {
 		}
 		return $data? $data: '';
 	}
+	
+	public function rand($field = '*', $limit = 9)
+	{
+		return $this->field($field)->where("isdown=0")->order()->limit($limit)->select();
+	}
 
 	
 	
