@@ -12,6 +12,20 @@ class IndexController extends CommonController {
 		$this->display();
     }
 	
+	public function currencies() 
+	{
+		$post = $_POST;
+		
+		$currencies = get_currencies_arr();
+		foreach($currencies as $k=>$v) {
+			if($v['symbol'] == $post['currencies']) {
+				session('currency', $v);
+			}
+		}
+		header('location: '.$_SERVER['HTTP_REFERER']);
+
+	}
+	
 	protected function _cache()
 	{
 

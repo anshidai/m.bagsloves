@@ -38,7 +38,8 @@ class CommonController extends Controller {
 				}
 			}
 		}
-		
+		$this->assign('currencies', $currencies);
+
 		//生产一个唯一的session id
 		$this->sessionID = session('sessionID');
 		if(!$this->sessionID) {

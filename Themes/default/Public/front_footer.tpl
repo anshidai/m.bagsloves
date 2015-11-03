@@ -1,17 +1,15 @@
 <div class="wrap currency_box">
+	<form name="currencies_form" id="form1" action="{:U('Index/currencies')}" method="post">
 	<p>Change Currency</p>
 	<div class="select">
-		<select id="cursel" class="text-arrow-bg changegourl">
-			<option value="/index.php?m=home&c=Changecurrency&a=&currency=USD" selected="selected">Dollar</option>
+		<select id="cursel" name="currencies" class="text-arrow-bg changegourl" onchange="document.currencies_form.submit();">
+			<option value="">Please select...</option>
+			<foreach name="currencies" item="vo">
+			<option value="{$vo.symbol}" <eq name="Think.session.currency.symbol" value="$vo['symbol']">selected='selected'</eq>>{$vo.name}</option>
+			</foreach>
 		</select>
 	</div>
-	<script>
-		$(".changegourl").change(function() {
-			if($(this).attr("value") != ""){
-				window.location.href = $(this).attr("value");
-			}
-		});
-	</script>
+	</form>
 </div>
 <div class="clear"></div>
 <div class="wrap menber_center">

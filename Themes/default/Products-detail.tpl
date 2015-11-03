@@ -75,6 +75,7 @@
             });
         </script>
     </div>
+	<form name="cart_quantity" id="form_cart_quantity" action="{:U('Cart/add')}" method="post">
     <ul class="common_bor_wrap pro_info">
         <li>
             <h2>
@@ -99,8 +100,8 @@
 			<input type="hidden" name="id" value="{$info.id}">
 
 			<div class="ship_sel sel_size select" id="sale_property_box">
-				<select class="sale_property" name="attr[Size]">
-					<option value="">Size</option>
+				<select class="sale_property" id="attr_size" name="attr[Size]">
+					<!--<option value="">Size</option>-->
 					<notempty name="attrs.Size">
 					<option value="{$attrs.Size.attr_value}">{$attrs.Size.attr_value}</option>
 					</notempty>
@@ -109,7 +110,7 @@
 			
 			<notempty name="related_attrs.Colors">
 			<div class="ship_sel sel_color select" id="master_sale_property_box">
-			<select class="master_sale_property" name="attr[Colors]">
+			<select class="master_sale_property" id="attr_color" name="attr[Colors]">
 				<option value="">Color</option>
 				<foreach name="related_attrs.Colors" item="color">
 				<option value="{$color.attr_value}__{$color.attr_price}" <if condition="$color.products_id eq $pid">selected="selected"</if>>{$color.attr_value}</option>
@@ -121,30 +122,22 @@
 			<dl class="quantityform_box">
                 <dt>QTY:</dt>
                 <dd>
-                    <form class="quantityform">
+                    <div class="quantityform">
                         <a href="javascript:;" class="reduce"></a>
                         <input type="text" value="1" name="count" class="buyskunums" id="buyskunums">
                         <a href="javascript:;" class="plus"></a>
-                    </form>
+                    </div>
                     <!--<span class="goods_stock">Stock (All:<font id="goods_stock_num">4000</font> pcs.)</span>-->
                 </dd>
             </dl>
             <div class="clearboth"></div>
         </li>
-		<li><button class="common_btn2 addtocart">Add to my cart</button></li>
-        <div id="add_cart_box" style="display: none;">
-            <div class="add_cart">
-                <p>Item has been added to cart</p>
-                <p><span id="cart_total_qty" style="color: red;">10</span> item(s) in cart , </p>
-                <p>Subtotal: <span id="cart_subtotal" style="color: red;">US$1000</span></p>
-                <a href="/m-cart-list.html" class="go_cart">Go to Cart</a>
-                <p class="or">- OR -</p>
-                <a href="javascript:void(0);" onclick="$('#add_cart_box').hide();" class="continue">Continue Shopping	</a>
-            </div>
-        </div>
+		<li>
+			<input name="addtocart" type="button" value="Add to my cart" class="common_btn2 addtocart" />
+		</li>
         <li class="buyer_comments">
             <a href="javascript:void(0);">
-                <span class="buyer_name"  id="add_favorites" data_id="10414"><i></i>Like (<b id="favoritenum">0</b>)</span>
+                <span class="buyer_name" id="add_favorites" data_id="{$info.id}"><i></i>Like (<b id="favoritenum">0</b>)</span>
                 <i onclick="window.location.href='/Comment/p10414/list-r1.html'" class="arr"></i>
                 <span class="comment_value">(0)</span>
                 <div class="comment_star review star0" onclick="window.location.href='/Comment/p10414/list-r1.html'"></div>
@@ -206,8 +199,23 @@
             <div class="clear"></div>
         </div>
     </ul>
+	</form>
 </div>
 </div>
+
+
+<div id="add_cart_box" style="display: none;">
+	<div class="add_cart">
+		<p>Item has been added to cart</p>
+		<p><span id="cart_total_qty" style="color: red;">0</span> item(s) in cart , </p>
+		<!--<p>Subtotal: <span id="cart_subtotal" style="color: red;">US$1000</span></p>-->
+		<a href="{:U('Cart/index')}" class="go_cart">Go to Cart</a>
+		<p class="or">- OR -</p>
+		<a href="javascript:void(0);" onclick="$('#add_cart_box').hide();" class="continue">Continue Shopping</a>
+	</div>
+</div>
+
+
 <div id="bottom_box">
     <div class="clear15"></div>
     <div class="wrap">

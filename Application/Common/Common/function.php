@@ -56,12 +56,39 @@ function get_members_points($uid)
 	return $list? $list["points"]: 0;
 }
 
-//调用购物车购买数量
+//获取购物车购买的商品种类数量
 function itemCount()
 {
-	$num_total = D('Cart')->get_item_count(session('sessionID'));
-	return $num_total? $num_total: 0;
+	return D('Cart')->get_item_count(session('sessionID'));
 }
+
+//获取购物车商品总数量
+function TotalCount()
+{
+	return D('Cart')->get_item_totalcount(session('sessionID'));
+}
+
+//获取购物车商品总价格
+function cart_total()
+{
+	return D('Cart')->cart_total(session('sessionID'));
+}
+
+/**
+ * 根据VIP会员等级取得VIP会员价
+ *
+ */
+function VipPrice($price)
+{
+	$GroupInfo = get_members_group(session('memberID'));
+	if($GroupInfo['discount']) {
+		$VipPrice = $GroupInfo['discount'] * $price;
+	}else{
+		$VipPrice = $price;
+	}
+	return $VipPrice;
+}
+
 
 function build_url($vo, $type)
 {
@@ -219,10 +246,10 @@ function getprice($price, $spe, $discount = true)
 {
 	//如果没有选择汇率，读取系统默认汇率
 	$currencies = get_currencies_arr();
-	if (!isset($_SESSION['currency'])) {
+	if(!isset($_SESSION['currency'])) {
 		for($row = 0; $row < count ($currencies); $row ++) {
 			if ($currencies[$row]['symbol'] == C('DEFAULT_CURRENCIES_SYMBOL')) {
-				$_SESSION['currency'] = $currencies[$row];
+				session('currency', $currencies[$row]);
 			}
 		}
 	}
@@ -265,7 +292,7 @@ function getprice_str($price, $is_string = true)
 	if($is_string) {
 		return "<strong style='font-weight: bold;'>".$_SESSION ['currency'] ['code'] . (sprintf("%01.2f", $price * $_SESSION ['currency'] ['rate']))."</strong>";
 	}
-	return $_SESSION ['currency'] ['code'] . (sprintf("%01.2f", $price * $_SESSION ['currency'] ['rate']));
+	return $_SESSION['currency'] ['code'] . (sprintf("%01.2f", $price * $_SESSION ['currency'] ['rate']));
 	
 }
 //获取真实的价格

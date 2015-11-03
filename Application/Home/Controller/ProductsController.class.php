@@ -8,16 +8,16 @@ class ProductsController extends CommonController {
 	{
 		$pid = I('get.pid', 0, 'intval');
 		
-		$model = D('Products');
+		$productsModel = D('Products');
 		
-		$info = $model->where("id='{$pid}'")->find();
+		$info = $productsModel->where("id='{$pid}'")->find();
 		if($info) {
 			//获取产品相册
 			$gallerys = D('ProductsGallery')->where("pid='{$pid}'")->order('sort desc')->select();
 			$this->assign('gallerys', $gallerys);
 		}
 		
-		$attrs = $model->get_attrs($info['cateid'], $info['id']);
+		$attrs = $productsModel->get_attrs($info['cateid'], $info['id']);
 		//dump($attrs);
 		
 		$related_products_id = D('Products_related')->where("products_id={$pid}")->select();
