@@ -1,14 +1,14 @@
 /*气泡提示*/
 .popup-tip-all{position:absolute;font: 12px/1 verdana;left:200px;top:300px;z-index:999;}
-.popup-tip-body{border:1px solid #D5B058;background:#FFFFDD url("img/tip-ico-q.png") no-repeat 8px 6px;padding:7px 7px 7px 30px;margin:7px 0;color:#AD723A;}
-.popup-tip-arrows{position:absolute;bottom:0;background:url("img/tip-arrows.png") no-repeat;width:14px;height:10px;left:15px;z-index:14;overflow:hidden;}
-.popup-tip-arrows-up{top:0;background:url("img/tip-arrows.png") no-repeat 100% 0;}
+.popup-tip-body{border:1px solid #D5B058;background:#FFFFDD url(img/tip-ico-q.png) no-repeat 8px 6px;padding:7px 7px 7px 30px;margin:7px 0;color:#AD723A;}
+.popup-tip-arrows{position:absolute;bottom:0;background:url(img/tip-arrows.png) no-repeat;width:14px;height:10px;left:15px;z-index:14;overflow:hidden;}
+.popup-tip-arrows-up{top:0;background:url(img/tip-arrows.png) no-repeat 100% 0;}
 /*弹窗登陆*/
 .dlg-body{border:2px solid #26537d;background:#fff;position:fixed;_position:absolute;box-shadow:2px 2px 3px #666;display:none;}
-.dlg-header{background:#F4F4F5 url("img/bg_dlg_header.png") repeat-x;height:32px;line-height:30px;font-size:14px;color:#FFF;padding-left:10px;}
+.dlg-header{background:#F4F4F5 url(img/bg_dlg_header.png) repeat-x;height:32px;line-height:30px;font-size:14px;color:#FFF;padding-left:10px;}
 .dlg-header .dlg-close{cursor:pointer;position:absolute;right: 5px;top: 6px;}
 .dlg-clear{clear:both;overflow:hidden;height:0;}
-.dlg-login-btn{width:87px;height:32px;float:left;display:inline;background:url("img/btn_signin.jpg") no-repeat;cursor:pointer;}
+.dlg-login-btn{width:87px;height:32px;float:left;display:inline;background:url(img/btn_signin.jpg) no-repeat;cursor:pointer;}
 .dlg-login-opts td{padding:4px;}
 .dlg-login-opts{margin:18px;font-size:14px;}
 .dlg-login-opts label{color:#aaa;font-size:12px;}
@@ -32,10 +32,10 @@
 .message_tpl_info .caution,
 .message_tpl_info .success,
 .message_tpl_info .error{padding-left:58px; height:50px; line-height:50px; font-size:15px;}
-.message_tpl_info .information{ background:url("img/tip_information.jpg") no-repeat; }
-.message_tpl_info .caution{ background:url("img/tip_caution.jpg") no-repeat;}
-.message_tpl_info .success{ background:url("img/tip_success.jpg") no-repeat;}
-.message_tpl_info .error{ background:url("img/tip_error.jpg") no-repeat;}
+.message_tpl_info .information{ background:url(img/tip_information.jpg) no-repeat; }
+.message_tpl_info .caution{ background:url(img/tip_caution.jpg) no-repeat;}
+.message_tpl_info .success{ background:url(img/tip_success.jpg) no-repeat;}
+.message_tpl_info .error{ background:url(img/tip_error.jpg) no-repeat;}
 .message_tpl_bom{line-height:28px; text-align:center; background:#fffed6; border-bottom-right-radius:5px; border-bottom-left-radius:5px; border-top: 1px solid #e2e2e2}
 .message_tpl_bom a{ color:#1D7EA9;}
 
@@ -102,8 +102,8 @@ opacity: 1;
 .popupBoxFloat{width:100%;height:100%;position:fixed !important;/*ie7 ff*/position:absolute;top:0;left:0; z-index:1000;}
 /*滑动下拉刷新*/
 #touchdown{background:#FFF; height:0px; border-bottom:1px #CCC solid; display:none; padding-left:70px; position:relative; overflow:hidden;}
-#touchdown span{width:10px; height:30px; background:url("img/pull-down-refresh.png") no-repeat; background-size:30px 30px; position:absolute; left:10px; top:50%; margin-top:-15px;}
+#touchdown span{width:10px; height:30px; background:url(img/pull-down-refresh.png) no-repeat; background-size:30px 30px; position:absolute; left:10px; top:50%; margin-top:-15px;}
 #touchdown span.pulldown{background-position:0px -1px;}
 #touchdown span.updown{background-position:-20px -1px;}
 #touchdown #touchdown_tips{text-align:center; top:50%; left:50%; margin-left:-50px; margin-top:-25px; line-height:50px; color:#333; font-size:14px; position:absolute;}
-#touchdown_loading{background:url("img/wap-loading-ico.gif") 10px center no-repeat #FFF; text-align:center; line-height:50px; color:#333; font-size:14px; border-bottom:1px #CCC solid; display:none;z-index: 10000;}
+#touchdown_loading{background:url(img/wap-loading-ico.gif) 10px center no-repeat #FFF; text-align:center; line-height:50px; color:#333; font-size:14px; border-bottom:1px #CCC solid; display:none;z-index: 10000;}

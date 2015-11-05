@@ -137,10 +137,10 @@
 		</li>
         <li class="buyer_comments">
             <a href="javascript:void(0);">
-                <span class="buyer_name" id="add_favorites" data_id="{$info.id}"><i></i>Like (<b id="favoritenum">0</b>)</span>
-                <i onclick="window.location.href='/Comment/p10414/list-r1.html'" class="arr"></i>
+                <span class="buyer_name" id="add_favorites" data_id="{$info.id}"><i></i>Like (<b id="favoritenum">{$commnet_count}</b>)</span>
+                <i onclick="window.location.href=''" class="arr"></i>
                 <span class="comment_value">(0)</span>
-                <div class="comment_star review star0" onclick="window.location.href='/Comment/p10414/list-r1.html'"></div>
+                <div class="comment_star review star0" onclick="window.location.href='{:U('Products/comment', array('pid'=>$pid))}'"></div>
             </a>
         </li>
       <script>
@@ -170,8 +170,8 @@
 			</div>
         </li>
         <!--share end-->
-        <li class="buyer_comments"><a href="/m-product-specificat.html?goods_id=10414">Specifications <i class="arr"></i></a></li>
-        <li class="buyer_comments"><a href="/descript-10414.html">Product Description<i class="arr"></i></a></li>
+        <!--<li class="buyer_comments"><a href="/m-product-specificat.html?goods_id=10414">Specifications <i class="arr"></i></a></li>-->
+        <li class="buyer_comments"><a href="{:U('Products/desc',array('pid'=>$pid))}">Product Description<i class="arr"></i></a></li>
 		<div class="clear10"></div>
         <div class="last similar_products">
             <h3 class="commonh3_3">You May Also Like</h3>
@@ -216,20 +216,7 @@
 </div>
 
 
-<div id="bottom_box">
-    <div class="clear15"></div>
-    <div class="wrap">
-        <form class="newletterform">
-            <label>Subscribe To Our Newsletter</label>
-            <input  name="Newsletter_Email" type="text" value="Your Email Address" id="email"  class="newsletter_txt"/>
-            <input name="" type="button" value="Subscribe" class="common_btn1 newsletter_btn" />
-        </form>
-    </div>
-
-    <div class="clear"></div>
-    
-	<include file="Themes/default/Public/front_footer.tpl" />
-</div>
+<include file="Themes/default/Public/front_footer.tpl" />
 
 <script type="text/javascript">
     $(window).resize(function() {

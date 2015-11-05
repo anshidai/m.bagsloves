@@ -18,7 +18,7 @@
 .common_shoppingcart_box .quantityform_box dt{ float:left; color:#8d8d8d; padding-right:15px; line-height:21px;}
 .common_shoppingcart_box .quantityform_box dd{ float:left; }
 .common_shoppingcart_box .quantityform_box .quantityform{ height:20px; border:1px solid #a4a4a4;}
-.common_shoppingcart_box .quantityform_box .reduce,.common_shoppingcart_box .quantityform_box .plus{ display:block; width:25px; height:20px; background:url("img/qty_btn.png") no-repeat; background-size:50px 45px;}
+.common_shoppingcart_box .quantityform_box .reduce,.common_shoppingcart_box .quantityform_box .plus{ display:block; width:25px; height:20px; background:url(img/qty_btn.png) no-repeat; background-size:50px 45px;}
 .common_shoppingcart_box .quantityform_box .reduce{ float:left; background-position:0 -25px;}
 .common_shoppingcart_box .quantityform_box .plus{ float:right; background-position:-25px -25px;}
 .common_shoppingcart_box .quantityform_box .num{ width:60px; height:20px; border:0; border-left:1px solid #a4a4a4; border-right:1px solid #a4a4a4; float:left; font-size:14px; text-align:center; line-height:20px; color:#626262;}
@@ -89,9 +89,9 @@
 .common_payment_box dl .common_select i{ width:9px; height:6px; background-position:-141px -142px; float:right; margin-top:17px; cursor:pointer;}
 
 .common_payment_box dl .payment_tit{ line-height:25px;}
-.common_payment_box dl .payment_tit i{ background:url("img/paymenticon.png") no-repeat 0 0 #ffb119; background-size:25px 70px; width:25px; height:25px; border-radius:50%; margin:0 5px -7px 0; overflow:hidden;}
+.common_payment_box dl .payment_tit i{ background:url(img/paymenticon.png) no-repeat 0 0 #ffb119; background-size:25px 70px; width:25px; height:25px; border-radius:50%; margin:0 5px -7px 0; overflow:hidden;}
 .common_payment_box dl .paymentsuccess i{ background-position:0 -22px; background-color:#5ed774;}
-.common_payment_box dl .paymentchecking i{ background:url("img/paymentchecking_icon.jpg") no-repeat 0 0 #FF7A01; background-size:25px 25px;}
+.common_payment_box dl .paymentchecking i{ background:url(img/paymentchecking_icon.jpg) no-repeat 0 0 #FF7A01; background-size:25px 25px;}
 
 .common_payment_box .ontherlink dd{border-bottom:1px solid #c2c2c2;}
 .common_payment_box .ontherlink dd.last{ border-bottom:0;}
@@ -118,7 +118,7 @@
 /*优惠券弹出窗*/
 .valide_coupon_box{ width:80%; padding:15px; position:absolute; left:0; right:0; top:35%; margin:0 auto; background:#fff; border:1px solid #545454; border-radius:4px;}
 .valide_coupon_box .close_coupon_box{ position:absolute; right:10px; top:10px; background-position:-1px -20px; width:15px; height:18px;}
-.close_coupon_box{width:36px; height:36px; background:url("img/cancelicon.png") no-repeat; cursor:pointer; border-radius:50%;background-size: 18px 36px;}
+.close_coupon_box{width:36px; height:36px; background:url(img/cancelicon.png) no-repeat; cursor:pointer; border-radius:50%;background-size: 18px 36px;}
 
 .valide_coupon_box h3{ font-size:16px; padding-bottom:10px;}
 .valide_coupon_box h3 span{ display:block; color:#7c7c7c; font-size:14px; font-weight:normal;}
@@ -204,7 +204,7 @@ ul.newbillingaddress .submit_btn a,ul.newbillingaddress .cancel_btn a{text-align
 .order_add ul.newaddress li.no_mar, ul.newaddress li div.max{width:100%;height:40px;}
 .n_total{padding-left:10px;}
 .n_total i.yd{border-radius: 50%;background: #CCCCCC;height:5px;width:5px;}
-.n_total i.jt{background:url("img/pdricon.png") no-repeat; height:16px; width:9px;background-size: 9px 16px;}
+.n_total i.jt{background:url(img/pdricon.png) no-repeat; height:16px; width:9px;background-size: 9px 16px;}
 .n_images{width: 160px;overflow: hidden;display: block;height: 50px;}
 .n_right{position: absolute;right:10px;margin-top: -10px;}
 .n_right span.span_yd{position: relative;top: -1px;}

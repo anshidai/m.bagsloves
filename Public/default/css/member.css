@@ -175,14 +175,14 @@ ul.ordersummary li a.review_btn{width:110px; height:30px; background: #D33C37; b
 .time_box{ z-index:999; position:relative;}
 .time_step{ border-left:2px solid #e5e5e5; }
 .time_step li{ position:relative; padding:0 0 0 12px;}
-.step_icon_arrive,.step_icon{ background-image:url("img/icon3.png"); background-repeat:no-repeat; width:15px; height:15px; display:block; position:absolute; left:-8px; top:-1px; background-size:30px 30px;}
+.step_icon_arrive,.step_icon{ background-image:url(img/icon3.png"); background-repeat:no-repeat; width:15px; height:15px; display:block; position:absolute; left:-8px; top:-1px; background-size:30px 30px;}
 .step_icon_arrive{ background-position:0 0;}
 .step_icon{ background-position:3px -18px;}
 .time_step .time_arrive,.time_step .status_arrive{ color:#16b246;}
 .time_step .time{ color:#ff7800;}
 .time_step .status_arrive{ line-height:3;}
 .time_step .status{line-height:2;margin: 5px 0;}
-.on_status{ display:inline-block; width:12px; height:10px; background:url("img/step_icon.png") no-repeat; background-size:12px 10px; vertical-align:middle;}
+.on_status{ display:inline-block; width:12px; height:10px; background:url(img/step_icon.png) no-repeat; background-size:12px 10px; vertical-align:middle;}
 
 .common_account_box .myaccount ul.no_mar_top,.common_account_box dl.no_mar_top,.common_account_box dl.no_mar_top,.common_account_box dl.no_mar_top,.common_account_box dl.no_mar_top,.common_account_box dl.no_mar_top,.common_account_box dl.no_mar_top,.account_trackingorderdetail dl.no_mar_top,.account_trackno dl.no_mar_top{margin-top:0px;}
 .common_account_box label.no_pad_top,.common_account_box .myprofile_box label.no_pad_top,.common_account_box label.no_pad_top{ padding-top:0px;}
@@ -211,10 +211,10 @@ ul.ordersummary li a.review_btn{width:110px; height:30px; background: #D33C37; b
 .mymessageview .text{ padding:10px 0px; border:1px solid #bebebe; margin:6px 0; border-radius:2px; min-height:120px; width:100%;font-size: 14px;}
 .mymessageview .content table td{ padding:5px 8px 5px 0;}
 .mymessageview .code_txt{ border:1px solid #bebebe; width:90px; height:22px; padding:5px; border-radius:2px;}
-.mymessageview .code{ width:108px; height:33px; background:url("img/code.png") no-repeat top center; background-size:109px 33px; display:block; cursor:pointer;}
+.mymessageview .code{ width:108px; height:33px; background:url(img/code.png) no-repeat top center; background-size:109px 33px; display:block; cursor:pointer;}
 .mymessageview .submit_btn{ width:80px; height:30px; color:#fff; font-size:14px; line-height:30px; text-align:center; background:#d33c37; border:1px solid #a02d2d; border-radius:2px; cursor:pointer; }
 
-.user_email .success_icon i{background-position: 0 -25px;width: 25px;height: 25px;background: url("img/paymenticon.png") #5ed774 no-repeat;background-size: 25px 75px;border-radius: 50%;float: left;margin-left:20px;}
+.user_email .success_icon i{background-position: 0 -25px;width: 25px;height: 25px;background: url(img/paymenticon.png") #5ed774 no-repeat;background-size: 25px 75px;border-radius: 50%;float: left;margin-left:20px;}
 
 .user_register input.codeno{text-indent: 10px; border: 1px #CCC solid;width:35%; float:left; margin-right:10px;height: 40px; line-height: 40px;}
 
