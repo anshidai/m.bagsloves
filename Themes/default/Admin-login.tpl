@@ -23,67 +23,49 @@
 <include file="Themes/default/Public/header.tpl" />  
 
 <div id="body_box" class="common_top common_account_box account_trackno user_login">
+<form action="{:U('Admin/login')}" id="login_form" name="login_form">
     <div class="login_box">
     	<div class="wrap login_box_con">
 			<label class="no_pad_top">Your E-mail address<span class="red">*</span> :</label>
-			<input class="reg_text"  id="user_name" type="email" name="name" value=""/>
+			<input class="reg_text" id="login-email-address" type="email" name="email" value=""/>
 			<label>Password<span class="red">*</span> :</label>
-			<input class="reg_text" id="user_pwd" type="password" name="password" value=""/>
+			<input class="reg_text" id="login-password" type="password" name="password" value=""/>
 			<div class="clear"></div>
-			<button class="common_btn2 login_btn">Sign in</button>
+			<input type="button" class="common_btn2 login_btn" value="Sign in" />
 			 <a href="/m-user-forgetpassword.html" class="forgot_password">Forget your password?</a>
 			<div class="otheraccount_login">
-				
 			</div>
 			<p class="common_or"><span>OR</span></p>
-			<button class="common_btn3" onclick="window.location.href='/m-user-register.html?ref=%2Fm-account-index.html'">Register</button>
+			<input type="button" class="common_btn3" value="Register" onclick="window.location.href='{:U('Admin/register')}'"></button>
         </div>
     </div>
+</form>
+</div>
+
 <script type="text/javascript">
-$('.login_btn').click(function(){
-	if($('#user_name').val()=='' || $('#user_name').val()=='Email Address') {
+$('.login_btn').click(function() {
+	var email = $("#login-email-address").val();
+	var password = $("#login-password").val();
+
+	if(email =='') {
 		$.Prompt('please enter login name.');
 		return;
 	}
-	if($('#user_pwd').val()=='' || $('#user_pwd').val()=='Password') {
+	if(password == '') {
 		$.Prompt('The password can not be empty.');
 		return;
 	}
-	$.ajax({
-		url:"m-user-login.html",
-		type: 'POST',
-		data:{
-			name   : $('#user_name').val(),
-			password   : $('#user_pwd').val(),
-			ajax : 1,
-			ref :"/m-account-index.html"
-		},
-		dataType:'json',
-		cache:false,
-		success:function(rs){
-			if(rs.status == '1'){
-				if(rs.ref)
-				{    
-					window.location.href=rs.ref;
-				}
-				else
-				{
-					window.location.href="m-account-index.html";
-				}
-			}else if(rs.msg){
-				$.Prompt(rs.msg);
-			}
-		},
-			beforeSend: function(){
-				createAjaxLoading();
-			},
-			complete: function(){
-				removeAjaxLoading();
-			}   
+	var _form = $("#login_form");
+	$.post(_form.attr('action'), _form.serialize(), function(data){
+		if(data.status == '1') {
+			window.location.href = '{:U('Member/index')}';
+		}else {
+			$.Prompt(data.info);
+		}
 	});
 });
 </script>
-</div>
+
 <div class="clear15"></div>
 <div id="bottom_box">
     <div class="wrap copyright"></div>
