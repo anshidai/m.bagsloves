@@ -8,7 +8,7 @@ class CommonController extends Controller {
 	
 	protected static $Model = null;	//数据Model
 	protected $ProModel = null;
-	public $sessionID,$memberID,$memberInfo,$memberShippingAddress;
+	public $sessionID,$memberID,$memberInfo,$memberShippingAddress, $referer;
 	
 	public function _initialize()
 	{
@@ -58,6 +58,8 @@ class CommonController extends Controller {
 			$this->member_ShippingAddress = D("Shippingaddress")->where("id=".$this->memberID)->find();
 			session('memberShippingAddress', $this->member_ShippingAddress);
 		}
+		
+		$this->referer = cookie('referer');
 		
 		//当前月份
 		$today = getdate();

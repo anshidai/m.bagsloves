@@ -339,3 +339,38 @@ function get_cate($cid)
 {
 	return D('Cate')->where("id='{$cid}'")->find();
 }
+
+//发送邮件
+function sendmail($sendTo, $subject, $body)
+{
+	$body = eregi_replace("[\]", '', $body);
+	$headers = "MIME-Version: 1.0\r\n";
+	$headers .= "Content-type: text/html; charset=utf-8\r\n";
+	if(GetValue('sendemailtype') == 'smtp') {
+		mail($sendTo, $subject, $body, $headers);
+	}
+	if(GetValue("sendemailtype") == 'phpmail') {
+		Vendor('PHPMailer.PHPMailerAutoload');
+		
+		$mail = new PHPMailer(); //实例化
+		$mail->IsSMTP(); // 启用SMTP
+		$mail->Host = GetValue('smtphost'); //smtp服务器的名称（这里以QQ邮箱为例）
+		$mail->Port = GetValue('smtpport');
+		$mail->SMTPAuth = true; //启用smtp认证
+		$mail->Username = GetValue('smtpusername'); //发件人邮箱名
+		$mail->Password = GetValue('smtppassword') ; //163邮箱发件人授权密码
+		$mail->AddAddress($sendTo, 'Dear Guest');
+		$mail->WordWrap = 50; //设置每行字符长度
+		$mail->IsHTML(true); // 是否HTML格式邮件
+		$mail->CharSet= 'utf-8'; //设置邮件编码
+		$mail->Subject = $subject; //邮件主题
+		$mail->Body = $body; //邮件内容
+		$mail->AltBody = $body; //邮件正文不支持HTML的备用显示
+		if(GetValue('smtpisssl') == '1') {
+			$mail->SMTPSecure = 'ssl';
+		}
+		return($mail->Send());
+	}
+
+}
+

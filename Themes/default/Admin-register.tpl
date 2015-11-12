@@ -50,7 +50,7 @@ $('.common_btn3').click(function() {
 		email = $("#email-address").val(),
 		password = $("#password-new").val(),
 		password_confirm = $("#password-confirm").val();
-		
+	
 	if(firstname == '') {
 		$.Prompt('Please enter First Name.');
         return;
@@ -63,12 +63,12 @@ $('.common_btn3').click(function() {
 		$.Prompt('Email format is not correct.');
         return;
 	}
-	if(password == '' || password.length<5 || password.length>30) {
-		$.Prompt('please enter password (6-30 characters)');
+	if(password == '' || password.length<6 || password.length>20) {
+		$.Prompt('Please enter password (6-20 characters)');
         return;
 	}
 	if(password !== password_confirm) {
-		$.Prompt('Your passwords do not match, please try again.');
+		$.Prompt('Two passwords do not match, please try again.');
         return;
 	}
 	reg_email = /^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/;
@@ -79,8 +79,10 @@ $('.common_btn3').click(function() {
 	
 	var _form = $("#register_form");
 	$.post(_form.attr('action'), _form.serialize(), function(data){
+		//console.log(data)
 		if(data.status == '1') {
-			window.location.href = '{:U('Member/index')}';
+			url = data.url | '{:U('Member/index')}';
+			window.location.href = url;
 		}else {
 			$.Prompt(data.info);
 		}

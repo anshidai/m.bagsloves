@@ -9,7 +9,7 @@
 <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="__CSS__/style.css">
 <link href="__CSS__/tips.css" type="text/css"  rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="__SKIN__font_icon/style.css">
+<link rel="stylesheet" type="text/css" href="__SKIN__/font_icon/style.css">
 <script type="text/javascript" src="__JS__/jquery.js"></script>
 <script type="text/javascript" src="__JS__/reLayout.js"></script>
 <script type="text/javascript" src="__JS__/common.js"></script>
@@ -32,7 +32,7 @@
 			<input class="reg_text" id="login-password" type="password" name="password" value=""/>
 			<div class="clear"></div>
 			<input type="button" class="common_btn2 login_btn" value="Sign in" />
-			 <a href="/m-user-forgetpassword.html" class="forgot_password">Forget your password?</a>
+			 <a href="{:U('Admin/forgetpwd')}" class="forgot_password">Forget your password?</a>
 			<div class="otheraccount_login">
 			</div>
 			<p class="common_or"><span>OR</span></p>
@@ -57,8 +57,10 @@ $('.login_btn').click(function() {
 	}
 	var _form = $("#login_form");
 	$.post(_form.attr('action'), _form.serialize(), function(data){
+		//console.log(data);return;
 		if(data.status == '1') {
-			window.location.href = '{:U('Member/index')}';
+			url = data.url || '{:U('Member/index')}';
+			window.location.href = url;
 		}else {
 			$.Prompt(data.info);
 		}

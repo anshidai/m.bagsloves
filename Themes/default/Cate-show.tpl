@@ -9,7 +9,7 @@
 <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="__CSS__/style.css">
 <link href="__CSS__/tips.css" type="text/css"  rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="font_icon/style.css">
+<link rel="stylesheet" type="text/css" href="__SKIN__/font_icon/style.css">
 <script type="text/javascript" src="__JS__/jquery.js"></script>
 <script type="text/javascript" src="__JS__/reLayout.js"></script>
 <script type="text/javascript" src="__JS__/common.js"></script>
