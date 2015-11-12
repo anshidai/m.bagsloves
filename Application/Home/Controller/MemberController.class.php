@@ -19,7 +19,8 @@ class MemberController extends CommonController {
 	
 	public function orders()
 	{
-		$orderModel = D('orders');
+		$orderModel = D('Orders');
+		$where['member_id'] = $this->memberID;
 	}
 	
 	public function changepwd()
