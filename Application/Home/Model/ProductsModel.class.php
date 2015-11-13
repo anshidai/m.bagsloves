@@ -83,7 +83,16 @@ class ProductsModel extends CommonModel {
 
 		return $list;
 	}
+	
+	//获取产品价格
+	public function get_weight($pid)
+	{
+		$res = $this->where("id='{$pid}'")->find();
+		
+		return $res? $res['weight']: 0;
+	}
 
 	
 	
 }
+

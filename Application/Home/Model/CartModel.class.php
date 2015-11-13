@@ -26,6 +26,22 @@ class CartModel extends CommonModel {
 		return $total;
 	}
 	
+	//获取总重量
+	public function cart_total_weight($sessionID)
+	{
+		$total = 0;
+		$productsModel = D('Products');
+		$res = $this->where("session_id='{$sessionID}'")->select();
+		
+		if($res) {
+			foreach($res as $k=>$v) {
+				$weight = $productsModel->get_weight($v['pid']) * $v['count'];
+				$total = $total + $weight;
+			}
+		}
+		return $total;
+	}
+	
 	//检查购物车是否有相同商品
 	public function check_item($sessionID, $pid, $model) 
 	{
@@ -58,8 +74,19 @@ class CartModel extends CommonModel {
 		if(empty($id)) return false;
 		
 		$map['session_id'] = $sessionID;
-		$map['id'] = array('in', $id);
-		$this->where($map)->delete();
+		$map['id'] = is_array($id)? array('in', $id): $id;
+		return $this->where($map)->delete();
+	}
+	
+	//修改物品数量
+	public function modify_quantity($sessionID, $cart_id, $count, $model = '')
+	{
+		$data['count'] = $count;
+		$data['dateline'] = time();
+		if($model) {
+			$data['model'] = $model;
+		}
+		return $this->where("session_id='{$sessionID}' and id='{$cart_id}'")->save($data);
 	}
 	
 	//清空购物车
@@ -68,6 +95,68 @@ class CartModel extends CommonModel {
 		$this->where("session_id='{$sessionID}'")->delete();
 	}
 	
+	public function get_cart_list($sessionID)
+	{
+		$data = array();
+		
+		$res = $this->where("session_id='{$sessionID}'")->select();
+		if($res) {
+			$productsModel = D('Products');
+			foreach($res as $k=>$v) {
+				$v['model'] = unserialize($v['model']);
+				$product_info = $productsModel->getpriceInfo($v['pid'], $v['count'], $v['model']);
+				$v['products_id'] = $product_info['id']; 
+				$v['price'] = $product_info['price']; 
+				$v['pricespe'] = $product_info['pricespe']; 
+				$v['serial'] = $product_info['serial']; 
+				$v['name'] = $product_info['name']; 
+				$v['bigimage'] = $product_info['bigimage']; 
+				$v['smallimage'] = $product_info['smallimage']; 
+				$v['count'] = $product_info['count']; 
+				$v['discount'] = $product_info['discount']; 
+				$v['price_total'] = $product_info['price_total']; 
+				$v['pricespe_total'] = $product_info['pricespe_total']; 
+				$v['total'] = $product_info['total']; 
+				$v['costprice'] = $product_info['costprice']; 
+				$v['provider'] = $product_info['provider'];
+				$data[$k] = $v;
+			}
+		}
+		return $data;
+	}
+	
+	//打折信息
+	public function discount($price)
+	{
+		$discount_enable = GetValue('discount_enable');
+		
+		//判断是否有折扣
+		$discount = 1;
+		$data = array();
+		if($discount_enable) {
+			$discountModel = M('Discount');
+			$list = $discountModel->select();
+			foreach($list as $k=>$v) {
+				if($price>=$v['minmoney'] && $price <=$v['maxmoney']) {
+					$discount = $v['discount'];
+					break;
+				}
+			}
+		}
+		if($discount<1) {
+			$data['price'] = round($price * $discount, 2);//保留两位
+			$data['text'] = getprice_str($price).'*<Span style="color:red;font-weight:bold;">'.($discount*100).'%</span>='.getprice_str($data['price']);
+		}else {
+			$data['price'] = $price;
+			$data['text'] = '';
+		}
+		return $data;
+	}
+	
+	
+	
+	
 	
 	
 }
+

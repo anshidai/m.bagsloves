@@ -55,11 +55,18 @@ class CommonController extends Controller {
 			//读取用户信息
 			$this->mid = $this->memberID;
 			$this->member_Info = D("Members")->where("id=".$this->memberID)->find();
-			$this->member_ShippingAddress = D("Shippingaddress")->where("id=".$this->memberID)->find();
-			session('memberShippingAddress', $this->member_ShippingAddress);
+			$this->member_ShippingAddress = D("Shippingaddress")->get_shippingaddress($this->memberID);
+			//session('memberShippingAddress', $this->member_ShippingAddress);
 		}
 		
-		$this->referer = cookie('referer');
+		if($_GET['referer']) {
+			$referer = $_GET['referer'];
+		}else if(cookie('referer')) {
+			$referer = cookie('referer');
+		}else {
+			$referer = '/';
+		}
+		$this->referer = $referer;
 		
 		//当前月份
 		$today = getdate();

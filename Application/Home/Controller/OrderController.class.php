@@ -9,4 +9,10 @@ class OrderController extends MemberController {
 		
 	}
 	
+	public function add()
+	{
+		
+		$this->display();
+	}
+	
 }

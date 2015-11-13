@@ -2,84 +2,105 @@
 
 namespace Home\Controller;
 
-class CartController extends CommonController {
+class CartController extends MemberController {
 	
-	
-	public function add()
+	public function index()
 	{
-		$count = I('post.count', 0, 'intval');
-		$pid = I('post.id', 0, 'intval');
-		$post = $_POST;
+		$template = 'Member-empty';
 		
-		if($count <= 0) {
-			$this->error("You did not select any product.");
+		$cartModel = D('Cart');
+		
+		//购物车列表
+		$list = $cartModel->get_cart_list($this->sessionID); 
+		if($list) {
+			//总重量
+			$this->assign('totalWeight', $cartModel->cart_total_weight($this->sessionID));
+			
+			//总数量
+			$this->assign('itemTotal', $cartModel->get_item_totalcount($this->sessionID));
+			
+			//总类数
+			$this->assign('itemCount', $cartModel->get_item_count($this->sessionID));
+			
+			//产品总价格
+			$cartTotal = $cartModel->cart_total($this->sessionID);
+			$this->assign('cartTotal', getprice_str($cartTotal));
+			
+			//打折信息
+			$discount = $cartModel->discount($cartTotal);
+			$this->assign('discount', $discount);
+			echo $discount['price'];
+			//全部总价
+			$this->assign('totalAmount', getprice_str($discount['price']));
+			
+			//购物车说明
+			$this->assign('fee_readme', GetValue('fee_readme'));
+			
+			$this->assign('list', $list);
+			
+			$template = 'Cart-index';
 		}
-		if(empty($pid)) {
-			$this->error("Please add goods to cart again.");
-		}
-
-		//强制登录
-		if($this->memberID <= 0 && GetValue('quickbuy')==0) {
-			if(IS_AJAX) {
-				$data = array(
-					'status' => 0,
-					'info' => 'Please Log on!',
-					'url' => U('MemberPublic/Login'),
-				);
-				$this->ajaxReturn($data);
-			}else {
-				echo "<script>alert('Please Log on!');location.href='".U('MemberPublic/Login')."';</script>";
-				exit;
-			}
+		
+		$this->assign('act', 'cart');
+		$this->assign('memberID', $this->memberID);
+		$this->display($template);
+	}
+	
+	
+	public function changeNum()
+	{
+		$cart_id = I('post.id', 0, 'intval');
+		$count = I('post.count', 0, 'intval');
+		
+		if(empty($count)) {
+			$this->error('Add the quantity.');
 		}
 		
 		$cartModel = D('Cart');
-		$productModel = D('Products');
-		
-		$prolist = $productModel->where("id='{$pid}'")->find();
-		$attrlist = $productModel->get_attrs($prolist['cateid'], $pid);
-		
-		//属性列表
-		$i = 0;
-		$attributes = array_keys($post['attr']);
-		$attr_data = $no_select = array ();
-		
-		//print_r($attrlist);
-		//强制值不为空
-		foreach($attrlist as $k=>$v) {
-			if(($v['input_type']==0 || $v['input_type']==1) && in_array($v['name'], $attributes) && $post['attr'][$v['name']]) { 
-				$attr_data[$i]['name'] = $v['name'];
-				$attr_value = explode('__',$post['attr'][$v['name']]);
-				$attr_data[$i]['value'] = $attr_value[0];
-				$attr_data[$i]['attr_price'] = $attr_value[1];
-				$i++;
-			}else {
-				$no_select[] = $v['name'];
-			}
-		}
-		if(count($no_select)>0) {
-			$this->error("Please select ".implode(',',$no_select).'.' );
+		if(!$cartModel->where("session_id='{$this->sessionID}' AND id='{$cart_id}'")->count()) {
+			$this->error('Shopping cart no goods.');
 		}
 		
-		$cartModel->add_item($this->sessionID, $pid, $count, serialize($attr_data));
-		if(IS_AJAX) {
-			$item_count = itemCount();
-			$total_count = TotalCount();
-			$price_total = getprice_str(cart_total());
-			$data = array(
-				'status' => 1,
-				'info' => "Add {$_POST ['count']} items Goods To Cart Successful</span>",
-				'item_count' => $item_count,
-				'total_count' => $total_count,
-				'price_total' => $price_total,
-			);
-			$this->ajaxReturn($data);
-		}else{
-			$this->redirect('Cart/index');
+		if(!$cartModel->modify_quantity($this->sessionID, $cart_id, $count)) {
+			$this->error('The operation failure.');
 		}
+		$this->success('The operation success.');
+	}
+	
+	public function delcart()
+	{
+		$cart_id = I('get.id', 0, 'intval');
+		
+		if(empty($cart_id)) {
+			$this->error('The request of the error address.');
+		}
+		
+		if(!D('Cart')->delete_item($this->sessionID, $cart_id)) {
+			$this->error('The operation failure.');
+		}
+		$this->success('The operation success.');
+	}
+	
+	public function save()
+	{
+		$minimum_money = GetValue('minimum_money');
+		if($minimum_money>0 && D('Cart')->cart_total($this->sessionID)<$minimum_money){
+			$this->error("Not be less than {$minimum_money} minimum!");
+		}
+		
+		if($this->memberID <= 0 && GetValue('quickbuy')==0) {
+			$this->redirect('Admin/login');
+		}
+		$this->redirect('Cart/checked_pment');
+	}
+	
+	public function checked_pment()
+	{
+		
 	}
 	
 	
 	
 	
 }
+

@@ -75,7 +75,7 @@
             });
         </script>
     </div>
-	<form name="cart_quantity" id="form_cart_quantity" action="{:U('Cart/add')}" method="post">
+	<form name="cart_quantity" id="form_cart_quantity" action="{:U('Products/add_cart')}" method="post">
     <ul class="common_bor_wrap pro_info">
         <li>
             <h2>

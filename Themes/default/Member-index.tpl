@@ -33,9 +33,8 @@
             <li class="last"><a href="/m-account-newsletter.html">Newsletter Subscription<i></i></a></li>
         </ul>
         <ul>
-        	<li><a href="/m-cart-list.html">My Shopping Cart<i></i></a></li>
-            <li><a href="/m-account-address.html">My Address Books<i></i></a></li>
-            <li><a href="/m-account-billingAddress.html">My  Billing Address<i></i></a></li>
+        	<li><a href="{:U('Cart/index')}">My Shopping Cart<i></i></a></li>
+            <li><a href="{:U('Address/index')}">My Address Books<i></i></a></li>
             <li class="last"><a href="/m-account-mymessage.html">My Message<i></i></a></li>
         </ul>
         <ul>
