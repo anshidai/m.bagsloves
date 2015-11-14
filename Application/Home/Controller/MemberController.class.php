@@ -56,35 +56,7 @@ class MemberController extends CommonController {
 		}
 	}
 	
-	public function address()
-	{
-		$act = I('get.act', 'show', 'htmlentities');
-		
-		$template = 'Member-address';
-		
-		$regionModel = D('Region');
-		$shippingaddressModel = D('Shippingaddress');
-		$member = $this->member_Info;
-		$address = $shippingaddressModel->get_shippingaddress($this->memberID);
-
-		if($act == 'show') {
-			$region = $regionModel->get_region();
-			$address['region'] = $region[$address['city']]? $region[$address['city']]['name']: $address['city'];
-			$address['region'] .= ', '.$region[$address['state']]? $region[$address['state']]['name']: $address['state'];
-			$address['region'] .= ', '.$region[$address['country']]['name'];
-			$address['region'] .= ', '.$address['zip'];
-		}else if($act == 'edit') {
-			$this->assign('country', $regionModel->get_region_list(0));
-			
-			$template = 'Member-address_edit';
-		}else if($act == 'add') {
-			$template = 'Member-address_add';
-		}
-		
-		$this->assign('member', $member);
-		$this->assign('address', $address);
-		$this->display($template);
-	}
+	
 	
 	
 }

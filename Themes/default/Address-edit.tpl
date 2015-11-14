@@ -23,15 +23,22 @@
 <include file="Themes/default/Public/header.tpl" />  
 
 <div id="body_box" class="common_top common_account_box account_editaddress">
+	<form action="{:U('Address/save')}" method="post" id="address_form">
+	<input type="hidden" name="id" value="{$memberID}" />
+	<input type="hidden" name="act" value="<notempty name="address">edit<else />add</notempty>" />
 	<div class="wrap myprofile_box">
             <p>
-                <label class="no_pad_top">First Name <span class="red">*</span></label>
-                <input type="text" name="first_name" value="{$member.firstname}" class="reg_text">
+                <label class="no_pad_top">First Name </label>
+                <input type="text" name="firstname" value="{$member.firstname}" class="reg_text" disabled="disabled" style="background-color:#ccc;">
             </p>
             <p>
-                <label>Last Name  <span class="red">*</span></label>
-                <input type="text" name="last_name" value="{$member.lastname}" class="reg_text">
+                <label>Last Name  </label>
+                <input type="text" name="lastname" value="{$member.lastname}" class="reg_text" disabled="disabled" style="background-color:#ccc;">
             </p>
+			<p>
+                <label>E-mail</label>
+                <input type="text" name="email" value="{$member.email}" class="reg_text" disabled="disabled" style="background-color:#ccc;">
+            </p> 
             <p>
                 <label>Select Your Country/Region   <span class="red">*</span></label>
                 <div class="select_city">
@@ -65,116 +72,61 @@
                 <label>Mobilephone  <span class="red">*</span></label>
                 <input type="text" name="telphone" value="{$address.telphone}"  class="reg_text">
             </p>
-            <p>
-                <label>E-mail</label>
-                <input type="text" name="email" value="{$member.email}" class="reg_text" disabled="disabled">
-            </p>                                    
             <!--<p>
                 <label></label>
                 <input class="common_che_box" type="checkbox" name="is_master" id="is_master" value="1" />Save as a default shipping address
             </p>-->
             <input type="button" value="Submit" id="save" class="common_btn2" />
     </div>
+	</form>
 <script type="text/javascript">
     $('#save').click(function(){
-        var first_name = $("input[name='first_name']");
-        var last_name = $("input[name='last_name']");
-        var telphone = $("input[name='telphone']");
-        var address = $("input[name='address']");
-        var city = $("input[name='city']");
-        var state = $("input[name='state']");
-        if(!state.val())
+        var telphone = $("input[name='telphone']").val();
+        var address = $("input[name='address']").val();
+        var city = $("input[name='city']").val();
+        var state = $("input[name='state']").val();
+        
+		/*
+		if(state == '') {
            state = $('select[name="state"]');
+		}
+		*/
         var country_id=$("select[name='country_id']");
-        var postcode=$("input[name='postcode']");
-        if(!first_name.val())
-        {       
-            $.Prompt('Please enter first name');
-            return;
-        }
-        if(!last_name.val())
-        {
-            $.Prompt('Please enter last name');
-            return;
-        } 
-        if(country_id.val==0)
-        {
+        var zip = $("input[name='zip']").val();
+        if(country_id.val==0) {
             $.Prompt('');
             return;
         }
-        if(!state.val())
-        {
+        if(state == '') {
             $.Prompt('Please enter state/provice');
             return;
         }
-        if(!city.val())
-        {
+        if(city == '') {
             $.Prompt('Please enter city');
             return;
         }
-        if(!address.val())
-        {
+        if(address == '') {
             $.Prompt('Please enter address');
             return;
         }
-        if(!postcode.val())
-        {
+        if(zip == '') {
             $.Prompt('Please enter postcode');
             return;
         }  
-        if(!mobilephone.val())
-        {
+        if(telphone == '') {
             $.Prompt('Please enter mobilephone');
             return;
         }
-        if(!email.val())
-        {
-            $.Prompt('Please enter email');
-            return;
-        }
-        if(!isEmail(email.val()))
-        {
-            $.Prompt('E-mail format error!');
-            return;
-        }
 
-        $.ajax({
-            url:"m-account-editAddress.html",
-            type: 'POST',
-            data:{
-                first_name   : first_name.val(),
-                last_name   : last_name.val(),
-                email   : email.val(),
-                mobilephone   : mobilephone.val(),
-                telephone   : telephone.val(),
-                address   : address.val(),
-                city   : city.val(),
-                state   : state.val(),
-                country_id   : country_id.val(),
-                postcode   : postcode.val(),
-                address_id   : '2',
-                ajax : 1,
-                is_master  : $('#is_master').attr("checked") ? 1:0
-            },
-            dataType:'json',
-            cache:false,
-            success:function(rs){
-                if(rs.status == '1'){                    
-                    $.Prompt(rs.msg);
-                    setTimeout(function(){
-                         window.location.href='/m-account-address.html'; 
-                    },400);   
-                }else if(rs.msg){            
-                    $.Prompt(rs.msg);
-                }
-            },
-                beforeSend: function(){
-                    createAjaxLoading();
-                },
-                complete: function(){
-                    removeAjaxLoading();
-                }   
-        });
+		var _form = $("#address_form");
+		$.post(_form.attr('action'), _form.serialize(), function(data){
+			$.Prompt(data.info);
+			if(data.status == '1') {
+				window.location.href = data.url;
+			}
+		});
+		
+      
     });
 </script>
 </div>

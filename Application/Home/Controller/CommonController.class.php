@@ -58,13 +58,12 @@ class CommonController extends Controller {
 			$this->member_ShippingAddress = D("Shippingaddress")->get_shippingaddress($this->memberID);
 			//session('memberShippingAddress', $this->member_ShippingAddress);
 		}
+		$this->assign('memberID', $this->memberID);
 		
 		if($_GET['referer']) {
 			$referer = $_GET['referer'];
 		}else if(cookie('referer')) {
 			$referer = cookie('referer');
-		}else {
-			$referer = '/';
 		}
 		$this->referer = $referer;
 		

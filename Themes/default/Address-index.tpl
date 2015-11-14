@@ -24,7 +24,7 @@
 
 <div id="body_box" class="common_top common_account_box account_address">
     <div class="wrap">
-    <button class="common_btn2" onclick="window.location.href='{:U('Member/address', array('act'=>'edit'))}'">Edit Shipping Address</button>
+    <button class="common_btn2" onclick="window.location.href='{:U('Address/index', array('act'=>'edit'))}'"><notempty name="address">Edit<else/>Add</notempty> Shipping Address</button>
 </div>
 
 <notempty name="address">
