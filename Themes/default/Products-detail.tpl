@@ -137,9 +137,9 @@
 		</li>
         <li class="buyer_comments">
             <a href="javascript:void(0);">
-                <span class="buyer_name" id="add_favorites" data_id="{$info.id}"><i></i>Like (<b id="favoritenum">{$commnet_count}</b>)</span>
-                <i onclick="window.location.href=''" class="arr"></i>
-                <span class="comment_value">(0)</span>
+                <span class="buyer_name" id="add_favorites" data_id="{$info.id}"><i></i>Like (<b id="favoritenum">{$profav}</b>)</span>
+                <i class="arr"></i>
+                <span class="comment_value">({$commnet_count})</span>
                 <div class="comment_star review star0" onclick="window.location.href='{:U('Products/comment', array('pid'=>$pid))}'"></div>
             </a>
         </li>
@@ -203,7 +203,6 @@
 </div>
 </div>
 
-
 <div id="add_cart_box" style="display: none;">
 	<div class="add_cart">
 		<p>Item has been added to cart</p>
@@ -216,6 +215,24 @@
 </div>
 
 
+<script type="text/javascript">
+$('#add_favorites').click(function() {
+        var _this = $(this);
+        var _val = parseInt($('#favoritenum').text());
+        var product_id = _this.attr('data_id');
+        var user_id = '{$memberID}';
+        if(!user_id) {
+            $.Prompt('Login required');
+			return false;
+        }
+		$.post('{:U('Favorite/addfav')}', {id:product_id}, function(data){
+			$.Prompt(data.info);
+			if(data.status == '1') {
+				 _this.find('#favoritenum').text(_val + 1);
+			}
+		});
+    });
+</script>
 <include file="Themes/default/Public/front_footer.tpl" />
 
 <script type="text/javascript">

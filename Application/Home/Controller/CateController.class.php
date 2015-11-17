@@ -23,6 +23,15 @@ class CateController extends CommonController {
 	{
 		$cid = I('get.cid', 0, 'intval');
 		$p = I('get.p', 1, 'intval');
+		$sort = I('post.sort', '', 'htmlspecialchars');
+		$by = I('post.by', '', 'htmlspecialchars');
+		
+		if(!in_array($sort, array('id','name','price','dateline'))) {
+			$sort = 'id';
+		}
+		if(!in_array($by, array('desc','asc'))) {
+			$by = 'desc';
+		}
 		
 		if(S($strFid_class) == '') {
             $classChildren = D('Cate')->getChildren ($cid );
@@ -36,21 +45,18 @@ class CateController extends CommonController {
 		$map['cateid']=array('in', S($strFid_class));
 		
 		$count = $model->where($map)->count();
-		$list = $model->where($map)->page($p, $this->pagesize)->select();
+		$list = $model->where($map)->order("{$sort} {$by}")->page($p, $this->pagesize)->select();
 		
 		$cateinfo = get_cate($cid);
 		
+		$this->assign('sort', $sort);
+		$this->assign('by', $by);
 		$this->assign('cateinfo', $cateinfo);
 		$this->assign('list', $list);
 		$this->assign('count', $count? $count: 0);
 		$this->assign('totalpage', ceil($count/$this->pagesize));
 		
-		if($p>1) {
-			$this->display('Product-block');
-		}else {
-			$this->display();
-		}
-
+		$this->display($p>1? 'Product-block': 'Cate-lists');
 	}
 
 	

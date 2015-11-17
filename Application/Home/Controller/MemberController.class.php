@@ -7,8 +7,12 @@ class MemberController extends CommonController {
 	public function _initialize()
 	{
 		parent::_initialize();
-		if(!$this->memberID) {
-			$this->redirect($this->referer? $this->referer: 'Admin/login');
+		if($this->memberID<=0 || empty($this->member_Info)) {
+			if(IS_AJAX) {
+				$this->error('Login required');
+			}else {
+				$this->redirect($this->referer? $this->referer: 'Admin/login');
+			}
 		}
 	}
 	
@@ -55,6 +59,8 @@ class MemberController extends CommonController {
 			$this->display();
 		}
 	}
+	
+	
 	
 	
 	

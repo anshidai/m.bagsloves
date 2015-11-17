@@ -16,7 +16,7 @@ class ProductsController extends CommonController {
 			$gallerys = D('ProductsGallery')->where("pid='{$pid}'")->order('sort desc')->select();
 			$this->assign('gallerys', $gallerys);
 		}
-		
+
 		$attrs = $productsModel->get_attrs($info['cateid'], $info['id']);
 		
 		$related_products_id = D('Products_related')->where("products_id={$pid}")->select();

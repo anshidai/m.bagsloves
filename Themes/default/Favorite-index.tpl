@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-<title>Shopcart</title>
+<title>My Favorites</title>
 <meta content="charset=utf-8" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 <meta content="black" name="apple-mobile-web-app-status-bar-style" />
@@ -20,36 +20,39 @@
 <script type="text/javascript" src="__JS__/dialog.js"></script>
 </head>
 <body>
-<include file="Themes/default/Public/header.tpl" />
- 
-<div id="body_box" class="common_top common_account_box cart_empty">
+<include file="Themes/default/Public/header.tpl" /> 
 
-	<if condition="$act eq 'cart'">
-		<div class="common_shoppingcart_box">
-			<div class="shoppingcart_null">
-				<img src="__CSS__/img/shopping-cart.png">
-				<p>This cart is empty! time to go shopping.</p>	
-				<a href="/" class="common_btn2">Shopping Now</a>
+<div id="body_box" class="common_top common_account_box account_favorites">
+	<div class="account_box wrap">
+		<ul class="ordersummary mywishlist">
+		<foreach name="list" item="vo">
+		<li>
+			<a href="{:build_url($vo,'pro_url')}" class="pic"><img src="{:build_url($vo,'pro_smallimage')}" alt="{:build_url($vo,'pro_name')}" /></a>
+			<div class="product_info">
+				<a class="name" href="{:build_url($vo,'pro_url')}">{:build_url($vo,'pro_name')}</a>
+				<span class="price"><strong>{:getprice($vo['price'],$vo['pricespe'],false)}</strong></span> 
 			</div>
-		</div>
-	<else />
-		<div class="wrap">
-			<div class="no_result_top">No Results</div>
-			<div class="no_result_bottom"></div>
-		</div>
-	</if>
+			<span class="close_btn remove" data_id="{$vo.id}"></span>
+		</li>
+		</foreach>
+		</ul>
+	</div>
+                        
+<script>
+$('.remove').click(function(){  
+	obj = $(this);
+	$.post('{:U('Favorite/delfav')}', {id:$(this).attr('data_id')}, function(data){
+		$.Prompt(data.info);
+		if(data.status == '1') {
+			 obj.parent().remove();
+		}
+	});
+});
+</script>
 </div>
-
 <div class="clear15"></div>
 <div id="bottom_box">
     <div class="wrap copyright"></div>
 </div>
-
-<script type="text/javascript">
-    $(window).resize(function() {
-        reLayout(".common_pro_list1", 400, 400);
-    });
-    reLayout(".common_pro_list1", 400, 400);
-</script>
 </body>
 </html>

@@ -1,36 +1,5 @@
 
 <div id="bottom_box">
-
-<!--
-<div class="wrap">
-	<div class="searchform_box">
-		<form id="autocomplete-submit" class="searchform" action="/m-product-search.html" method="get">
-			<input type="text" name="keywords" autocomplete="off" id="autocomplete-ajax2" class="search_input"  value=""/>
-			<input type="submit"  value="" id="btn-autocomplete2" class="btn_search" />
-		</form>
-	</div>
-</div>
-<script>
-$('#autocomplete-ajax2').autocomplete({
-	serviceUrl: '/m-product-autocomplete.html',
-	onSelect: function(suggestion) {
-		var keywords = $('#autocomplete-ajax2').val();
-		keywords = encodeURIComponent(suggestion.value);
-		window.location.href = "/Search/" + keywords + "/list-r1.html";
-	}
-});
-$('#btn-autocomplete2').click(function() {
-	var keywords = $('#autocomplete-ajax2').val();
-	if(keywords == ""){
-		$.Prompt('Please enter a keyword!');
-		return false;
-	}
-	keywords = encodeURIComponent(suggestion.value);
-	$('#autocomplete-submit2').attr('action', '/Search/' + keywords + '/list-r1.html');
-});
-</script>
--->
-
 <div class="clear15"></div>
 <div class="wrap">
 	<form class="newletterform">
@@ -101,13 +70,13 @@ $('#btn-autocomplete2').click(function() {
 <div class="wrap menber_center">
 	<dl>
 	<dd>
-		<a href="/m-user-login.html" class="menber"><i></i>My Account</a>
-		<a href="/m-cart-list.html" class="shopcart"><i></i>Shopping Cart</a>
+		<a href="{:U('Member/index')}" class="menber"><i></i>My Account</a>
+		<a href="{:U('Cart/index')}" class="shopcart"><i></i>Shopping Cart</a>
 		<a href="/m-account-orders.html" class="myorder"><i></i>My Order</a>
 		<a href="/m-account-trackingOrder.html" class="tracking"><i></i>Tracking Order</a>
-		<a href="/m-account-favorites.html" class="myfavorites"><i></i>My Favorites</a>
+		<a href="{:U('Favorite/index')}" class="myfavorites"><i></i>My Favorites</a>
 		<a href="/m-history-list.html" class="recently"><i></i>Recently Viewed</a>
-		<a href="/m-navpage-help.html" class="none help"><i></i>Help Center</a>
+		<a href="{:U('Public/help')}" class="none help"><i></i>Help Center</a>
 		</dd>
 	</dl>
 </div>

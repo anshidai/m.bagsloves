@@ -30,7 +30,7 @@
         <ul>
         	<li><a href="/m-account-profile.html">My Profile<i></i></a></li>
             <li><a href="{:U('Member/changepwd')}">Change Password<i></i></a></li>
-            <li class="last"><a href="/m-account-newsletter.html">Newsletter Subscription<i></i></a></li>
+            <!--<li class="last"><a href="/m-account-newsletter.html">Newsletter Subscription<i></i></a></li>-->
         </ul>
         <ul>
         	<li><a href="{:U('Cart/index')}">My Shopping Cart<i></i></a></li>
@@ -38,13 +38,13 @@
             <li class="last"><a href="/m-account-mymessage.html">My Message<i></i></a></li>
         </ul>
         <ul>
-        	<li><a href="/m-account-favorites.html">My Wishlist<i></i></a></li>
-            <li class="last"><a href="/m-history-list.html">Recently Viewed<i></i></a></li>
+        	<li><a href="{:U('Favorite/index')}">My Wishlist<i></i></a></li>
+            <!--<li class="last"><a href="/m-history-list.html">Recently Viewed<i></i></a></li>-->
         </ul>
         <ul>
-        	<li><a href="/m-account-creditList.html">My Credit<i></i></a></li>
-            <li><a href="/m-account-couponList.html">My Coupon Codes<i></i></a></li>
-            <li><a href="/m-account-growthList.html">My Growth<i></i></a></li>
+        	<!--<li><a href="/m-account-creditList.html">My Credit<i></i></a></li>-->
+            <!--<li><a href="/m-account-couponList.html">My Coupon Codes<i></i></a></li>-->
+            <!--<li><a href="/m-account-growthList.html">My Growth<i></i></a></li>-->
             <li class="last"><a href="/m-account-comments.html">My Comments<i></i></a></li>
         </ul>
         <div class="clear15"></div>

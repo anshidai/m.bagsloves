@@ -55,10 +55,12 @@ class CommonController extends Controller {
 			//读取用户信息
 			$this->mid = $this->memberID;
 			$this->member_Info = D("Members")->where("id=".$this->memberID)->find();
+			
 			$this->member_ShippingAddress = D("Shippingaddress")->get_shippingaddress($this->memberID);
 			//session('memberShippingAddress', $this->member_ShippingAddress);
 		}
 		$this->assign('memberID', $this->memberID);
+		$this->assign('profav', $this->member_Info['profav']? count(explode(',',$this->member_Info['profav'])): 0);
 		
 		if($_GET['referer']) {
 			$referer = $_GET['referer'];
@@ -77,6 +79,8 @@ class CommonController extends Controller {
 		
 		$this->ProModel = D('Products');
 		$this->assign('catetree', get_catetree());
+		
+		$this->assign('itemCount', itemCount());
 
 	}
 	

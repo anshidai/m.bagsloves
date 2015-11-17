@@ -1,9 +1,9 @@
 <!doctype html>
 <html>
 <head>
-<title>{$cateinfo.pagetitle}</title>
-<meta name="keywords" content="{$cateinfo.pagekey}" />
-<meta name="description" content="{$cateinfo.pagedec}" />
+<title>Search Products</title>
+<meta name="keywords" content="Search Products" />
+<meta name="description" content="Search Products" />
 <meta content="charset=utf-8" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 <meta content="black" name="apple-mobile-web-app-status-bar-style" />
@@ -22,8 +22,10 @@
 <script type="text/javascript" src="__JS__/dialog.js"></script>
 </head>
 <body>
-<include file="Themes/default/Public/header.tpl" />
-      
+<include file="Themes/default/Public/header.tpl" /> 
+
+<notempty name="list">
+
 <div id="body_box" class="product_list">
 	<div class="wrap pro_box">
         <div class="clearboth"></div>
@@ -75,11 +77,12 @@
         <div class="clear10"></div>
     </div>
 <script type="text/javascript">
+
 $(document).ready(function(){
 	var totalpage = {$totalpage};
 	var curr_page = 1;
 	var is_loading = false;
-	var next_page='{:U('Cate/lists',array('cid'=>$cateinfo['id'], 'p'=>2))}';
+	var next_page='{:U('Search/index',array('k'=>$k, 'p'=>2))}';
 	$(window).scroll(function(){
 		if(($(window).scrollTop()+$(window).height()+1200)>=$(document.body).height()) {
 			if(curr_page<totalpage && !is_loading) {
@@ -133,59 +136,65 @@ $(document).ready(function(){
 			$('.listviewmore').html('Already in the end portion of the page!');
 		}
 	});
-});     
-</script>
-
-    
-</div>
+});
    
-
-<div class="narrow_popupBoxBg"></div>
-<div class="narrow_box" style="width:200px; height:100%; position:absolute; right:0px; top:0px; z-index:9999; overflow:hidden; display: none;">
-    <div class="narrow_slide" style="-webkit-transition: -webkit-transform 0.4s;-webkit-transform-origin: 0px 0px; -webkit-transform-style: preserve-3d;-webkit-transform: translate(190px, 0);">
-        <ul class="narrow">
-                                      
-        </ul>
-    </div>
-</div>
-<script type="text/javascript">
-    $(document).ready(function(){        
-        $(".Narrow").click(function(e){
-            scroll(0,0);
-            $(".narrow_popupBoxBg").show();
-            $('.narrow_box').height($(document).height());		
-            $(".narrow_box").css({"-webkit-transform-origin": "0px 0px", "opacity": "1", "-webkit-transform": "scale(1, 1)"});  
-            $(".narrow_box").show("display","");
-            //$(".narrow_box").animate({width: '190px'}, "500",'swing',function(){});            
-            $(".narrow_slide").attr('style',' -webkit-transform-style: preserve-3d; -webkit-transition: -webkit-transform 0.4s; -webkit-transform-origin: 0px 0px; -webkit-transform: translate(0px, 0); ')
-            e.stopPropagation(); 
-        });
-        $(document).click(function(){
-            $(".narrow_popupBoxBg").hide();
-            $(".narrow_slide").attr('style','-webkit-transition: -webkit-transform 0.4s;-webkit-transform-origin: 0px 0px; -webkit-transform-style: preserve-3d;-webkit-transform: translate(190px, 0);')
-            setTimeout(function(){
-			$(".narrow_box").hide();
-	    },400);            
-        });
-        $(".narrow_box").click(function(e){
-            e.stopPropagation();
-        });
-    });
-    $('.narrow_box a.first').click(function(){
-        if($(this).parent().find('ul').css('display')=='none')
-        {
-            $(this).parent().siblings().find('ul').hide();
-            $(this).find('span').addClass('up');
-            $(this).parent().find('ul').show();
-        }
-        else
-        {
-            $(this).find('span').removeClass('up');
-            $(this).parent().find('ul').hide();
-        }
-    });
 </script>
 
+</div>
+
+
+<else/>
+<div class="wrap common_top common_success_box" id="body_box">
+    <div class="clear15"></div>
+    <div class="clear15"></div>
+    <div class="clear15"></div>
+    <div class="clear15"></div>
+    <div class="clear15"></div>
+    <div class="clear15"></div>
+    <dl>
+        <dt class="success_icon3"><p><i></i>Please enter the words</p></dt>
+        <dd><a href="{:U('Search/default')}">[<u>Click here to return previous page</u>]</a></dd>
+        <script>
+			//setTimeout("window.location.href='{:U('Search/default')}'", 3000);
+		</script> 
+        </dl>
+    <div class="clear15"></div>
+    <div class="clear15"></div>
+    <div class="clear15"></div>
+    <div class="clear15"></div>
+    <div class="clear15"></div>
+    <div class="clear15"></div>
+    <div class="clear15"></div>
+</div>
+
+</notempty>
+
+<script type="text/javascript">
+$(function() {
+	function close_dialog() 
+	{
+		if (window.parent != window.self) {
+			//弹出框
+			if (window.top != window.parent.self) {
+				//左侧弹出框
+				window.parent.location.reload();
+			} else {
+				if (window.top.right != window.self) {
+					//全局弹出框
+					window.top.right.location.reload();
+					window.top.art.dialog({id: ""}).close();
+				} else {
+					//非弹出框
+					window.location.reload();
+				}
+			}
+		} else {
+			//非弹出框
+			window.location.reload();
+		}
+	}
+	});
+</script>
 <include file="Themes/default/Public/front_footer.tpl" />
 
 <script type="text/javascript">

@@ -53,9 +53,9 @@ window.onload=function(){
 }
 </script>  
 <div class="clear"></div>
-<div class="pro_deals">
+<!--<div class="pro_deals">
     <h3 class="commonh3_1 tit"><a href="/Deals/c0/list-r1.html">FLASH SALE<i class="arr icon-right"></i></a></h3>
-</div>
+</div>-->
 <div class="clear10"></div>
 <h3 class="commonh3_1 tit">	Best Sellers<!--<a class="more" href="/Narrow/t1/list-r1.html">more >></a>--></h3>
 <div class="wrap pro_box">

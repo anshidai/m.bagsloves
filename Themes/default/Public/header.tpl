@@ -2,9 +2,9 @@
 
 <div class="topsearchform">
 	<div class="searchform_box">
-        <form id="autocomplete-submit" class="searchform" action="/m-product-search.html" method="get">
-            <input type="text" name="keywords" autocomplete="off" id="autocomplete-ajax" class="search_input"  value=""/>
-            <button type="submit"  value="GO" id="btn-autocomplete" class="btn_search">Search</button>
+        <form id="autocomplete-submit" class="searchform" method="get">
+            <input type="text" name="keywords" autocomplete="off" id="autocomplete-ajax" class="search_input" value=""/>
+            <input type="button" value="Search" id="btn-autocomplete" class="btn_search" />
         </form>
     </div>
 </div>
@@ -35,6 +35,7 @@
 </div>
 
 <script>
+/*
 $('#autocomplete-ajax').autocomplete({
     serviceUrl: '/m-product-autocomplete.html',
     onSelect: function(suggestion) {
@@ -43,14 +44,17 @@ $('#autocomplete-ajax').autocomplete({
         window.location.href = "/Search/" + keywords + "/list-r1.html";
     }
 });
+*/
 $('#btn-autocomplete').click(function() {
     var keywords = $('#autocomplete-ajax').val();
     if(keywords == ""){
         $.Prompt('Please enter a keyword!');
         return false;
     }
-    keywords = encodeURIComponent(suggestion.value);
-    $('#autocomplete-submit').attr('action', '/Search/' + keywords + '/list-r1.html');
+    keywords = encodeURIComponent(keywords);
+	url = '/index.php?s=/search/index/k/'+keywords+'.html';
+	window.location.href = url;
+    //$('#autocomplete-submit').attr('action', url).submit();
 });
 $(document).click(function() {
     $(".keywords_box").hide();
@@ -71,50 +75,51 @@ $(".keywords_box").click(function(e) {
 
 
 <script type="text/javascript">
-$(function(){
-	var window_h=$(window).height();
+$(function() {
+	var window_h = $(window).height();
 	$(".topcategorieswrap").css("height",window_h);
 	$(".topcategorieswrapbg").css("height",window_h);
 	$(".topcategories").css({"height":window_h,"overflow-y":"auto"})
 	
-	$("#top_box .categoriesbtn").click(function(){
+	$("#top_box .categoriesbtn").click(function() {
 		$(".topcategorieswrap").toggle(500);
 		$(this).toggleClass("oncategoriesbtn");
-		if($(".topcategorieswrap").css("display")=="block"){
+		if($(".topcategorieswrap").css("display")=="block") {
 			$(document.body).css("height",window_h).css({"overflow":"hidden"});
-		}else{$(document.body).css("height","auto").css({"overflow":"auto"});}
+		}else{
+			$(document.body).css("height","auto").css({"overflow":"auto"});
+		}
 	});
-	$("#top_box .categoriesbtn").click(function(e){
-	var e=window.event || e;
-	if(e.stopPropagation){
-	e.stopPropagation();
-	}else{
-	e.cancelBubble = true;
-	}							   
-	});
-	$(document).click(function(){
-	$(".topcategorieswrap").hide(500);
-	$("#top_box .categoriesbtn").removeClass("oncategoriesbtn");
-	$(document.body).css("height","auto").css({"overflow":"auto"});
+	$("#top_box .categoriesbtn").click(function(e) {
+		var e=window.event || e;
+		if(e.stopPropagation) {
+			e.stopPropagation();
+		}else {
+			e.cancelBubble = true;
+		}							   
 	});
 	
-	$("#top_box .searchformbtn").click(
-		function(){
-			$(".topsearchform").toggle();
-			$(this).toggleClass("onsearchformbtn");
-		}
-	);
-	$("#top_box .searchformbtn").click(function(e){
-//阻止冒泡
-	var e=window.event || e;
-	if(e.stopPropagation){
-	e.stopPropagation();
-	}else{
-	e.cancelBubble = true;
-	}							   
+	$(document).click(function() {
+		$(".topcategorieswrap").hide(500);
+		$("#top_box .categoriesbtn").removeClass("oncategoriesbtn");
+		$(document.body).css("height","auto").css({"overflow":"auto"});
+	});
+	
+	$("#top_box .searchformbtn").click(function() {
+		$(".topsearchform").toggle();
+		$(this).toggleClass("onsearchformbtn");
+	});
+	$("#top_box .searchformbtn").click(function(e) {
+		//阻止冒泡
+		var e = window.event || e;
+		if(e.stopPropagation) {
+			e.stopPropagation();
+		}else {
+			e.cancelBubble = true;
+		}							   
 	});
 	$(document).click(function(){
-	$(".topsearchform").hide();
+		$(".topsearchform").hide();
 	});
 })
 </script>  

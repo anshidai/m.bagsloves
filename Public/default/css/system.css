@@ -431,7 +431,7 @@ table.search_a_tab td.del_b_bor{border-bottom:0 none;}
 
 .select{position: relative;display: block;border: 1px #ccc solid;border-radius: 6px;overflow: hidden; z-index: 1;}
 .select:after{position: absolute;right: 10px; top: 50%;content: " ";margin-top: -7px;width: 9px;height: 13px;background: url(img/pdricon.png) no-repeat;pointer-events: none;background-size: 9px 13px;}
-.select select{width: 100%;border: 0;font-size: 14px;height: 43px;line-height: 43px;padding: 0 25px 0 14px;background: none;outline: none;background-color: #eee;-webkit-appearance: none;}
+.select select{border: 0;font-size: 14px;height: 43px;line-height: 43px;padding: 0 25px 0 14px;background: none;outline: none;background-color: #eee;-webkit-appearance: none;}
 
 .view_list_box .view_choose .select select{height:30px;line-height:30px;}
 .view_list_box .view_choose .select:after{background: url(img/selectdownicon.png) no-repeat; width:15px;height:9px;top: 50%;right: 9px;margin-top: -3px; background-size: 12px 7px;}
