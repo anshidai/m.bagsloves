@@ -24,9 +24,9 @@
 <script type="text/javascript" src="__JS__/touchCarousel.js"></script>
 <script type="text/javascript" src="__JS__/mobile.zoom.js"></script>
 <script type="text/javascript" src="__JS__/iscroll.js"></script>
-<script type="text/javascript" src="__JS__/goods.js"></script>
 <script type="text/javascript">
- var goods_id = '{$info.id}';
+var goods_id = '{$info.id}';
+var user_id = '{$memberID}'; 
 </script>
 
 <!--share-->
@@ -46,34 +46,14 @@
         <div class="goods_img">
             <div id="carousel" class="carousel touchcarousel" style="overflow: visible;">
 				<notempty name="gallerys">
-				<ul class="touchcarousel-container">
+				<ul class="touchcarousel-container" style="width:<?=1339*count($gallerys)?>px;left:0px;">
 				<foreach name="gallerys" item="vo">
-				<li class="touchcarousel-item" href="{:build_url($vo,'g_bigimage')}"><img src="{:build_url($vo,'g_bigimage')}" alt="{:build_url($info,'pro_name')}"></li>
+				<li class="touchcarousel-item" href="{:build_url($vo,'g_bigimage')}" style="width:1349px;"><img src="{:build_url($vo,'g_bigimage')}" alt="{:build_url($info,'pro_name')}"></li>
 				</foreach>
 				</ul>
 				</notempty>
             </div>
         </div>
-        <script>
-            function notice_close(){
-                    $("#site_notice").css("display","none");
-                    SetCookie("noticeisreaded","noticeisreaded");
-            }
-            $(function() {
-                $(".list_carousel ").touchCarousel({
-                        itemsPerMove:1,
-                        pagingNav: 0,
-                        scrollbar: 0,
-                        directionNav: 0,
-                        directionNav:false,
-                        itemLikeWindowWidth: 4,
-                        directionNavAutoHide:false,
-                        autoplay:false,
-                        directionNav:false,
-                        pagingNavControls:true
-                });
-            });
-        </script>
     </div>
 	<form name="cart_quantity" id="form_cart_quantity" action="{:U('Products/add_cart')}" method="post">
     <ul class="common_bor_wrap pro_info">
@@ -137,19 +117,12 @@
 		</li>
         <li class="buyer_comments">
             <a href="javascript:void(0);">
-                <span class="buyer_name" id="add_favorites" data_id="{$info.id}"><i></i>Like (<b id="favoritenum">{$profav}</b>)</span>
+                <span class="buyer_name" id="add_favorites" action="{:U('Favorite/addfav')}" data_id="{$info.id}"><i></i>Like (<b id="favoritenum">{$profav_total}</b>)</span>
                 <i class="arr"></i>
                 <span class="comment_value">({$commnet_count})</span>
                 <div class="comment_star review star0" onclick="window.location.href='{:U('Products/comment', array('pid'=>$pid))}'"></div>
             </a>
-        </li>
-      <script>
-            $(function(){
-                $("#dollicon").click(function(){
-                    $(".copynotice").show().find(".site_notice_content").text(window.location.href+"?source_user=&source=promotion_url")
-                })
-            })
-        </script>        
+        </li>        
         <div id="site_notice" class="copynotice" style="display: none">
             <div class="site_notice">
             <a rel="nofollow" href="javascript:;" onclick="notice_close()" class="site_notice_close"></a>
@@ -214,25 +187,8 @@
 	</div>
 </div>
 
+<script type="text/javascript" src="__JS__/goods.js"></script>
 
-<script type="text/javascript">
-$('#add_favorites').click(function() {
-        var _this = $(this);
-        var _val = parseInt($('#favoritenum').text());
-        var product_id = _this.attr('data_id');
-        var user_id = '{$memberID}';
-        if(!user_id) {
-            $.Prompt('Login required');
-			return false;
-        }
-		$.post('{:U('Favorite/addfav')}', {id:product_id}, function(data){
-			$.Prompt(data.info);
-			if(data.status == '1') {
-				 _this.find('#favoritenum').text(_val + 1);
-			}
-		});
-    });
-</script>
 <include file="Themes/default/Public/front_footer.tpl" />
 
 <script type="text/javascript">

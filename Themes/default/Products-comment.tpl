@@ -112,6 +112,12 @@
             </div>
         </div>
         <div class="clear10"></div>
+		<div>
+            <label class="form_label">Code: <span class="red">*</span></label>
+            <input type="text" name="code" class="codeno">
+            <img id="validateImg" src="{:U('Public/verify')}" height="42" onclick="this.src='/index.php?s=/Public/verify/t/'+new Date().getTime()+'.html'" />
+            <div class="clear10"></div>
+        </div>
         <input type="button" value="Submit" class="common_btn2" />
         <div class="clear"></div>
         <input type="reset" value="Reset" class="common_btn1" />
@@ -124,10 +130,8 @@ $(function(){
         var nickname = $('input[name="name"]');
         var email = $('input[name="email"]');
         var content = $('textarea[name="content"]');
+        var code = $("input[name='code']");
         var email_reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/; 
-		
-		console.log(email.val())
-		
 		
         if (!nickname.val()){
             $.Prompt('Please enter your name');
@@ -139,6 +143,10 @@ $(function(){
 		}
         if (!content.val()){
             $.Prompt('Please enter content');
+            return false;
+        }
+		if (!code.val()){
+            $.Prompt('Please enter verification code');
             return false;
         }
 		

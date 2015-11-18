@@ -1,5 +1,22 @@
 $(function(){
-
+	
+	$("#dollicon").click(function(){
+		$(".copynotice").show().find(".site_notice_content").text(window.location.href+"?source_user=&source=promotion_url")
+	});
+	
+	$(".list_carousel ").touchCarousel({
+		itemsPerMove:1,
+		pagingNav: 0,
+		scrollbar: 0,
+		directionNav: 0,
+		directionNav:false,
+		itemLikeWindowWidth: 4,
+		directionNavAutoHide:false,
+		autoplay:false,
+		directionNav:false,
+		pagingNavControls:true
+	});
+	
 	var goods_number = $("#buyskunums");
 	$("a.plus").click(function() {
 		goods_number.val(parseInt(goods_number.val()) +1);
@@ -177,6 +194,28 @@ $('.newsletter_btn').click(function() {
 		}
 	});
 });
+
+
+$('#add_favorites').click(function() {
+	var _this = $(this);
+	var _val = parseInt($('#favoritenum').text());
+	var product_id = _this.attr('data_id');
+	if(!user_id) {
+		$.Prompt('Login required');
+		return false;
+	}
+	$.post(_this.attr('action'), {id:product_id}, function(data){
+		$.Prompt(data.info);
+		if(data.status == '1') {
+			 _this.find('#favoritenum').text(_val + 1);
+		}
+	});
+});
+
+function notice_close(){
+		$("#site_notice").css("display","none");
+		SetCookie("noticeisreaded","noticeisreaded");
+}
 
 /*
 <!-- 促销倒计时 -->

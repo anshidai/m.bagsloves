@@ -24,9 +24,12 @@
 <body>
 <include file="Themes/default/Public/header.tpl" /> 
 
-<notempty name="list">
-
 <div id="body_box" class="product_list">
+	<empty name="list">
+	<div class="searchnoitems">Sorry, we have found 0 items.</div>
+	<div class="wrap"><a href="/" class="common_btn2">Continue Shopping</a></div>
+	<div class="clear15"></div>
+	<else />
 	<div class="wrap pro_box">
         <div class="clearboth"></div>
         <div class="view_list_box">
@@ -48,7 +51,6 @@
         <div class="clearboth"></div>
         <div class="select_box" style="display:none"></div>
         <ul class="common_pro_list1" id="product_list">
-		<notempty name="list">
 		<foreach name="list" item="vo">
 			<li>
 				<a class="pic" href="{:build_url($vo,'pro_url')}"><img src="{:build_url($vo,'pro_smallimage')}" alt="{:build_url($vo,'pro_name')}"></a>
@@ -64,21 +66,19 @@
 			<div class="checkmain"></div>
 			</div>
 		</foreach>
-		</notempty>
 		</ul>
-        <script>
-            $(function(){
-                $(".select_content").css("left",(parseInt($("html").width()) - 300)/2 + "px");
-                $(".select_box").height($("html").height());
-            });
-        </script>
         <div class="clear10"></div>
         <a href="javascript:;" class="viewmore listviewmore">View More >></a>
         <div class="clear10"></div>
     </div>
-<script type="text/javascript">
+</empty>
+</div>
 
+<script type="text/javascript">
 $(document).ready(function(){
+	$(".select_content").css("left",(parseInt($("html").width()) - 300)/2 + "px");
+	$(".select_box").height($("html").height());
+
 	var totalpage = {$totalpage};
 	var curr_page = 1;
 	var is_loading = false;
@@ -125,9 +125,9 @@ $(document).ready(function(){
 					next_page = $('#next_page').html();
 					$('#next_page').remove();
 				}else {
-					 $('.mask_wait_box').hide();
-					  $.Prompt('Error loading!');
-					  is_loading = false;
+					$('.mask_wait_box').hide();
+					$.Prompt('Error loading!');
+					is_loading = false;
 				}
 			});
 		}
@@ -136,41 +136,7 @@ $(document).ready(function(){
 			$('.listviewmore').html('Already in the end portion of the page!');
 		}
 	});
-});
-   
-</script>
-
-</div>
-
-
-<else/>
-<div class="wrap common_top common_success_box" id="body_box">
-    <div class="clear15"></div>
-    <div class="clear15"></div>
-    <div class="clear15"></div>
-    <div class="clear15"></div>
-    <div class="clear15"></div>
-    <div class="clear15"></div>
-    <dl>
-        <dt class="success_icon3"><p><i></i>Please enter the words</p></dt>
-        <dd><a href="{:U('Search/default')}">[<u>Click here to return previous page</u>]</a></dd>
-        <script>
-			//setTimeout("window.location.href='{:U('Search/default')}'", 3000);
-		</script> 
-        </dl>
-    <div class="clear15"></div>
-    <div class="clear15"></div>
-    <div class="clear15"></div>
-    <div class="clear15"></div>
-    <div class="clear15"></div>
-    <div class="clear15"></div>
-    <div class="clear15"></div>
-</div>
-
-</notempty>
-
-<script type="text/javascript">
-$(function() {
+	
 	function close_dialog() 
 	{
 		if (window.parent != window.self) {
@@ -193,7 +159,8 @@ $(function() {
 			window.location.reload();
 		}
 	}
-	});
+});
+
 </script>
 <include file="Themes/default/Public/front_footer.tpl" />
 

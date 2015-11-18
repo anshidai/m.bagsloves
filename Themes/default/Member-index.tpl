@@ -28,24 +28,24 @@
         	<li class="last"><a href="/m-account-orders.html">My Orders<i></i></a></li>
         </ul>
         <ul>
-        	<li><a href="/m-account-profile.html">My Profile<i></i></a></li>
-            <li><a href="{:U('Member/changepwd')}">Change Password<i></i></a></li>
+        	<li><a href="{:U('Address/index', array('act'=>'edit'))}">My Profile<i></i></a></li>
+            <li class="last"><a href="{:U('Member/changepwd')}">Change Password<i></i></a></li>
             <!--<li class="last"><a href="/m-account-newsletter.html">Newsletter Subscription<i></i></a></li>-->
         </ul>
         <ul>
         	<li><a href="{:U('Cart/index')}">My Shopping Cart<i></i></a></li>
             <li><a href="{:U('Address/index')}">My Address Books<i></i></a></li>
-            <li class="last"><a href="/m-account-mymessage.html">My Message<i></i></a></li>
+            <li class="last"><a href="{:U('Message/index', array('type'=>'Message'))}">My Message<i></i></a></li>
         </ul>
         <ul>
         	<li><a href="{:U('Favorite/index')}">My Wishlist<i></i></a></li>
-            <!--<li class="last"><a href="/m-history-list.html">Recently Viewed<i></i></a></li>-->
+            <li class="last"><a href="{:U('History/index')}">Recently Viewed<i></i></a></li>
         </ul>
         <ul>
         	<!--<li><a href="/m-account-creditList.html">My Credit<i></i></a></li>-->
             <!--<li><a href="/m-account-couponList.html">My Coupon Codes<i></i></a></li>-->
             <!--<li><a href="/m-account-growthList.html">My Growth<i></i></a></li>-->
-            <li class="last"><a href="/m-account-comments.html">My Comments<i></i></a></li>
+            <li class="last"><a href="{:U('Message/index', array('type'=>'Review'))}">My Comments<i></i></a></li>
         </ul>
         <div class="clear15"></div>
         <button class="common_btn2" onclick="window.location.href='{:U('Admin/loginout')}'">Log Out</button>

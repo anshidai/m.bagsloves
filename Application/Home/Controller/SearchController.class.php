@@ -21,7 +21,9 @@ class SearchController extends CommonController {
 		}
 		
 		if(empty($kwd)) {
-			$this->display('Search-index');
+			$this->assign('message', 'Please enter the words');
+			$this->assign('jump_url', U('Search/defaults'));
+			$this->display('Public-failure');
 		}
 		
 		$model = D('Products');

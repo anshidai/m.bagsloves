@@ -16,7 +16,6 @@ class ProductsController extends CommonController {
 			$gallerys = D('ProductsGallery')->where("pid='{$pid}'")->order('sort desc')->select();
 			$this->assign('gallerys', $gallerys);
 		}
-
 		$attrs = $productsModel->get_attrs($info['cateid'], $info['id']);
 		
 		$related_products_id = D('Products_related')->where("products_id={$pid}")->select();
@@ -28,12 +27,20 @@ class ProductsController extends CommonController {
 			}
 		}
 		sort($product_ids);
-		
 		$related_attrs = D('ProductsAttr')->get_attrs($product_ids);
-		
 		$randlist = $this->_rand_product($pid, 9);
-		
 		$commnet_count = D('ProductsAsk')->where("products_id='{$pid}' AND status=1 AND type='Review'")->count();
+		
+		$profav_total = 0;
+		if($this->member_Info['profav']) {
+			$profav = explode(',',$this->member_Info['profav']);
+			$profav_total =  in_array($pid, $profav)? 1: 0;
+		}
+		
+		//记录浏览历史
+		save_history($pid);
+		
+		$this->assign('profav_total', $profav_total);
 		$this->assign('randlist', $randlist);
 		$this->assign('commnet_count', $commnet_count);
 		$this->assign('attrs', $attrs);
@@ -73,6 +80,7 @@ class ProductsController extends CommonController {
 	public function add_comment()
 	{
 		$products_id = I('post.products_id', 0, 'intval');
+		$code = I('post.code', '');
 		$type = I('post.type', 'Review');
 		$name = I('post.name', '');
 		$content = I('post.content', '');
@@ -95,6 +103,9 @@ class ProductsController extends CommonController {
 		if(strlen($content)<10) {
 			$this->error('Please enter content may not be less than 10 characters.');
 		}
+		if(!check_verify($code)) {
+			$this->error('Verification code error');
+		}
 	
 		//检查当前评论产品是否存在
 		$pro = D('Products')->find($products_id);
@@ -113,9 +124,9 @@ class ProductsController extends CommonController {
 		$data['star'] = $star;
 		
 		if(M('ProductsAsk')->add($data)) {
-			$this->success('Your message has been submitted!');
+			$this->success('Your message has been submitted.');
 		}
-		$this->error('Failure to submit your message!');
+		$this->error('Failure to submit your message.');
 		
 	}
 	

@@ -10,5 +10,15 @@ class PublicController extends CommonController {
 		$this->display();
 	}
 	
+	public function verify()
+	{
+		$Verify = new \Think\Verify();
+		$Verify->fontSize   = 30;
+		$Verify->length   = 4;
+		$Verify->useNoise = false; 
+		$Verify->codeSet = '0123456789';
+		$Verify->entry();
+	}
+	
 	
 }

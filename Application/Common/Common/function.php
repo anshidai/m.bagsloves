@@ -374,3 +374,41 @@ function sendmail($sendTo, $subject, $body)
 
 }
 
+function save_history($id)
+{
+	
+	$id = (int)$id;
+	$history = cookie('goods_history');
+	if($history) {
+		$history = json_decode(urldecode($history));
+		if(is_array($history)) {
+			array_push($history, $id);
+			$history = array_unique($history);
+			if(count($history)>20) {
+				$history = array_slice($history, -20);
+			}
+		}
+	}else {
+		$history = array($id);
+	}
+	cookie('goods_history', urlencode(json_encode($history)), 86400*30);
+}
+
+function get_history()
+{
+	if($history = cookie('goods_history')) {
+		$history = json_decode(urldecode($history));
+		if(is_array($history)) {
+			$list = D('Products')->where(array('id'=>array('in', $history)))->order('id desc')->select();
+			return $list;
+		}
+	}
+	return false;
+}
+
+
+function check_verify($code, $id = '')
+{
+	$verify = new \Think\Verify();
+	return $verify->check($code, $id);
+}
