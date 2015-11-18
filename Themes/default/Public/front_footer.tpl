@@ -75,7 +75,7 @@
 		<a href="/m-account-orders.html" class="myorder"><i></i>My Order</a>
 		<a href="/m-account-trackingOrder.html" class="tracking"><i></i>Tracking Order</a>
 		<a href="{:U('Favorite/index')}" class="myfavorites"><i></i>My Favorites</a>
-		<a href="/m-history-list.html" class="recently"><i></i>Recently Viewed</a>
+		<a href="{:U('History/index')}" class="recently"><i></i>Recently Viewed</a>
 		<a href="{:U('Public/help')}" class="none help"><i></i>Help Center</a>
 		</dd>
 	</dl>
