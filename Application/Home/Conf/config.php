@@ -50,5 +50,19 @@ return array(
 
     //全局过滤配置
     'DEFAULT_FILTER' => '', //全局过滤函数
+	'SHOW_PAGE_TRACE' => false, 
+	
+	//开启html静态页面缓存
+	'HTML_CACHE_ON' => true, //是否开启缓存 true-开启 false-不开启
+	'HTML_CACHE_TIME' => 3600, //全局缓存时间
+	'HTML_FILE_SUFFIX' => '.html', //缓存文件后缀
+	'HTML_CACHE_RULES' => array(
+		'Index:index' => array('front/index', 3600), //缓存首页
+		
+		//规则 '控制器:方法' => array('参数', 单独设置缓存时间, '自定义函数'),
+		//'Article:view' => array('{id}-{p}-{part}', 86400, 'hash_view_cache'), //缓存资讯内容页
+	),
+	
+	
 
 );

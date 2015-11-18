@@ -62,7 +62,8 @@ class CommonController extends Controller {
 		}
 		$this->assign('memberID', $this->memberID);
 		
-		if($_GET['referer']) {
+		$referer = '';
+		if(isset($_GET['referer']) && $_GET['referer']) {
 			$referer = $_GET['referer'];
 		}else if(cookie('referer')) {
 			$referer = cookie('referer');

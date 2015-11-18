@@ -8,48 +8,59 @@ class ProductsController extends CommonController {
 	{
 		$pid = I('get.pid', 0, 'intval');
 		
-		$productsModel = D('Products');
-		
-		$info = $productsModel->where("id='{$pid}'")->find();
-		if($info) {
-			//获取产品相册
-			$gallerys = D('ProductsGallery')->where("pid='{$pid}'")->order('sort desc')->select();
-			$this->assign('gallerys', $gallerys);
-		}
-		$cate = D('Cate')->getCate($info['cateid'], 'id,name');
-		
-		$attrs = $productsModel->get_attrs($info['cateid'], $info['id']);
-		
-		$related_products_id = D('Products_related')->where("products_id={$pid}")->select();
-		
-		$product_ids = array($pid);
-		if($related_products_id) {
-			foreach($related_products_id as $val) {
-				array_push($product_ids, (int)$val['related_products_id']);
+		$cachekey = 'product_detail_'.$pid;
+		$data = S($cachekey);
+		if(!$data) {
+			$productsModel = D('Products');
+			
+			$data['info'] = $productsModel->where("id='{$pid}'")->find();
+			if($data['info']) {
+				//获取产品相册
+				$data['gallerys'] = D('ProductsGallery')->where("pid='{$pid}'")->order('sort desc')->select();
 			}
-		}
-		sort($product_ids);
-		$related_attrs = D('ProductsAttr')->get_attrs($product_ids);
-		$randlist = $this->_rand_product($pid, 6);
-		$commnet_count = D('ProductsAsk')->where("products_id='{$pid}' AND status=1 AND type='Review'")->count();
-		
-		$profav_total = 0;
-		if($this->member_Info['profav']) {
-			$profav = explode(',',$this->member_Info['profav']);
-			$profav_total =  in_array($pid, $profav)? 1: 0;
+			$data['cate'] = D('Cate')->getCate($data['info']['cateid'], 'id,name'); 
+			
+			//获取产品
+			$data['attrs'] = $productsModel->get_attrs($data['info']['cateid'], $data['info']['id']);
+			
+			//获取相关产品
+			$related_products_id = D('Products_related')->where("products_id={$pid}")->select();
+			$product_ids = array($pid);
+			if($related_products_id) {
+				foreach($related_products_id as $val) {
+					array_push($product_ids, (int)$val['related_products_id']);
+				}
+			}
+			sort($product_ids);
+			$data['related_attrs'] = D('ProductsAttr')->get_attrs($product_ids);
+			
+			//获取随机产品
+			$data['randlist'] = $this->_rand_product($pid, 6);
+			
+			//获取评论总数
+			$data['commnet_count'] = D('ProductsAsk')->where("products_id='{$pid}' AND status=1 AND type='Review'")->count();
+			
+			//获取用户收藏数
+			$data['profav_total'] = 0;
+			if($this->member_Info['profav']) {
+				$profav = explode(',',$this->member_Info['profav']);
+				$data['profav_total'] =  in_array($pid, $profav)? 1: 0;
+			}
+			S($cachekey, $data, 86400);
 		}
 		
 		//记录浏览历史
 		save_history($pid);
 		
-		$this->assign('profav_total', $profav_total);
-		$this->assign('randlist', $randlist);
-		$this->assign('commnet_count', $commnet_count);
-		$this->assign('attrs', $attrs);
-		$this->assign('related_attrs', $related_attrs);
-		$this->assign('info', $info);
-		$this->assign('pid', $info['id']);
-		$this->assign('cate', $cate);
+		$this->assign('randlist', $data['randlist']);
+		$this->assign('commnet_count', $data['commnet_count']);
+		$this->assign('attrs', $data['attrs']);
+		$this->assign('gallerys', $data['gallerys']);
+		$this->assign('profav_total', $data['profav_total']);
+		$this->assign('related_attrs', $data['related_attrs']);
+		$this->assign('info', $data['info']);
+		$this->assign('pid', $data['info']['id']);
+		$this->assign('cate', $data['cate']);
 		$this->display();
 	}
 	

@@ -9,6 +9,9 @@ define('APP_PATH', './Application/');
 //缓存目录设置,  此目录必须可写，建议移动到非WEB目录
 define('RUNTIME_PATH', './Runtime/');
 
+//静态文件缓存目录
+define('HTML_PATH', RUNTIME_PATH.'html/');
+
 define('BIND_MODULE','Home');
 
 define('IMG_DOMAIN', 'http://www.bagsloves.com');
