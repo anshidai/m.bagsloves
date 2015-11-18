@@ -1,7 +1,9 @@
 <!doctype html>
 <html>
 <head>
-<title>Zhcart - Global Online Shopping for Dresses, Home & Garden, Electronics, Wedding Apparel </title><meta name="keywords" content="sexy clothes,cheap hats,good caps " /><meta name="description" content="A professional and reliable online shopping center providing a variety of hot selling products at reasonable prices and shipping them globally. " />
+<title>Cheap Michael Kors Handbags On Sale</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
 <meta content="charset=utf-8" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 <meta content="black" name="apple-mobile-web-app-status-bar-style" />

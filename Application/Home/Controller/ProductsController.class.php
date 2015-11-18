@@ -16,6 +16,8 @@ class ProductsController extends CommonController {
 			$gallerys = D('ProductsGallery')->where("pid='{$pid}'")->order('sort desc')->select();
 			$this->assign('gallerys', $gallerys);
 		}
+		$cate = D('Cate')->getCate($info['cateid'], 'id,name');
+		
 		$attrs = $productsModel->get_attrs($info['cateid'], $info['id']);
 		
 		$related_products_id = D('Products_related')->where("products_id={$pid}")->select();
@@ -28,7 +30,7 @@ class ProductsController extends CommonController {
 		}
 		sort($product_ids);
 		$related_attrs = D('ProductsAttr')->get_attrs($product_ids);
-		$randlist = $this->_rand_product($pid, 9);
+		$randlist = $this->_rand_product($pid, 6);
 		$commnet_count = D('ProductsAsk')->where("products_id='{$pid}' AND status=1 AND type='Review'")->count();
 		
 		$profav_total = 0;
@@ -47,6 +49,7 @@ class ProductsController extends CommonController {
 		$this->assign('related_attrs', $related_attrs);
 		$this->assign('info', $info);
 		$this->assign('pid', $info['id']);
+		$this->assign('cate', $cate);
 		$this->display();
 	}
 	

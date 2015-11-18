@@ -40,7 +40,7 @@ var user_id = '{$memberID}';
 <include file="Themes/default/Public/header.tpl" />
 
 <div id="body_box" class="product_detail">
-<div id="breadcrumb" class="wrap"><a href="/">Home</a> > <a href="/Wedding-Dresses-c909.html">Wedding Dresses</a> > <a href="/Wedding-Dresses-c918.html">Wedding Dresses</a> > <a href="/Beach-Wedding-Dresses-c919.html">Beach Wedding Dresses</a> > <span>A-line Tiered Lace Floor-Length Ivory Bride Wedding Dress with Jewel Neck</span></div>
+<div id="breadcrumb" class="wrap"><a href="/">Home</a> > <a href="{:U('Cate/index')}">All Categories</a> > <a href="{:build_url($cate, 'cate_list_url')}">{$cate.name}</a> > <span>{:build_url($info,'pro_name')}</span></div>
 <div class="product_detail">
     <div class="wrap viewimgbox">
         <div class="goods_img">
@@ -150,7 +150,7 @@ var user_id = '{$memberID}';
             <h3 class="commonh3_3">You May Also Like</h3>
             <div class="similar_products_box" style="overflow:hidden">
 				<notempty name="randlist">
-				<ul id="similar_products_list" class="common_pro_list2" style="width:2000px;">
+				<ul id="similar_products_list" class="common_pro_list2" style="width:<?=158*count($randlist)?>px;">
 				<foreach name="randlist" item="vo">
 					<li>
 						<a class="pic" href="{:build_url($vo,'pro_url')}"><img src="{:build_url($vo,'pro_smallimage')}" alt="{:build_url($vo,'pro_name')}"></a>

@@ -23,5 +23,10 @@ class CateModel extends CommonModel {
 		return $children;
 	}
 	
+	public function getCate($id, $field = '*')
+	{
+		return $this->field($field)->where(array('id' => $id))->find();
+	}
+	
 	
 }
