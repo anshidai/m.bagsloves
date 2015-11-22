@@ -91,29 +91,29 @@
            state = $('select[name="state"]');
 		}
 		*/
-        var country_id=$("select[name='country_id']");
+        var country=$("select[name='country']").val();
         var zip = $("input[name='zip']").val();
-        if(country_id.val==0) {
-            $.Prompt('');
+        if(!country) {
+            $.Prompt('Please enter country');
             return;
         }
-        if(state == '') {
+        if(!state) {
             $.Prompt('Please enter state/provice');
             return;
         }
-        if(city == '') {
+        if(!city) {
             $.Prompt('Please enter city');
             return;
         }
-        if(address == '') {
+        if(!address) {
             $.Prompt('Please enter address');
             return;
         }
-        if(zip == '') {
+        if(!zip) {
             $.Prompt('Please enter postcode');
             return;
         }  
-        if(telphone == '') {
+        if(!telphone) {
             $.Prompt('Please enter mobilephone');
             return;
         }

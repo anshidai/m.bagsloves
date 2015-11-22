@@ -59,6 +59,10 @@
                     <dd><span style="color:#000;font-size:18px;font-weight:bold;">{$itemTotal}</span></dd>
                 </dl>
 				<dl>
+					<dt>+Shipping Price :</dt>
+					<dd><span class="fbold">{$Think.session.currency.code}{$shippingPrice}</span></dd>
+				</dl>
+				<dl>
                     <dt>Sub Total :</dt>
                     <dd class="price"><span id="cart_totalprice">{$cartTotal}</span></dd>
                 </dl>
@@ -69,9 +73,16 @@
                 </dl>
 				</notempty>
                 <dl>
-                    <dt>Cart Total :</dt>
+                    <dt>Total Amount :</dt>
                     <dd class="price"><span class="cart_total"><span id="order_totalprice">{$totalAmount}</span></span></dd>
                 </dl>
+				<gt name="free_shipping" value="0">
+				<dl>
+					<dt>
+						For your whole order:  If <span class="fbold" style="color:#f00;">{$Think.session.currency.code}0 - {$Think.session.currency.code}{$free_shipping}</span>, Shipping fee is <span class="fbold" style="color:#f00;">{$Think.session.currency.code}15</span>; If over <span class="fbold" style="color:#f00;">{$Think.session.currency.code}{$free_shipping}</span>, free shipping
+					</dt>
+				</dl>
+				</gt>
                 <div class="checkout_box_btns">
 					<div class="clear"></div>
 					<input id="totalsaveprice" type="hidden" value="{$totalAmount}" />

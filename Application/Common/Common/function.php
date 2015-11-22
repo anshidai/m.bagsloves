@@ -412,3 +412,64 @@ function check_verify($code, $id = '')
 	$verify = new \Think\Verify();
 	return $verify->check($code, $id);
 }
+
+function get_sn()
+{
+	return toDate(time(), 'YmdHis');
+}
+
+function toDate($time, $format = 'Y-m-d H:i:s') 
+{
+	if(empty($time)) {
+		return '';
+	}
+	$format = str_replace('#', ':', $format);
+	return date($format, $time);
+}
+
+function get_region_name($id)
+{
+	$model = D('Region');
+	$list = $model->where("id='{id}'")->find();
+	return $list? $list['name']: '';
+}
+
+function get_region_id($name)
+{
+	$model = D('Region');
+	$list = $model->where("name='{$name}'")->find();
+	return $list? $list['id']: '';
+}
+
+//付款方式费用
+function get_orders_Fees($total, $itemTotal, $payment_id)
+{
+	$feeModel = D('Fee');
+	$fee = $feeModel->where(array('payment_id'=>$payment_id))->find();
+	if(!$fee){
+		$fee['min_insurance'] = 0;
+		$fee['min_freepaymoney'] = 0;
+		$fee['minimum_money'] = 0;
+	}
+	$r = array();
+	$r["products_total"] = $total;
+	$r['total'] = $total;
+	$r['minimum_money'] = $fee['minimum_money'];
+	if($fee['min_insurance'] && $fee['insurance'] && $r["total"]<=$fee['min_insurance']) {
+		$r['insurance'] = $itemTotal * $fee['insurance'];
+	}
+	else{
+		$r['insurance'] = 0;
+	}
+	$r['total'] += $r['insurance'];
+	if($fee['min_freepaymoney'] && $fee['paymoney'] && $r["total"]<=$fee['min_freepaymoney']) {
+		$r['paymoney'] = (float)$r["total"] * (float)$fee['paymoney'];
+	}
+	else{
+		$r['paymoney'] = 0;
+	}
+	$r['total'] = round($r["total"] + $r['paymoney'], 2);
+	$r['insurance'] = round($r['insurance'], 2);
+	$r['paymoney'] = round($r['paymoney'], 2);
+	return $r;
+}
