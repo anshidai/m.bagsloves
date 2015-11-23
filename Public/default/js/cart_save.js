@@ -25,7 +25,8 @@ $('.btn_new_shipping_address').click(function(){
 });
 
 
-$('.common_btn2').click(function(){
+$('#address_btn').click(function(){
+	
 	var telphone = $("input[name='telphone']").val();
 	var address = $("input[name='address']").val();
 	var city = $("input[name='city']").val();
@@ -82,7 +83,15 @@ $('.common_btn2').click(function(){
 );
 
 $('#pay_checkout').click(function(){
-	var payment_code = $("select[name='payment_code']").val();
+	
+	var address_id = $("input[name='address_id']").val();
+	if(!address_id) {
+		$.Prompt('Please Add Shipping Address');
+		return;
+	}
+	console.log(address_id)
+	
+	var payment_code = $("select[name='payment_module_code']").val();
 	if(!payment_code) {
 		$.Prompt('Please enter Payment Method.');
 		return;

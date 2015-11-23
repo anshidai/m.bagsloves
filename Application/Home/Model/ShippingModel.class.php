@@ -37,12 +37,12 @@ class ShippingModel extends  CommonModel{
 		if(!is_numeric($city)) {
 			$cityid = get_region_id($city);
 		}else {
-			$cityid=$city;
+			$cityid =$city;
 		}
 		
 		$list = M('Shipping_area')->where("shipping_id=".$shippingid)->select();
 		if($list) {
-			foreach ($list as $k=>$v) {
+			foreach($list as $k=>$v) {
 				$config = unserialize($v["config"]);
 				if(is_numeric($cityid) && $cityid && in_array($cityid,$config)) {
 					return $this->shipping_fee($v, $weight);

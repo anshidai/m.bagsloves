@@ -3,7 +3,7 @@ namespace Home\Model;
 
 class CouponModel extends CommonModel {
 	
-	publiic function validate($coupon)
+	public function validate($coupon)
 	{
 		$map['coupon'] = trim($coupon);
 		$map['status'] = 1;

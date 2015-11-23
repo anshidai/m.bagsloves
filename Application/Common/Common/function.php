@@ -430,7 +430,7 @@ function toDate($time, $format = 'Y-m-d H:i:s')
 function get_region_name($id)
 {
 	$model = D('Region');
-	$list = $model->where("id='{id}'")->find();
+	$list = $model->where("id='{$id}'")->find();
 	return $list? $list['name']: '';
 }
 
@@ -472,4 +472,10 @@ function get_orders_Fees($total, $itemTotal, $payment_id)
 	$r['insurance'] = round($r['insurance'], 2);
 	$r['paymoney'] = round($r['paymoney'], 2);
 	return $r;
+}
+
+function get_orders_status($id)
+{
+	$status = D('Orders')->field('orders_status')->where("id='{$id}'")->find();
+	return $status? $status['orders_status']: '';
 }

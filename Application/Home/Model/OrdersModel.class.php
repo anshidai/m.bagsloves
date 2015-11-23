@@ -13,9 +13,7 @@ class OrdersModel extends CommonModel {
 	{
 		return $this->where("id=".$id)->find();
 	}
-}
-	
-	
 	
 }
+
 

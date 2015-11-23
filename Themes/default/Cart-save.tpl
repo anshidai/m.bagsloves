@@ -37,6 +37,7 @@
 			<dt>Shipping Address</dt>
 			<dd>
 				<notempty name="address">
+					<input type="hidden" name="address_id" value="{$memberID}" />
 					<div class="select">
 						<select id="shipping_address_id" name="shipping_address_id">
 							<option value="{$memberID}" data_id="{$memberID}" selected="selected">{$member.firstname} {$member.lastname}( {$address.address} &nbsp; {$address.city} &nbsp; {$address.state} &nbsp; <?=$country[$address['country']]['name'];?>&nbsp;{$address.zip} &nbsp;{$address.telphone}&nbsp;&nbsp;{$member.email})</option>
@@ -46,6 +47,7 @@
 						<a href="javascript:;" data_id="{$memberID}" class="btn_edit"> Edit Shipping Address</a>
 					</div>
 				<else />
+					<input type="hidden" name="address_id" value="" />
 					<div class="shipping_add">
 						<a href="javascript:;" class="btn_new_shipping_address"> Add a New Shipping Address</a>
 					</div>
@@ -179,7 +181,7 @@
 			</li>
 			<li>
 				<div class="clear"></div>
-				<div class="submit_btn"><a class="common_btn2" href="javascript:;">Sumbit</a></div>
+				<div class="submit_btn"><a class="common_btn2" id="address_btn" href="javascript:;">Sumbit</a></div>
 				<div class="cancel_btn"><a class="common_btn1" href="javascript:;">Cancel</a></div>    
 				<div class="clear"></div>                 
 			</li>

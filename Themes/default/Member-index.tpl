@@ -25,7 +25,7 @@
 <div id="body_box" class="account_index common_top common_account_box">
     	<div class="wrap myaccount">
     	<ul class="no_mar_top">
-        	<li class="last"><a href="/m-account-orders.html">My Orders<i></i></a></li>
+        	<li class="last"><a href="{:U('Orders/index')}">My Orders<i></i></a></li>
         </ul>
         <ul>
         	<li><a href="{:U('Address/index', array('act'=>'edit'))}">My Profile<i></i></a></li>
