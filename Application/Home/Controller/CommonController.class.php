@@ -41,24 +41,32 @@ class CommonController extends Controller {
 		$this->assign('currencies', $currencies);
 
 		//生产一个唯一的session id
-		$this->sessionID = session('sessionID');
+		$this->sessionID = cookie('sessionID');
 		if(!$this->sessionID) {
-			$this->sessionID = md5(uniqid(rand()));
-			session('sessionID', $this->sessionID);
+			$this->sessionID = create_session_id();
+			cookie('sessionID', $this->sessionID);
 		}
 		
 		//读取用户id
-		$this->memberID = session('memberID');
-		if(!$this->memberID) {
+		$auth_cookie = cookie('auth');
+		if(empty($auth_cookie)) {
 			$this->memberID = 0;
 		}else {
+			$auth = daddslashes(explode("\t", authcode($auth_cookie, 'DECODE', C('AUTHKEY'))));
+			list($member_id, $member_email) = empty($auth) || count($auth) < 2 ? array('', '') : $auth;
+			if(!empty($member_id)) {
+				$this->memberID = $member_id;
+			}
+		}
+		cookie('memberID', $this->memberID);
+		
+		if($this->memberID) {
 			//读取用户信息
 			$this->mid = $this->memberID;
 			$this->member_Info = D("Members")->where("id=".$this->memberID)->find();
 			$this->assign('member_Info', $this->member_Info);
 			
 			$this->member_ShippingAddress = D("Shippingaddress")->get_shippingaddress($this->memberID);
-			//session('memberShippingAddress', $this->member_ShippingAddress);
 		}
 		$this->assign('memberID', $this->memberID);
 		

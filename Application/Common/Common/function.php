@@ -59,19 +59,19 @@ function get_members_points($uid)
 //获取购物车购买的商品种类数量
 function itemCount()
 {
-	return D('Cart')->get_item_count(session('sessionID'));
+	return D('Cart')->get_item_count(cookie('sessionID'));
 }
 
 //获取购物车商品总数量
 function TotalCount()
 {
-	return D('Cart')->get_item_totalcount(session('sessionID'));
+	return D('Cart')->get_item_totalcount(cookie('sessionID'));
 }
 
 //获取购物车商品总价格
 function cart_total()
 {
-	return D('Cart')->cart_total(session('sessionID'));
+	return D('Cart')->cart_total(cookie('sessionID'));
 }
 
 /**
@@ -80,7 +80,7 @@ function cart_total()
  */
 function VipPrice($price)
 {
-	$GroupInfo = get_members_group(session('memberID'));
+	$GroupInfo = get_members_group(cookie('memberID'));
 	if($GroupInfo['discount']) {
 		$VipPrice = $GroupInfo['discount'] * $price;
 	}else{
@@ -478,4 +478,95 @@ function get_orders_status($id)
 {
 	$status = D('Orders')->field('orders_status')->where("id='{$id}'")->find();
 	return $status? $status['orders_status']: '';
+}
+
+function create_session_id()
+{
+	$session_id = $_SERVER['HTTP_USER_AGENT'].get_client_ip();
+	return md5($session_id);
+}
+
+/**
+* disuc加密解密
+* $string 明文或密文
+* $operation 加密ENCODE或解密DECODE
+* $key 密钥
+* $expiry 密钥有效期 
+*/    
+function authcode($string, $operation = 'DECODE', $key = '', $expiry = 0) 
+{
+	$ckey_length = 4;
+	$key = md5($key != '' ? $key : $_SERVER['HTTP_HOST']);
+	$keya = md5(substr($key, 0, 16));
+	$keyb = md5(substr($key, 16, 16));
+	$keyc = $ckey_length ? ($operation == 'DECODE' ? substr($string, 0, $ckey_length): substr(md5(microtime()), -$ckey_length)) : '';
+
+	$cryptkey = $keya.md5($keya.$keyc);
+	$key_length = strlen($cryptkey);
+
+	$string = $operation == 'DECODE' ? base64_decode(substr($string, $ckey_length)) : sprintf('%010d', $expiry ? $expiry + time() : 0).substr(md5($string.$keyb), 0, 16).$string;
+	$string_length = strlen($string);
+
+	$result = '';
+	$box = range(0, 255);
+
+	$rndkey = array();
+	for($i = 0; $i <= 255; $i++) {
+		$rndkey[$i] = ord($cryptkey[$i % $key_length]);
+	}
+
+	for($j = $i = 0; $i < 256; $i++) {
+		$j = ($j + $box[$i] + $rndkey[$i]) % 256;
+		$tmp = $box[$i];
+		$box[$i] = $box[$j];
+		$box[$j] = $tmp;
+	}
+
+	for($a = $j = $i = 0; $i < $string_length; $i++) {
+		$a = ($a + 1) % 256;
+		$j = ($j + $box[$a]) % 256;
+		$tmp = $box[$a];
+		$box[$a] = $box[$j];
+		$box[$j] = $tmp;
+		$result .= chr(ord($string[$i]) ^ ($box[($box[$a] + $box[$j]) % 256]));
+	}
+
+	if($operation == 'DECODE') {
+		if((substr($result, 0, 10) == 0 || substr($result, 0, 10) - time() > 0) && substr($result, 10, 16) == substr(md5(substr($result, 26).$keyb), 0, 16)) {
+			return substr($result, 26);
+		} else {
+			return '';
+		}
+	} else {
+		return $keyc.str_replace('=', '', base64_encode($result));
+	}
+}
+
+function daddslashes($string, $force = 1)
+{
+	if(is_array($string)) {
+		$keys = array_keys($string);
+		foreach($keys as $key) {
+			$val = $string[$key];
+			unset($string[$key]);
+			$string[addslashes($key)] = daddslashes($val, $force);
+		}
+	} else {
+		$string = addslashes($string);
+	}
+	return $string;
+}
+
+function get_orders_status_tips($orders_status)
+{
+	if($orders_status == '1') {
+		$orders_status = 'Pending';
+	}else if($orders_status == '2') {
+		$orders_status = 'Processing';
+	}else if($orders_status == '3') {
+		$orders_status = 'Delivered';
+	}else if($orders_status == '4') {
+		$orders_status = 'Close';
+	}
+	return $orders_status;
 }

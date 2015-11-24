@@ -72,7 +72,7 @@
 						<option value="">Please Select Payment Method</option>
 						<notempty>
 						<foreach name="paymentlist" item="vo">
-						<option value="{$vo.id}" data_id="{$vo.id}">{$vo.name}</option>
+						<option value="{$vo.name}" data_id="{$vo.id}">{$vo.title}</option>
 						</foreach>
 						</notempty>
 					</select>

@@ -30,6 +30,8 @@
 			<input class="reg_text" id="login-email-address" type="email" name="email" value=""/>
 			<label>Password<span class="red">*</span> :</label>
 			<input class="reg_text" id="login-password" type="password" name="password" value=""/>
+			<label>Stay signed in :</label>
+			<input class="ckb" type="checkbox" name="IsStay" value="1" checked="checked">
 			<div class="clear"></div>
 			<input type="button" class="common_btn2 login_btn" value="Sign in" />
 			 <a href="{:U('Admin/forgetpwd')}" class="forgot_password">Forget your password?</a>

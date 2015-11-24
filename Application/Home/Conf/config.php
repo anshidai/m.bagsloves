@@ -63,6 +63,9 @@ return array(
 		//'Article:view' => array('{id}-{p}-{part}', 86400, 'hash_view_cache'), //缓存资讯内容页
 	),
 	
+	//默认错误跳转对应的模板文件
+	'TMPL_ACTION_ERROR' => THEMES_PATH . 'Public/dispatch_jump.tpl',
 	
-
+	//默认成功跳转对应的模板文件
+	'TMPL_ACTION_ERROR' => THEMES_PATH . 'Public/dispatch_jump.tpl',
 );

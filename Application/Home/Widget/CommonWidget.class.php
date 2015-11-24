@@ -19,7 +19,7 @@ class CommonWidget extends Controller{
 
 	public function UserAcountTop()
 	{
-		$user_id = session('user_id');
+		$user_id = cookie('memberID');
 		
 		$wishlist = D('CollectGoods')->where("user_id='$user_id'")->count();
 		

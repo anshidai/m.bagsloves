@@ -72,8 +72,8 @@
 	<dd>
 		<a href="{:U('Member/index')}" class="menber"><i></i>My Account</a>
 		<a href="{:U('Cart/index')}" class="shopcart"><i></i>Shopping Cart</a>
-		<a href="/m-account-orders.html" class="myorder"><i></i>My Order</a>
-		<a href="/m-account-trackingOrder.html" class="tracking"><i></i>Tracking Order</a>
+		<a href="{:U('Orders/index')}" class="myorder"><i></i>My Order</a>
+		<!--<a href="{:U('Orders/index')}" class="tracking"><i></i>Tracking Order</a>-->
 		<a href="{:U('Favorite/index')}" class="myfavorites"><i></i>My Favorites</a>
 		<a href="{:U('History/index')}" class="recently"><i></i>Recently Viewed</a>
 		<a href="{:U('Public/help')}" class="none help"><i></i>Help Center</a>

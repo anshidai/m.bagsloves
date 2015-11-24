@@ -13,6 +13,7 @@ class AdminController extends CommonController {
 		if(IS_POST) {
 			$email = I('post.email', '', 'htmlentities');
 			$password = I('post.password', '', 'htmlentities');
+			$isStay = I('post.IsStay', 0, 'intval');
 			
 			if(empty($email)) {
 				$this->error('please enter login name.');
@@ -26,11 +27,16 @@ class AdminController extends CommonController {
 			if(empty($info) || md5($password) !== $info['password']) {
 				$this->error('Login failure，please try again.');
 			}
-			session('memberID', $info['id']);
 			
+			$cookietime = null;
+			if($isStay) {
+				$cookietime = 86400*30;
+			}
+			cookie('auth', authcode("{$info['id']}\t{$info['email']}", 'ENCODE', C('AUTHKEY')), $cookietime);
+
 			//将购物车sessionid修改为现在的uid;
 			$cartModel = D('Cart');
-			$session_id = session('memberID');
+			$session_id = cookie('sessionID');
 			$cartModel->where("uid='{$info['id']}' OR session_id='{$session_id}'")->save(array('session_id'=>$info['id']));
 			
 			//更新登录信息
@@ -107,7 +113,8 @@ class AdminController extends CommonController {
 	
 	public function loginout()
 	{
-		session('memberID', 0);
+		cookie('memberID', null);
+		cookie('auth', null);
 		$this->redirect($this->referer? $this->referer: 'admin/login');
 		
 	}

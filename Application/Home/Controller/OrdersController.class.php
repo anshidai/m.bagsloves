@@ -8,20 +8,6 @@ class OrdersController extends MemberController {
 	{
 		$map['member_id'] = $this->memberID;
 		$list = D('Orders')->where($map)->order('id desc')->select();
-		if($list) {
-			foreach($list as $k=>$v) {
-				if($v['orders_status'] == '1') {
-					$orders_status = 'Pending';
-				}else if($v['orders_status'] == '2') {
-					$orders_status = 'Processing';
-				}else if($v['orders_status'] == '3') {
-					$orders_status = 'Delivered';
-				}else if($v['orders_status'] == '4') {
-					$orders_status = 'Close';
-				}
-				$list[$k]['orders_status'] = $orders_status;
-			}
-		}
 		$this->assign('list', $list);
 		$this->display();
 	}
@@ -30,10 +16,6 @@ class OrdersController extends MemberController {
 	{
 		$sn = I('get.sn', 0, 'htmlspecialchars');
 
-		if($this->memberID <= 0 && GetValue('quickbuy')==0) {
-			redirect('Admin/login');
-		}
-		
 		if(empty($sn)) {
 			redirect('Orders/index', 5, 'please input order sn');
 		}
@@ -50,6 +32,7 @@ class OrdersController extends MemberController {
 			redirect('Orders/index', 5, 'The current order no goods');
 		}
 		foreach($orders_products_list as $k=>$v) {
+			$orders_products_list[$k]['products_model'] = unserialize($v['products_model']);
 			$orders_products_list[$k]['product'] = D('Products')->where("id='{$v['products_id']}'")->find();
 		}
 		
@@ -59,10 +42,40 @@ class OrdersController extends MemberController {
 		$this->display();
 	}
 	
-	public function add()
+	public function del()
 	{
+		$sn = I('post.sn', 0, 'htmlspecialchars');
+		if(empty($sn)) {
+			$this->error('operation failure');
+		}
 		
-		$this->display();
+		$model = D('Orders');
+		if(!$model->where("member_id='{$this->memberID}' AND sn='{$sn}'")->count()) {
+			$this->error('You currently have no this order number');
+		}
+		if($model->where("sn='{$sn}'")->save(array('orders_status'=>4))) {
+			$this->success('Order is deleted success', U('Orders/index'));
+		}else {
+			$this->error('Order is deleted failure');
+		}
+	}
+	
+	public function confirm()
+	{
+		$sn = I('post.sn', 0, 'htmlspecialchars');
+		if(empty($sn)) {
+			$this->error('operation failure');
+		}
+		$model = D('Orders');
+		if(!$model->where("member_id='{$this->memberID}' AND sn='{$sn}'")->count()) {
+			$this->error('You currently have no this order number');
+		}
+		if($model->where("sn='{$sn}'")->save(array('orders_status'=>4))) {
+			$this->success('operation success', U('Orders/index'));
+		}else {
+			$this->error('operation failure');
+		}
+		
 	}
 	
 }

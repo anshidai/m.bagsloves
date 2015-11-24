@@ -24,6 +24,8 @@
 .orderlist .sn b{color:#f00;}
 .orderlist .pay_status{margin-left:30px;}
 .orderlist .pay_time{margin-left:20px;color:#ccc;}
+.orderlist .pay_url{margin-left:20px; text-decoration:underline;}
+.orderlist .pay_url a{color:#006699;}
 </style>
 </head>
 <body>
@@ -36,8 +38,13 @@
 		<foreach name="list" item="vo">
 		<li>
 			<a href="{:U('Orders/detail', array('sn'=>$vo['sn']))}"><span class="sn"><b>No.</b>{$vo.sn}<span></a>
-			<span class="pay_status">{$vo.orders_status}</span>
-			<span class="pay_time">{$vo.dateline|date="m/d/Y",###}</span> 
+			<span class="pay_status">{:get_orders_status_tips($vo['orders_status'])}</span>
+			<span class="pay_time">{$vo.dateline|date="m/d/Y",###}</span>
+			<if condition="$vo['orders_status'] eq '1'">
+			<span class="pay_url"><a href="">Pay It</a></span>
+			<elseif condition="$vo['orders_status'] eq '3'" />
+			<span class="pay_url"><a class="ajax_pay_url" href="javascript:;" data-id="{$vo.sn}">Confirm receipt</a></span>
+			</if>
 		</li>
 		</foreach>
 		</ul>
@@ -48,5 +55,19 @@
 <div id="bottom_box">
     <div class="wrap copyright"></div>
 </div>
+
+<script type="text/javascript">
+$(".ajax_pay_url").click(function(){
+	$.post('{:U('Orders/confirm')}', {sn: $(this).attr('data-id')}, function(data){
+		$.Prompt(data.info);
+		if(data.status == '1') {
+			var url = data.url || '{:U('Orders/index')}';
+			window.location.href = url;
+		}
+	});
+});
+
+</script>
+
 </body>
 </html>

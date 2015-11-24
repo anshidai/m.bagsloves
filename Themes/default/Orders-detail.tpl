@@ -31,7 +31,7 @@
 			<li class="totalprice">
 				<dl>
 					<dt>Order Number:</dt>
-					<dd>{$shippingInfo}</dd>
+					<dd>{$shippingInfo.sn}</dd>
 				</dl>
 				<dl>
 					<dt>Order Date:</dt>
@@ -39,7 +39,7 @@
 				</dl>
 				<dl>
 					<dt>Order Status:</dt>
-					<dd><strong>Awaiting Payment</strong></dd>
+					<dd><strong>{:get_orders_status_tips($shippingInfo['orders_status'])}</strong></dd>
 				</dl>
 				<dl>
 					<dt>Shipped To:</dt>
@@ -57,35 +57,42 @@
 				</dl>
 				<dl>
 					<dt>Payment Method:</dt>
-					<dd>Scoinpay<br><a class="order_btn edit_pay_btn" href="javascript:;">Edit payment method</a></dd>
+					<dd>{$shippingInfo.payment_module_code}</dd>
 				</dl>
+				<if condition="$shippingInfo['orders_status'] eq '1'">
 				<dl>
-					<dt><a class="order_btn" href="">Delete this order</a></dt>
+					<dt><a id="close_order" data-id="{$shippingInfo.sn}" style="font-size:13px;color:#FF6600" href="javascript:;">Delete this order</a></dt>
 				</dl>
+				</if>
 			</li>
+			<foreach name="orders_products_list" item="vo">
 			<li class="cart_pro">
-                <a href="javascript:void(0)" class="pic"><img src="http://www.bagsloves.com/Public/Uploads/Products/20151013/thumb_1a723fe46cafb.jpg" alt="Michael Kors Perforated Logo Large Vanilla Totes"></a>
-                <div class="name"><a class="product_name" href="/index.php?s=/products/detail/pid/636.html">Michael Kors Perforated Logo Large Vanilla Totes</a></div>
-                <div class="price" data_subtotal="74.99">$74.99</div>
+                <a href="javascript:void(0)" class="pic"><img src="{:build_url($vo['product'],'pro_smallimage')}" alt="{$vo.products_name}"></a>
+                <div class="name"><a class="product_name" href="{:build_url($vo['product'],'pro_url')}">{$vo.products_name}</a></div>
+                <div class="price" data_subtotal="{$shippingInfo.currencies_code}{$vo['products_total']}">{$shippingInfo.currencies_code}{$vo['products_total']}</div>
                 <div class="styles">
-				<span>Size - 13x 14 x 6 1/4</span><br><span>Colors - Vanilla</span><br></div>
+					<foreach name="vo.products_model" item="attr">
+					<span>{$attr.name}: {$attr.value}</span><br>
+					</foreach>
+				</div>
 				<dl class="quantityform_box">
-					<dt>X 1</dt>
+					<dt>x {$vo.products_quantity}</dt>
                 </dl>
 				<div class="clearboth"></div>
             </li>
+			</foreach>
 			<li class="totalprice">
 				<dl>
 					<dt>Items Total :</dt>
 					<dd><span style="color:#000;font-size:18px;font-weight:bold;">1</span></dd>
 				</dl>
 				<dl>
-					<dt>Sub Total :</dt>
-					<dd class="price"><span id="cart_totalprice"><strong style='font-weight: bold;'>$74.99</strong></span></dd>
+					<dt>Shipping Price :</dt>
+					<dd class="price"><span id="cart_totalprice"><strong style='font-weight: bold;'>{$shippingInfo.currencies_code}{$shippingInfo.shippingmoney}</strong></span></dd>
 				</dl>
 				<dl>
 					<dt>Total Amount :</dt>
-					<dd class="price"><span class="cart_total"><span id="order_totalprice"><strong style='font-weight: bold;'>$89.99</strong></span></span></dd>
+					<dd class="price"><span class="cart_total"><span id="order_totalprice"><strong style='font-weight: bold;'>{$shippingInfo.currencies_code}{$shippingInfo.orders_total}</strong></span></span></dd>
 				</dl>
 			</li>
 		</ul>
@@ -95,5 +102,18 @@
 <div id="bottom_box">
     <div class="wrap copyright"></div>
 </div>
+<script type="text/javascript">
+$("#close_order").click(function(){
+	$.post('{:U('Orders/del')}', {sn: $(this).attr('data-id')}, function(data){
+		$.Prompt(data.info);
+		if(data.status == '1') {
+			var url = data.url || '{:U('Orders/index')}';
+			window.location.href = url;
+		}
+	});
+});
+
+</script>
+
 </body>
 </html>
