@@ -48,6 +48,9 @@
 		</li>
 		</foreach>
 		</ul>
+		<else/>
+		<div class="no_result_top">No Results</div>
+		<div class="no_result_bottom"></div>
 		</notempty>
 	</div>
 </div>
