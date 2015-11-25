@@ -97,7 +97,7 @@ var user_id = '{$memberID}';
 				</foreach>
 			</ul>
 			<div class="clearboth"></div>
-			<div class="attr_color_selected">Selected attribute: <strong><?=$attrs['Colors']['attr_value']?></strong></div>
+			<div class="attr_color_selected">Selected Color: <strong><?=$attrs['Colors']['attr_value']?></strong></div>
 			<input type="hidden" id="attr_color" name="attr[Colors]" value="<?=$attrs['Colors']['attr_value']?>__<?=$attrs['Colors']['attr_price']?>" checked="checked">
 			</notempty>
 			<div class="clearboth"></div>
