@@ -99,4 +99,11 @@ class CommonController extends Controller {
 		
 	}
 	
+	protected function _empty()
+	{
+		@header('http/1.1 404 not found'); 
+		$this->display('Public-404'); 	
+	
+	}
+	
 }

@@ -32,7 +32,7 @@ class AdminController extends CommonController {
 			if($isStay) {
 				$cookietime = 86400*30;
 			}
-			cookie('auth', authcode("{$info['id']}\t{$info['email']}", 'ENCODE', C('AUTHKEY')), $cookietime);
+			setloginstatus($info, $cookietime);
 
 			//将购物车sessionid修改为现在的uid;
 			$cartModel = D('Cart');
@@ -59,8 +59,8 @@ class AdminController extends CommonController {
 			$membersModel = D('Members');
 			if($membersModel->create()) {
 				if($insertId = $membersModel->add()) {
-					session('memberID', $insertId);
-					
+					$info = $membersModel->where("id='{$insertId}'")->find();
+					setloginstatus($info);
 					$this->success('register success', $this->referer? $this->referer: U('Member/index'));
 				}			
 			}else {

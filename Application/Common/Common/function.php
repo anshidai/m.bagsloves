@@ -599,3 +599,11 @@ function get_products_points($pid)
 	$list = D('Products')->where("id='{$pid}'")->find();
 	return $list? $list['points']: 0;
 }
+
+function setloginstatus($member, $cookietime) 
+{
+	if(empty($member)) return false;
+	
+	$cookietime = $cookietime? $cookietime: 86400*30;
+	cookie('auth', authcode("{$member['id']}\t{$member['email']}", 'ENCODE', C('AUTHKEY')), $cookietime);
+}
