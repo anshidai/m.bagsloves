@@ -350,8 +350,8 @@ class CartController extends CommonController {
 		$this->assign('list', $list);
 		
 		$pname = ucfirst($pname);
-		import("@.Org.Payment".$pname);
-		if(class_exists($pname)){
+		import("@.Org.Payment.".$pname);
+		if(class_exists($pname)) {
 			$p = new $pname();
 			$content = $p->create_form($list); //创建表单
 			$this->assign('content', $content);
@@ -362,9 +362,10 @@ class CartController extends CommonController {
 				$remark = str_replace(array('{sn}','{time}','{payname}','{total}','{go}','{admin_email}'), array($list['sn'], toDate($list['dateline']), $list['payment_module_code'], getprice_str($list['orders_total']),"<input type=\"button\" value=\"Click Here\" onclick=\"document.forms['pay_form'].submit();\" />",GetValue('email')),$remark);
 			}
 			$this->assign('remark', $remark);
-			$this->display('payment');
+			$this->display('Cart-payment');
+			
 		}else{
-			$this->error('Please select a payment method.');
+			$this->error('Please select a payment method.', U('Orders/index'));
 		}
 	}
 	

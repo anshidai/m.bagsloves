@@ -91,8 +91,6 @@
 </script>
 </div>
 <div class="clear15"></div>
-<div id="bottom_box">
-    <div class="wrap copyright"></div>
-</div>
+<include file="Themes/default/Public/footer.tpl" /> 
 </body>
 </html>

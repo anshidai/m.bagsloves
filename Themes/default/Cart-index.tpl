@@ -160,13 +160,7 @@
 </script>
 </div>
 <div class="clear15"></div>
-<div id="bottom_box">
-<!--    <div class="wrap link">
-        
-         
-    </div>-->
-    <div class="wrap copyright"></div>
-</div>
+<include file="Themes/default/Public/footer.tpl" /> 
 <script type="text/javascript">
     $(window).resize(function() {
         reLayout(".common_pro_list1", 400, 400);

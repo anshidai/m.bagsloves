@@ -192,11 +192,6 @@
 
 </div>
 <div class="clear15"></div>
-
-<div id="bottom_box">
-	<!--<div class="wrap link"></div>-->
-	<div class="wrap copyright"></div>
-</div>
 <script type="text/javascript" src="__JS__/cart_save.js"></script>
 <script type="text/javascript">
     $(window).resize(function() {
@@ -204,5 +199,7 @@
     });
     reLayout(".common_pro_list1", 400, 400);
 </script>
+<include file="Themes/default/Public/footer.tpl" /> 
+
 </body>
 </html>

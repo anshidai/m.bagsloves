@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-<title>Password Forgotten</title>
+<title>Account Center</title>
 <meta content="charset=utf-8" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 <meta content="black" name="apple-mobile-web-app-status-bar-style" />
@@ -18,42 +18,53 @@
 <script type="text/javascript" src="__JS__/gentimer.js"></script>
 <script type="text/javascript" src="__JS__/jquery.prompt.min.js"></script>
 <script type="text/javascript" src="__JS__/dialog.js"></script>
+<style type="text/css">
+.payment-block dd.c-red{color:#f00;}
+.payment-block dd.c-blue{color:#288f00;}
+</style>
 </head>
 <body>
-<include file="Themes/default/Public/header.tpl" />    
+<include file="Themes/default/Public/header.tpl" />
 
-<div id="body_box" class="common_top common_account_box account_trackno user_forgetpassword">
-    <form id="forgetpwd_form" action="{:U('Admin/forgetpwd')}" method="POST">
-    <div class="forget_box">
-        <div class="wrap forget_box_con ">
-            <p>
-            <label class="tips">Enter your email below and proceed.</label>
-            </p>
-            <p>
-            <label>Email Address<span class="red">*</span> :</label>
-            <input class="reg_text" type="text" name="email" id="email" />
-            </p>
-			<p>
-            <input type="button" value="Reset Password" class="common_btn2" />
-			</p>
-        </div>
-    </div>
-</form>
-<script>
-    $('.common_btn2').click(function() {
-		var email = $('#email').val();
-        if(email == ''){
-            $.Prompt('Please enter email');
-            return false;
-        }
-		reg_email = /^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/;
-		if(!reg_email.test(email)) {
-			$.Prompt('Please Enter a valid e-mail address.');
-			return;
-		}
-		$("#forgetpwd_form").submit();
-    });
-</script>
+<div id="body_box" class="common_top common_shoppingcart_box">
+	<div class="wrap account_box payment-block">
+		<ul class="common_bor_wrap bor_top">
+			<li class="totalprice">
+				<dl>
+					<dt>transaction date:</dt>
+					<dd><?=date('m/d/Y H:i:s')?></dd>
+				</dl>
+				<dl>
+					<dt>order number:</dt>
+					<dd>{$orderinfo.sn}</dd>
+				</dl>
+				<dl>
+					<dt>sum:</dt>
+					<dd>{$orderinfo.currencies_code} {$orderinfo.orders_total}</dd>
+				</dl>
+				<dl>
+					<dt>product link:</dt>
+					<dd>
+						<foreach name="order_product_info" item="vo">
+							<a href="{:build_url($vo, 'products_id')}">{$vo.products_name}</a><br>
+						</foreach>
+					</dd>
+				</dl>
+			</li>
+		</ul>
+		
+		<div class="clear15"></div>
+		<div class="common_success_box">
+			<dl>
+				<dt class="success_icon"><p><i></i>Paid successfully!</p></dt>
+				<dd>
+					<a href="/">[Home]</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="{:U('Member/inex')}">[<u>Back to User Center page</u>]</a></dd>
+			</dl>
+		</div>
+	</div>
+</div>
+</div>
 </div>
 <div class="clear15"></div>
 <include file="Themes/default/Public/footer.tpl" /> 

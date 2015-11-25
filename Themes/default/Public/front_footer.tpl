@@ -82,7 +82,4 @@
 </div>
 <div class="clear"></div>
 
-<!--<div class="wrap link"></div>-->
-<div class="wrap copyright"></div>
-
-</div>
+<include file="Themes/default/Public/footer.tpl" /> 

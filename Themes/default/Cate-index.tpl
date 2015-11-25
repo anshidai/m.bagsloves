@@ -50,7 +50,6 @@
 </div>
 </div>
 
-
 <include file="Themes/default/Public/front_footer.tpl" />
 
 <script type="text/javascript">

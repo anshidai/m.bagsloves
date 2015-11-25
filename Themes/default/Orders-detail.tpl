@@ -61,7 +61,7 @@
 				</dl>
 				<if condition="$shippingInfo['orders_status'] eq '1'">
 				<dl>
-					<dt><a id="close_order" data-id="{$shippingInfo.sn}" style="font-size:13px;color:#FF6600" href="javascript:;">Delete this order</a></dt>
+					<dt><a id="close_order" data-id="{$shippingInfo.id}" style="font-size:13px;color:#FF6600" href="javascript:;">Delete this order</a></dt>
 				</dl>
 				</if>
 			</li>
@@ -96,15 +96,27 @@
 				</dl>
 			</li>
 		</ul>
+		<if condition="$shippingInfo['orders_status'] eq '1'">
+		<input type="button" value="Pay It" id="save" class="common_btn2" onclick="javascript:window.location.href='{:U('Cart/pment', array('id'=>$shippingInfo['id']))}'" />
+		<elseif condition="$shippingInfo['orders_status'] eq '3'" />
+		<input type="button" value="Confirm receipt" id="save" class="common_btn2 ajax_pay_url" data-id="{$shippingInfo.id}" />
+		</if>
 	</div>
 </div>
 <div class="clear15"></div>
-<div id="bottom_box">
-    <div class="wrap copyright"></div>
-</div>
 <script type="text/javascript">
 $("#close_order").click(function(){
-	$.post('{:U('Orders/del')}', {sn: $(this).attr('data-id')}, function(data){
+	$.post('{:U('Orders/del')}', {id: $(this).attr('data-id')}, function(data){
+		$.Prompt(data.info);
+		if(data.status == '1') {
+			var url = data.url || '{:U('Orders/index')}';
+			window.location.href = url;
+		}
+	});
+});
+
+$(".ajax_pay_url").click(function(){
+	$.post('{:U('Orders/confirm')}', {id: $(this).attr('data-id')}, function(data){
 		$.Prompt(data.info);
 		if(data.status == '1') {
 			var url = data.url || '{:U('Orders/index')}';
@@ -114,6 +126,6 @@ $("#close_order").click(function(){
 });
 
 </script>
-
+<include file="Themes/default/Public/footer.tpl" /> 
 </body>
 </html>

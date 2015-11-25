@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-<title>Password Forgotten</title>
+<title>Account Center</title>
 <meta content="charset=utf-8" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 <meta content="black" name="apple-mobile-web-app-status-bar-style" />
@@ -18,42 +18,27 @@
 <script type="text/javascript" src="__JS__/gentimer.js"></script>
 <script type="text/javascript" src="__JS__/jquery.prompt.min.js"></script>
 <script type="text/javascript" src="__JS__/dialog.js"></script>
+<style type="text/css">
+.common_account_box .mymessageview td i{background:0 none;}
+.common_account_box .mymessageview input[type="text"], .common_account_box .mymessageview input[type="password"]{height:30px;line-height:30px;}
+</style>
 </head>
 <body>
-<include file="Themes/default/Public/header.tpl" />    
+<include file="Themes/default/Public/header.tpl" />
 
-<div id="body_box" class="common_top common_account_box account_trackno user_forgetpassword">
-    <form id="forgetpwd_form" action="{:U('Admin/forgetpwd')}" method="POST">
-    <div class="forget_box">
-        <div class="wrap forget_box_con ">
-            <p>
-            <label class="tips">Enter your email below and proceed.</label>
-            </p>
-            <p>
-            <label>Email Address<span class="red">*</span> :</label>
-            <input class="reg_text" type="text" name="email" id="email" />
-            </p>
-			<p>
-            <input type="button" value="Reset Password" class="common_btn2" />
-			</p>
-        </div>
-    </div>
-</form>
-<script>
-    $('.common_btn2').click(function() {
-		var email = $('#email').val();
-        if(email == ''){
-            $.Prompt('Please enter email');
-            return false;
-        }
-		reg_email = /^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/;
-		if(!reg_email.test(email)) {
-			$.Prompt('Please Enter a valid e-mail address.');
-			return;
-		}
-		$("#forgetpwd_form").submit();
-    });
-</script>
+<div id="body_box" class="common_top common_account_box">
+	<div class="wrap mymessageview">
+		<div class="payment">
+			<fieldset>
+			<!-- remark-->
+			{$remark}
+			<!--form-->
+			{$content}
+			</fieldset>
+		</div>
+	</div>
+</div>
+</div>
 </div>
 <div class="clear15"></div>
 <include file="Themes/default/Public/footer.tpl" /> 

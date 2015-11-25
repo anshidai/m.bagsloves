@@ -570,3 +570,32 @@ function get_orders_status_tips($orders_status)
 	}
 	return $orders_status;
 }
+
+/**
+ * 赠送用户积分
+ *
+ * @param String $sn 订单编号
+ * 
+ */
+function give_member_points($sn)
+{
+	$res = D('Orders')->where("sn='{$sn}'")->find();
+	if($res) {
+		$orders_id = $res['id'];
+		$member_id = $res['member_id'];
+		
+		$list = D('OrdersProducts')->where("orders_id='{$orders_id}'")->select();
+		if($list) {
+			$membersModel = D('Members');
+			foreach($list as $k=>$v) {
+				$membersModel->setInc("points", "id='{$member_id}'", get_products_points($v['products_id']));
+			}
+		}
+	}
+}
+
+function get_products_points($pid)
+{
+	$list = D('Products')->where("id='{$pid}'")->find();
+	return $list? $list['points']: 0;
+}

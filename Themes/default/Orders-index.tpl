@@ -41,9 +41,9 @@
 			<span class="pay_status">{:get_orders_status_tips($vo['orders_status'])}</span>
 			<span class="pay_time">{$vo.dateline|date="m/d/Y",###}</span>
 			<if condition="$vo['orders_status'] eq '1'">
-			<span class="pay_url"><a href="">Pay It</a></span>
+			<span class="pay_url"><a href="{:U('Cart/pment', array('id'=>$vo['id']))}">Pay It</a></span>
 			<elseif condition="$vo['orders_status'] eq '3'" />
-			<span class="pay_url"><a class="ajax_pay_url" href="javascript:;" data-id="{$vo.sn}">Confirm receipt</a></span>
+			<span class="pay_url"><a class="ajax_pay_url" href="javascript:;" data-id="{$vo.id}">Confirm receipt</a></span>
 			</if>
 		</li>
 		</foreach>
@@ -52,13 +52,10 @@
 	</div>
 </div>
 <div class="clear15"></div>
-<div id="bottom_box">
-    <div class="wrap copyright"></div>
-</div>
 
 <script type="text/javascript">
 $(".ajax_pay_url").click(function(){
-	$.post('{:U('Orders/confirm')}', {sn: $(this).attr('data-id')}, function(data){
+	$.post('{:U('Orders/confirm')}', {id: $(this).attr('data-id')}, function(data){
 		$.Prompt(data.info);
 		if(data.status == '1') {
 			var url = data.url || '{:U('Orders/index')}';
@@ -68,6 +65,6 @@ $(".ajax_pay_url").click(function(){
 });
 
 </script>
-
+<include file="Themes/default/Public/footer.tpl" /> 
 </body>
 </html>

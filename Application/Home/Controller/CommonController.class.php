@@ -90,12 +90,13 @@ class CommonController extends Controller {
 		$this->assign('catetree', get_catetree());
 		
 		$this->assign('itemCount', itemCount());
-
+		$this->assign('copyright', GetValue('footer_content'));
+		$this->assign('tongji', GetValue('footcode'));
 	}
 	
 	private function _common_cache()
 	{
-
+		
 	}
 	
 }

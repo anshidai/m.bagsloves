@@ -1,24 +1,22 @@
 <?php
 
-namespace Home\Org; 
-
 class Moneybrace {
     
     var $fields = array();           // array holds the fields to submit to paypal
     var $form = '';                    //表单
     var $submit_url;                //提交地址
     
-	public __construct()
+	public function __construct()
 	{
 		 $this->submit_url = 'https://payment.onlinecreditpay.com/Payment4/Payment.aspx';    
 	}
 	
-    function add_field($field, $value)
+    public function add_field($field, $value)
     {
         $this->fields["$field"] = trim($value);
     }
     
-    function submit_post()
+    public function submit_post()
     {
         echo "<html>";
         echo "<head><title>Processing Payment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"></head>\n";
@@ -34,14 +32,14 @@ class Moneybrace {
         }
         echo "<center><br/><br/>If you are not automatically redirected to ";
         echo "ECPSS within 5 seconds...<br/><br/>\n";
-        echo "<input type=\"submit\" value=\"Pay by ECPSS\"></center>\n";
+        echo "<input type=\"submit\" class=\"common_btn2\" value=\"Pay by ECPSS\"></center>\n";
 
         echo "</form>\n";
         echo "<script>function jump(){ document.forms[\"pay_form\"].submit();} setTimeout(\"jump()\", 5000);</script>";
         echo "</body></html>\n";    
     }
     
-    function create_form($list)
+    public function create_form($list)
     {
         $pname = get_class($this); 
         
@@ -54,7 +52,7 @@ class Moneybrace {
         $this->add_field('merch_order_ori_id', $list['id']);  // 商户原始订单号
         $this->add_field('merch_order_id', $list['sn']); // 商品订单号
         $this->add_field('merch_order_date', date('YmdHis', time())); // 订单交易时间
-        $this->add_field('price_currency', $_SESSION['currency']['symbol'] ? $_SESSION['currency']['symbol']: 'USD'); // 订单标价币种
+        $this->add_field('price_currency', $list['currencies_code']); // 订单标价币种
         $this->add_field('price_amount', $list['orders_total']); // 订单标价金额
         $this->add_field('ip', $this->getIPaddress());
         $this->add_field('url_sync', $this_script.U('Pment/mace_return')); // 服务器返回地址（订单状态同步地址）
@@ -185,7 +183,7 @@ class Moneybrace {
     
 
     // 获取浏览器的语言
-    function getLanguage() 
+    public function getLanguage() 
     {
         $lang = substr ( $_SERVER ['HTTP_ACCEPT_LANGUAGE'], 0, 4 );
         $language = '';
@@ -212,7 +210,7 @@ class Moneybrace {
     
     
     // 获取客户端的ip
-    function getIPaddress() 
+    public function getIPaddress() 
     {
         $IPaddress = '';
         if (isset ( $_SERVER )) {
@@ -237,7 +235,7 @@ class Moneybrace {
     } 
     
     // 获取唯一的id
-    function create_guid()
+    public function create_guid()
     {
         mt_srand ( ( double ) microtime () * 10000 );
         $charid = strtoupper ( md5 ( uniqid ( rand (), true ) ) );
@@ -247,7 +245,7 @@ class Moneybrace {
     }
     
     
-    function htmldecode($strvalue)
+    public function htmldecode($strvalue)
     {
         $strvalue = str_replace ( "str = str + \"", "", $strvalue );
         $strvalue = str_replace ( "var str = \"", "", $strvalue );

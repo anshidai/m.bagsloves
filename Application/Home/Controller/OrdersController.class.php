@@ -44,16 +44,16 @@ class OrdersController extends MemberController {
 	
 	public function del()
 	{
-		$sn = I('post.sn', 0, 'htmlspecialchars');
-		if(empty($sn)) {
+		$id = I('post.id', 0, 'intval');
+		if(empty($id)) {
 			$this->error('operation failure');
 		}
 		
 		$model = D('Orders');
-		if(!$model->where("member_id='{$this->memberID}' AND sn='{$sn}'")->count()) {
+		if(!$model->where("member_id='{$this->memberID}' AND id='{$id}'")->count()) {
 			$this->error('You currently have no this order number');
 		}
-		if($model->where("sn='{$sn}'")->save(array('orders_status'=>4))) {
+		if($model->where("id='{$id}'")->save(array('orders_status'=>4))) {
 			$this->success('Order is deleted success', U('Orders/index'));
 		}else {
 			$this->error('Order is deleted failure');
@@ -62,15 +62,15 @@ class OrdersController extends MemberController {
 	
 	public function confirm()
 	{
-		$sn = I('post.sn', 0, 'htmlspecialchars');
-		if(empty($sn)) {
+		$id = I('post.id', 0, 'intval');
+		if(empty($id)) {
 			$this->error('operation failure');
 		}
 		$model = D('Orders');
-		if(!$model->where("member_id='{$this->memberID}' AND sn='{$sn}'")->count()) {
+		if(!$model->where("member_id='{$this->memberID}' AND id='{$id}'")->count()) {
 			$this->error('You currently have no this order number');
 		}
-		if($model->where("sn='{$sn}'")->save(array('orders_status'=>4))) {
+		if($model->where("id='{$id}'")->save(array('orders_status'=>4))) {
 			$this->success('operation success', U('Orders/index'));
 		}else {
 			$this->error('operation failure');
