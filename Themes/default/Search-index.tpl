@@ -39,7 +39,7 @@
 				<select name="sort" id="sort_form" class="changegourl" onchange="this.form.submit();">
 					<option value="id" <if condition="$sort eq 'id'">selected="selected"</if>>Sort by id</option>
 					<option value="name" <if condition="$sort eq 'name'">selected="selected"</if>>Sort by name</option>
-					<option value="price" <if condition="$sort eq 'price'">selected="selected"</if>>Sort by price</option>
+					<option value="pricespe" <if condition="$sort eq 'pricespe'">selected="selected"</if>>Sort by price</option>
 					<option value="dateline" <if condition="$sort eq 'dateline'">selected="selected"</if>>Sort by update</option>
 				</select><select name="by" id="by_form" class="changegourl" onchange="this.form.submit();">
 					<option value="desc" <if condition="$by eq 'desc'">selected="selected"</if>>Desc</option>

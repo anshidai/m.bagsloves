@@ -26,7 +26,7 @@ class CateController extends CommonController {
 		$sort = I('post.sort', '', 'htmlspecialchars');
 		$by = I('post.by', '', 'htmlspecialchars');
 		
-		if(!in_array($sort, array('id','name','price','dateline'))) {
+		if(!in_array($sort, array('id','name','pricespe','dateline'))) {
 			$sort = 'id';
 		}
 		if(!in_array($by, array('desc','asc'))) {
