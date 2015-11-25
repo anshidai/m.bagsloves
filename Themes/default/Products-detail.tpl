@@ -152,7 +152,7 @@ var user_id = '{$memberID}';
             <h3 class="commonh3_3">You May Also Like</h3>
             <div class="similar_products_box" style="overflow:hidden">
 				<notempty name="randlist">
-				<ul id="similar_products_list" class="common_pro_list2" style="width:<?=158*count($randlist)?>px;">
+				<ul id="similar_products_list" class="common_pro_list2">
 				<foreach name="randlist" item="vo">
 					<li>
 						<a class="pic" href="{:build_url($vo,'pro_url')}"><img src="{:build_url($vo,'pro_smallimage')}" alt="{:build_url($vo,'pro_name')}"></a>
