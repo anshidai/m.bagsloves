@@ -89,16 +89,18 @@ var user_id = '{$memberID}';
 			</div>
 			
 			<notempty name="related_attrs.Colors">
-			<div class="ship_sel sel_color select" id="master_sale_property_box">
-			<select class="master_sale_property" id="attr_color" name="attr[Colors]">
-				<option value="">Color</option>
+			<ul class="attr-color">
 				<foreach name="related_attrs.Colors" item="color">
-				<option value="{$color.attr_value}__{$color.attr_price}" <if condition="$color.products_id eq $pid">selected="selected"</if>>{$color.attr_value}</option>
+				<li <if condition="$color.products_id eq $pid">class="curr"</if>>
+					<a class="attr-price" attr="{$color.attr_value}__{$color.attr_price}" href="<if condition="$color.products_id eq $pid">javascript:;<else/>{:build_url($color,'products_id')}</if>" title="{$color.attr_value}"><img src="{:build_url($color,'g_smallimage')}" width="40" height="40" alt=""><span>{:getprice_str($color['attr_price']? $color['attr_price']: $info['pricespe'], false)}</span></a>
+				</li>
 				</foreach>
-			</select>
-			</div>
+			</ul>
+			<div class="clearboth"></div>
+			<div class="attr_color_selected">Selected attribute: <strong><?=$attrs['Colors']['attr_value']?></strong></div>
+			<input type="hidden" id="attr_color" name="attr[Colors]" value="<?=$attrs['Colors']['attr_value']?>__<?=$attrs['Colors']['attr_price']?>" checked="checked">
 			</notempty>
-			
+			<div class="clearboth"></div>
 			<dl class="quantityform_box">
                 <dt>QTY:</dt>
                 <dd>

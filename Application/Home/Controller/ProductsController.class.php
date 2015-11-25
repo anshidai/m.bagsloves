@@ -51,7 +51,6 @@ class ProductsController extends CommonController {
 		
 		//记录浏览历史
 		save_history($pid);
-		
 		$this->assign('randlist', $data['randlist']);
 		$this->assign('commnet_count', $data['commnet_count']);
 		$this->assign('attrs', $data['attrs']);

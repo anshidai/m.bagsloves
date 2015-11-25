@@ -718,3 +718,14 @@ ul.leaveamessage li input.topic_input{border: 1px #CCC solid;width: 100%;float: 
 
 .categories_box .categories li .subcate li{height: 35px;}
 .categories_box .categories li .subcate li a.name{height: 35px;line-height: 35px;float: left;}
+
+.attr-color li{float: left;display: inline;background-color: #fff;margin:5px;padding:1px;
+    border:1px solid #e0e0e0;vertical-align:middle;}
+.attr-color li a{height:40px;text-decoration:none;display: block;padding: 3px 5px;color: #000;font-size: 15px;
+    margin:-1px;border:2px solid #fff;}
+.attr-color li a:hover{border: 2px solid #FF6701;margin: -1px;}
+.attr-color .curr a{border: 2px solid #FF6701;margin: -1px;background:url(img/checked.gif) no-repeat right bottom;}
+.attr-color .attr-price img{display:inline;overflow:hidden;float:left;}
+.attr-color .attr-price span{overflow:hidden; float:left;line-height:40px;margin-left:10px;font-size:12px;display:inline;overflow:hidden;float:left;}
+.attr-color .curr .attr-price  span{color:#b12704;}
+.attr_color_selected{margin:15px 0;}
