@@ -10,38 +10,38 @@ class CartController extends CommonController {
 		
 		$cartModel = D('Cart');
 		
-		//¹ºÎï³µÁĞ±í
+		//è´­ç‰©è½¦åˆ—è¡¨
 		$list = $cartModel->get_cart_list($this->sessionID); 
 		if($list) {
-			//×ÜÖØÁ¿
+			//æ€»é‡é‡
 			$this->assign('totalWeight', $cartModel->cart_total_weight($this->sessionID));
 			
-			//×ÜÊıÁ¿
+			//æ€»æ•°é‡
 			$this->assign('itemTotal', $cartModel->get_item_totalcount($this->sessionID));
 			
-			//×ÜÀàÊı
+			//æ€»ç±»æ•°
 			$this->assign('itemCount', $cartModel->get_item_count($this->sessionID));
 			
-			//²úÆ·×Ü¼Û¸ñ
+			//äº§å“æ€»ä»·æ ¼
 			$cartTotal = $cartModel->cart_total($this->sessionID);
 			$this->assign('cartTotal', getprice_str($cartTotal));
 			
-			//´òÕÛĞÅÏ¢
+			//æ‰“æŠ˜ä¿¡æ¯
 			$discount = $cartModel->discount($cartTotal);
 			$this->assign('discount', $discount);
 			
-			//Âú½ğ¶îÃâÔË·Ñ
+			//æ»¡é‡‘é¢å…è¿è´¹
 			$free_shipping = GetValue('free_shipping');
 			$this->assign('free_shipping', $free_shipping);
 			
-			//ÔË·Ñ
+			//è¿è´¹
 			$shippingPrice = $discount['price'] >= $free_shipping? 0: 15;
 			$this->assign('shippingPrice', $shippingPrice);
 			
-			//È«²¿×Ü¼Û = ÉÌÆ·×Ü¼Û¸ñ + ´òÕÛ + ÔË·Ñ
+			//å…¨éƒ¨æ€»ä»· = å•†å“æ€»ä»·æ ¼ + æ‰“æŠ˜ + è¿è´¹
 			$this->assign('totalAmount', getprice_str($discount['price'] + $shippingPrice));
 			
-			//¹ºÎï³µËµÃ÷
+			//è´­ç‰©è½¦è¯´æ˜
 			$this->assign('fee_readme', GetValue('fee_readme'));
 
 			$this->assign('list', $list);
@@ -100,45 +100,45 @@ class CartController extends CommonController {
 		}
 		
 		$cartModel = D('Cart');
-		//¹ºÎï³µÁĞ±í
+		//è´­ç‰©è½¦åˆ—è¡¨
 		$cart_list = $cartModel->get_cart_list($this->sessionID);
 		if(empty($cart_list)) {
 			$this->redirect('Cart/index');
 		}
 		$this->assign('cart_list', $cart_list);
 		
-		//×ÜÖØÁ¿
+		//æ€»é‡é‡
 		$this->assign('totalWeight', $cartModel->cart_total_weight($this->sessionID));
 		
-		//×ÜÊıÁ¿
+		//æ€»æ•°é‡
 		$this->assign('itemTotal', $cartModel->get_item_totalcount($this->sessionID));
 		
-		//×ÜÀàÊı
+		//æ€»ç±»æ•°
 		$this->assign('itemCount', $cartModel->get_item_count($this->sessionID));
 		
-		//²úÆ·×Ü¼Û¸ñ
+		//äº§å“æ€»ä»·æ ¼
 		$cartTotal = $cartModel->cart_total($this->sessionID);
 		$this->assign('cartTotal', getprice_str($cartTotal));
 		
-		//´òÕÛĞÅÏ¢
+		//æ‰“æŠ˜ä¿¡æ¯
 		$discount = $cartModel->discount($cartTotal);
 		$this->assign('discount', $discount);
 		
-		//Âú½ğ¶îÃâÔË·Ñ
+		//æ»¡é‡‘é¢å…è¿è´¹
 		$free_shipping = GetValue('free_shipping');
 		$this->assign('free_shipping', $free_shipping);
 		
-		//ÔË·Ñ
+		//è¿è´¹
 		$shippingPrice = $discount['price'] >= $free_shipping? 0: 15;
 		$this->assign('shippingPrice', $shippingPrice);
 		
-		//È«²¿×Ü¼Û = ÉÌÆ·×Ü¼Û¸ñ + ´òÕÛ + ÔË·Ñ
+		//å…¨éƒ¨æ€»ä»· = å•†å“æ€»ä»·æ ¼ + æ‰“æŠ˜ + è¿è´¹
 		$this->assign('totalAmount', getprice_str($discount['price'] + $shippingPrice));
 		
-		//¹ºÎï³µËµÃ÷
+		//è´­ç‰©è½¦è¯´æ˜
 		$this->assign('fee_readme', GetValue('fee_readme'));
 		
-		//Ö§¸¶·½Ê½ÁĞ±í
+		//æ”¯ä»˜æ–¹å¼åˆ—è¡¨
 		$paymentModel = D('Payment');
 		$this->assign('paymentlist', $paymentModel->getlist());
 		
@@ -183,7 +183,7 @@ class CartController extends CommonController {
 		$paymentModel = D('Payment');
 		
 		if($delivery_list = $ordersModel->create()) {
-			$delivery = $_POST['delivery']; //0»áÔ±±¾ÉíµØÖ·£¬1ÆäËüµØÖ·
+			$delivery = $_POST['delivery']; //0ä¼šå‘˜æœ¬èº«åœ°å€ï¼Œ1å…¶å®ƒåœ°å€
 			if($delivery == 0) {
 				$memberModel = D('Members');
 
@@ -210,27 +210,27 @@ class CartController extends CommonController {
 			}
 			$delivery_list['shippingmoney'] = $delivery_list['shippingmoney']['price'];
 			
-			//Ã»ÓĞ¼Û¸ñÈ¡±£ÏÕ½ğ
+			//æ²¡æœ‰ä»·æ ¼å–ä¿é™©é‡‘
 			if(empty($delivery_list['shippingmoney'])) {
 				$delivery_list['shippingmoney'] = $shippingModel->get_insure($delivery_list["shipping_id"]);
 			}
 			$delivery_list['shipping_method'] = $delivery_list['shipping_module_code'] = $shippingModel->get_name($delivery_list["shipping_id"]);
 			
 			
-			$products_total = $cartModel->cart_total($this->sessionID);//²úÆ·×Ü¼Û¸ñ
-			$discount = $cartModel->discount($products_total);//´òÕÛĞÅÏ¢
-			$sum_total = round($discount['price'], 2);//´òÕÛºó¼Û¸ñ
+			$products_total = $cartModel->cart_total($this->sessionID);//äº§å“æ€»ä»·æ ¼
+			$discount = $cartModel->discount($products_total);//æ‰“æŠ˜ä¿¡æ¯
+			$sum_total = round($discount['price'], 2);//æ‰“æŠ˜åä»·æ ¼
 			$delivery_list['discount'] = $discount['text'];
-			$itemTotal = $cartModel->get_item_totalcount($this->sessionID);//×ÜÊıÁ¿
+			$itemTotal = $cartModel->get_item_totalcount($this->sessionID);//æ€»æ•°é‡
 			$payment_id = $paymentModel->get_id($delivery_list["payment_module_code"]);
 			$fee = get_orders_Fees($sum_total,$itemTotal,$payment_id);
 			
-			//×îĞ¡¶©µ¥½ğ¶î
+			//æœ€å°è®¢å•é‡‘é¢
 			if($fee['minimum_money'] && $fee["total"]<=$fee['minimum_money']){
 				$this->error("Not be less than ".$fee['minimum_money']." minimum!");
 			}
 			
-			//Âú½ğ¶îÃâÔË·Ñ, ×Ü½ğ¶î´óÓÚÃâÔË·Ñ
+			//æ»¡é‡‘é¢å…è¿è´¹, æ€»é‡‘é¢å¤§äºå…è¿è´¹
 			$free_shipping = GetValue('free_shipping');
 			$this->free_shipping = $free_shipping;
 			if($free_shipping && $fee['total']>=$free_shipping) {
@@ -239,31 +239,31 @@ class CartController extends CommonController {
 			
 			$delivery_list['paymoney'] = $fee["paymoney"];
 			$delivery_list['insurance'] = $fee["insurance"];
-			$delivery_list['orders_total'] = $fee['total'] + $delivery_list['shippingmoney']; //×Ü¼Û¼ÓÉÏÔË·Ñ
+			$delivery_list['orders_total'] = $fee['total'] + $delivery_list['shippingmoney']; //æ€»ä»·åŠ ä¸Šè¿è´¹
 			
 			$delivery_list['products_total'] = $fee['products_total'];
 
-			//ÅĞ¶ÏÊÖ¶¯ºÍÑ¡Ôñ
+			//åˆ¤æ–­æ‰‹åŠ¨å’Œé€‰æ‹©
 			$delivery_list['delivery_country'] = is_numeric($delivery_list['delivery_country'])? get_region_name($delivery_list['delivery_country']): $delivery_list['delivery_country'];
 			$delivery_list['delivery_state'] = is_numeric($delivery_list['delivery_state'])? get_region_name($delivery_list['delivery_state']): $delivery_list['delivery_state'];
 			$delivery_list['delivery_city'] = is_numeric($delivery_list['delivery_city'])? get_region_name($delivery_list['delivery_city']): $delivery_list['delivery_city'];
 			
-			//»õ±Ò·ûºÅ
+			//è´§å¸ç¬¦å·
 			$delivery_list['currencies_code'] = $_SESSION['currency']['code']? $_SESSION['currency']['code']: '$';
 			
-			//Èç¹ûÊ¹ÓÃÁËÓÅ»İÈ¯
+			//å¦‚æœä½¿ç”¨äº†ä¼˜æƒ åˆ¸
 			if($coupon) {
 				$delivery_list['orders_total'] -= $coupon['amount'];
-				$delivery_list['coupon'] = $coupon['amount']; //¼ÇÂ¼ÓÅ»İÁË¶àÉÙ¼Û¸ñ
+				$delivery_list['coupon'] = $coupon['amount']; //è®°å½•ä¼˜æƒ äº†å¤šå°‘ä»·æ ¼
 			}
 			
-			//Éú³É¶©µ¥
-			$ordersModel->create($delivery_list); //¹ıÂË
+			//ç”Ÿæˆè®¢å•
+			$ordersModel->create($delivery_list); //è¿‡æ»¤
 			if($orders_id = $ordersModel->add()) {
-				//±£´æÓÅ»İÈ¯Ê¹ÓÃÕß
+				//ä¿å­˜ä¼˜æƒ åˆ¸ä½¿ç”¨è€…
 				$couponModel->where(array('coupon' => $coupon))->save(array('user'=>$delivery_list['delivery_lastname'].' '.$delivery_list['delivery_firstname'],'status'=>0));
 				
-				//´¦Àíorders_products±í
+				//å¤„ç†orders_productsè¡¨
 				$orders_products_model = D('OrdersProducts');
 				$list = $cartModel->get_cart_list($this->sessionID);
 				if($list) {
@@ -281,28 +281,28 @@ class CartController extends CommonController {
 						}
 					}
 				}
-				//Çå³ı¹ºÎï³µ
+				//æ¸…é™¤è´­ç‰©è½¦
 				$cartModel->clear_cart($this->sessionID);
 
-				//·¢ËÍÓÊ¼ş
+				//å‘é€é‚®ä»¶
 				/*
-				//ÓÊ¼ş±äÁ¿
-				$this->assign('itemTotal', $itemTotal); //×ÜÊıÁ¿
-				$this->assign('totalWeight', $delivery_list['total_weight']); //×ÜÖØÁ¿
-				$this->assign('orders_data', $delivery_list); //¶©µ¥Êı¾İ
-				$this->assign('list', $list); //¹ºÎï³µ²úÆ·
-				$this->assign('cartTotal', getprice_str($products_total)); //²úÆ·×Ü¼Û¸ñ
+				//é‚®ä»¶å˜é‡
+				$this->assign('itemTotal', $itemTotal); //æ€»æ•°é‡
+				$this->assign('totalWeight', $delivery_list['total_weight']); //æ€»é‡é‡
+				$this->assign('orders_data', $delivery_list); //è®¢å•æ•°æ®
+				$this->assign('list', $list); //è´­ç‰©è½¦äº§å“
+				$this->assign('cartTotal', getprice_str($products_total)); //äº§å“æ€»ä»·æ ¼
 				if($fee['insurance']) {
 					$this->assign('insurance',getprice_str($fee['insurance']));
 				}
 				if($fee['paymoney']>0) {
 					$this->assign('paymoney',getprice_str($fee['paymoney']));
 				}
-				$this->assign('discount', $discount); //´òÕÛ
-				$this->assign('shippingPrice', getprice_str($delivery_list['shippingmoney'])); //ÔË·Ñ
-				$this->assign('totalAmount', getprice_str($delivery_list['orders_total'])); //È«²¿×Ü¼Û
+				$this->assign('discount', $discount); //æ‰“æŠ˜
+				$this->assign('shippingPrice', getprice_str($delivery_list['shippingmoney'])); //è¿è´¹
+				$this->assign('totalAmount', getprice_str($delivery_list['orders_total'])); //å…¨éƒ¨æ€»ä»·
 				$this->assign('this_script', "http://".$_SERVER['HTTP_HOST']);
-				$sendto = array($delivery_list['delivery_email'],GetValue('mailcopyTo')); //³­ËÍ
+				$sendto = array($delivery_list['delivery_email'],GetValue('mailcopyTo')); //æŠ„é€
 				$body = $this->fetch("MailTpl:checkout");
 				sendmail($sendto,GetValue('sitename')." - new order(SN:".$orders_model->sn.")!",$body)	;
 				*/
@@ -319,44 +319,43 @@ class CartController extends CommonController {
 	{
 		$orders_id = I('get.id', 0, 'intval');
 		
-		//Èç¹ûÊÇ¿ìËÙ¹ºÎïÔòÇ¿ÖÆµÇÂ¼
+		//å¦‚æœæ˜¯å¿«é€Ÿè´­ç‰©åˆ™å¼ºåˆ¶ç™»å½•
 		if($this->memberID <= 0 && GetValue('quickbuy')==0) {
 			$this->redirect('Admin/login');
 		}
 		
-		//ÅĞ¶Ï¶©µ¥ÊÇ·ñÒÑÖ§¸¶³É¹¦
+		//åˆ¤æ–­è®¢å•æ˜¯å¦å·²æ”¯ä»˜æˆåŠŸ
 		$order_status = get_orders_status($orders_id);
 		if($order_status == '2') {
 			$this->error ('Orders Paid');
 		}
 		
-		//¶ÁÈ¡Ö§¸¶´úÂë
+		//è¯»å–æ”¯ä»˜ä»£ç 
 		$ordersModel = D('Orders');
 		$list = $ordersModel->where("id='{$orders_id}'")->find ();
 		if(empty($list)) {
 			$this->redirect('Index/index');
 		}
-		$list['orders_total'] = round($list['orders_total'], 2); //ËÄÉáÎåÈë±£ÁôÁ½Î»
+		$list['orders_total'] = round($list['orders_total'], 2); //å››èˆäº”å…¥ä¿ç•™ä¸¤ä½
 		
 		/**
-		 * ÔÚÏßÖ§¸¶
+		 * åœ¨çº¿æ”¯ä»˜
 		 */
 		$pname = $list ['payment_module_code'];
 		$paymentModel = D('Payment');
 		$payment_title = $paymentModel->where("name='{$pname}'")->getField('title'); 
 		
-		//Ä£°å±äÁ¿
-		$this->assign('title', ucwords($payment_title).' Payment'); //±êÌâ
+		//æ¨¡æ¿å˜é‡
+		$this->assign('title', ucwords($payment_title).' Payment'); //æ ‡é¢˜
 		$this->assign('list', $list);
-		
-		$pname = ucfirst($pname);
+
 		import("@.Org.Payment.".$pname);
 		if(class_exists($pname)) {
 			$p = new $pname();
-			$content = $p->create_form($list); //´´½¨±íµ¥
+			$content = $p->create_form($list); //åˆ›å»ºè¡¨å•
 			$this->assign('content', $content);
 
-			//ÓÃ»§ËµÃ÷
+			//ç”¨æˆ·è¯´æ˜
 			$remark = GetValue($pname.'_desc');
 			if($remark){
 				$remark = str_replace(array('{sn}','{time}','{payname}','{total}','{go}','{admin_email}'), array($list['sn'], toDate($list['dateline']), $list['payment_module_code'], getprice_str($list['orders_total']),"<input type=\"button\" value=\"Click Here\" onclick=\"document.forms['pay_form'].submit();\" />",GetValue('email')),$remark);
