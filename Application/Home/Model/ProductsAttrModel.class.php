@@ -18,7 +18,7 @@ class ProductsAttrModel extends CommonModel {
 			foreach($res as $k=>$v) {
 				$v['attr_name'] = $type_attr[$v['attr_id']]['name'];
 				$row = $v;
-				$data[$v['attr_name']][$v['id']] = $row;
+				$data[$v['attr_name']][] = $row;
 			}
 		}
 		return $data? $data: '';
