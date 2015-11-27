@@ -254,11 +254,53 @@ class PmentController extends MemberController {
         }
     }
     
+	
+	public function richcard_respond()
+	{
+		$payment  = get_payment($_REQUEST['code']);
+        /* 获取返回参数 */
+       // $merNo         = $_REQUEST["merNo"];
+        $orderNo       = $_REQUEST["orderNo"];
+        $tradeNo       = $_REQUEST["tradeNo"];
+        $currency      = $_REQUEST["currency"];
+        $amount        = $_REQUEST["amount"];
+        $succeed       = $_REQUEST["succeed"];
+        $bankInfo      = $_REQUEST["bankInfo"];
+        $errorMsg      = $_REQUEST["errorMsg"];
+        $md5Info       = strtoupper($_REQUEST["md5Info"]);
+		
+        $log_id        = $this->get_order_id_by_order_no($orderNo);
+        
+		 /* 校验数据 */
+        $merKey   = trim($payment['MD5key']);
+        $signSrc  = $tradeNo.$orderNo.$merKey.$succeed.$currency.$amount;
+        $mysign   = strtoupper(md5($signSrc));
+        
+        /* 验证支付结果 */
+        if($md5Info== $mysign){
+            if($succeed == 1){
+                 order_paid($log_id,PS_PAYED);    //支付成功,更改网店后台订单状态为"已付款"。
+                 return true;
+            } else if($succeed == 0){
+                 order_paid($log_id,PS_UNPAYED);  //支付失败,更改网店后台订单状态为"未付款"。
+                 return false; 
+                
+            } else if($succeed == 2 or $succeed == 3) {
+                 order_paid($log_id,PS_PAYING);   //支付待处理,更改网店后台订单状态为"付款中"。
+                 return true;
+            }  
+        } 
+    }
+	}
+	
+	
     public function writePaymentLog($sn = '', $status = '', $msg = '')
     {
         $time = date('Y-m-d H:i:s');
         @file_put_contents('./payment_log_'.date('Ymd').'.txt', "{$sn}\t{$status}\t{$msg}\t{$time}\n", FILE_APPEND);       
     }
+	
+	
 	
 	
 	

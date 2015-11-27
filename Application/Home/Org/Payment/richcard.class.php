@@ -10,7 +10,7 @@ class richcard {
 	public function __construct()
 	{
 		 $this->submit_url = 'https://ssl.notroublessl.com/payment/payment/direct.xml';
-		 $this->return_url = U('Pment/richcard_retun');
+		 $this->return_url = U('Pment/richcard_respond');
 	}
 	
     public function add_field($field, $value)
@@ -27,9 +27,7 @@ class richcard {
         echo "<center><h2>Please remember your order number ".$this->sn.", and then click on the button below to make a payment!</h2></center>\n";
         echo "<center><h2>Please wait, your order is being processed and you";
         echo " will be redirected to the payment website.</h2></center>\n";
-		echo "<form action='richcard.php' method='post'  target='_blank'>;
-        echo "<form method=\"post\" name=\"pay_form\" ";
-        echo "action=\"" . $this->submit_url . "\">\n";
+        echo "<form action='{$this->submit_url}' method='post' name='pay_form' target='_blank'>\n";
         foreach($this->fields as $name => $value ) {
             echo "<input type=\"hidden\" name=\"$name\" value=\"$value\"/>\n";
         }
@@ -97,8 +95,8 @@ class richcard {
         foreach($this->fields as $name => $value) {
             $this->form .= "<input type=\"hidden\" name=\"$name\" value=\"$value\"/>\n";
         }
-		$this->form .="<table border='0px'><tr ><th colspan='2'  align='right'>Please fill in credit card Information below.(ALL Required)</th></tr><tr><td  align='right'>Credit Card Type:</td><td><img src='images/richcard/richcard_submit.jpg'/><img src='images/richcard/visa.jpg'/></td ><tr><td align='right'>Card Number:</td><td ><input type='text' name='cardNo' id='cardNo' maxlength='16'/></td></tr><tr><td align='right'>Expiration Date:</td><td ><select id='expirationYear' name='expirationYear'><option value=''>--</option><option value='2012'>2012</option><option value='2013'>2013</option><option value='2014'>2014</option><option value='2015'>2015</option><option value='2016'>2016</option><option value='2017'>2017</option><option value='2018'>2018</option><option value='2019'>2019</option><option value='2020'>2020</option><option value='2021'>2021</option><option value='2022'>2022</option><option value='2023'>2023</option><option value='2024'>2024</option><option value='2025'>2025</option></select>&nbsp;&nbsp;<select id='expirationMonth' name='expirationMonth' ><option value=''>--</option><option value='01'>01</option><option value='02'>02</option><option value='03'>03</option><option value='04'>04</option><option value='05'>05</option><option value='06'>06</option><option value='07'>07</option><option value='08'>08</option><option value='09'>09</option><option value='10'>10</option><option value='11'>11</option><option value='12'>12</option></select></td></tr><tr><td align='right'>CVV2/CSC:</td><td><input type='password' name='cvv' id='cvv' maxlength='4'/></td></tr></table>";
-        $this->form .='<input type="submit" name="btn_submit" value="submit" />';
+		$this->form .="<table border='0px'><tr ><th colspan='2'  align='right'>Please fill in credit card Information below.(ALL Required)</th></tr><tr><td  align='right'>Credit Card Type:</td><td><img src='/Public/default/css/img/richcard_submit.jpg'/><img src='/Public/default/css/img/visa.jpg'/></td ><tr><td align='right'>Card Number:</td><td ><input type='text' name='cardNo' id='cardNo' maxlength='16'/></td></tr><tr><td align='right'>Expiration Date:</td><td ><select id='expirationYear' name='expirationYear'><option value=''>--</option><option value='2012'>2012</option><option value='2013'>2013</option><option value='2014'>2014</option><option value='2015'>2015</option><option value='2016'>2016</option><option value='2017'>2017</option><option value='2018'>2018</option><option value='2019'>2019</option><option value='2020'>2020</option><option value='2021'>2021</option><option value='2022'>2022</option><option value='2023'>2023</option><option value='2024'>2024</option><option value='2025'>2025</option></select>&nbsp;&nbsp;<select id='expirationMonth' name='expirationMonth' ><option value=''>--</option><option value='01'>01</option><option value='02'>02</option><option value='03'>03</option><option value='04'>04</option><option value='05'>05</option><option value='06'>06</option><option value='07'>07</option><option value='08'>08</option><option value='09'>09</option><option value='10'>10</option><option value='11'>11</option><option value='12'>12</option></select></td></tr><tr><td align='right'>CVV2/CSC:</td><td><input type='password' name='cvv' id='cvv' maxlength='4'/></td></tr></table>";
+        $this->form .='<input type="submit" name="btn_submit" class="common_btn2" value="submit" />';
 		$this->form .= '</form>';
         return $this->form;
     }
@@ -243,7 +241,7 @@ class richcard {
 		 }
 	 }
 	 return isset($code)? $code: 'US';
-    
+    }
     
     
 }
