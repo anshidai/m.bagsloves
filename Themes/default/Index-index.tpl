@@ -66,7 +66,7 @@ window.onload=function(){
         <notempty name="new_products">
 		<foreach name="new_products" item="vo">
         <li>
-		<a class="pic" href="{:build_url($vo,'pro_url')}"><img src="{:build_url($vo,'pro_smallimage')}" alt="{:build_url($vo,'pro_name')}"></a>
+		<a class="pic" href="{:build_url($vo,'pro_url')}"><img src="{:build_url($vo,'pro_bigimage')}" alt="{:build_url($vo,'pro_name')}"></a>
 		<a class="name" href="{:build_url($vo,'pro_url')}">{:build_url($vo,'pro_name')}</a>
 		<div class="price">
 			<span>{:getprice($vo['price'],$vo['pricespe'],false)}</span>
@@ -90,7 +90,7 @@ window.onload=function(){
         <notempty name="hot_products">
 		<foreach name="hot_products" item="vo">
 		<li>
-		<a class="pic" href="{:build_url($vo,'pro_url')}"><img src="{:build_url($vo,'pro_smallimage')}" alt="{:build_url($vo,'pro_name')}"></a>
+		<a class="pic" href="{:build_url($vo,'pro_url')}"><img src="{:build_url($vo,'pro_bigimage')}" alt="{:build_url($vo,'pro_name')}"></a>
 		<a class="name" href="{:build_url($vo,'pro_url')}">{:build_url($vo,'pro_name')}</a>
 		<div class="price">
 			<span>{:getprice($vo['price'],$vo['pricespe'],false)}</span>

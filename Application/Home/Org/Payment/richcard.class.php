@@ -12,7 +12,7 @@ class richcard {
 	{
 		 $this->submit_url = 'https://ssl.notroublessl.com/payment/payment/direct.xml';
 		 $this->form_url = U('Pment/richcard_http');
-		 $this->return_url = "http://{$_SERVER['HTTP_HOST']}".U('Pment/richcard_return');
+		 $this->return_url = "http://{$_SERVER['HTTP_HOST']}".U('Pment/richcard_http');
 	}
 	
     public function add_field($field, $value)
@@ -45,8 +45,6 @@ class richcard {
     public function create_form($list)
     {
         $pname = get_class($this); 
-        
-        
         
 		$this->add_field('payNumber', GetValue($pname . "_order_type")); //支付类 默认0
 		$this->add_field('merNo', GetValue($pname . "_merchant_id")); //商户编号
@@ -92,7 +90,7 @@ class richcard {
 					$this->fields['returnURL'];
 		$this->add_field('md5Info', MD5($md5Info)); //支付加密唯一签名			
 		
-		$this->form = "<form action='{$this->form_url}' method='post'  target='_blank'>";
+		$this->form = "<form action='{$this->form_url}' method='post'>";
         foreach($this->fields as $name => $value) {
             $this->form .= "<input type=\"hidden\" name=\"$name\" value=\"$value\"/>\n";
         }
