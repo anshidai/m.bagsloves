@@ -4,13 +4,15 @@ class richcard {
     
     var $fields = array();           // array holds the fields to submit to paypal
     var $form = '';                    //表单
-    var $submit_url;                //提交地址
+    var $submit_url;                //支付接口提交url
+    var $form_url;                //本站curl提交url
     var $return_url;                //返回支付结果地址
     
 	public function __construct()
 	{
 		 $this->submit_url = 'https://ssl.notroublessl.com/payment/payment/direct.xml';
-		 $this->return_url = U('Pment/richcard_respond');
+		 $this->form_url = U('Pment/richcard_http');
+		 $this->return_url = "http://{$_SERVER['HTTP_HOST']}".U('Pment/richcard_return');
 	}
 	
     public function add_field($field, $value)
@@ -27,7 +29,7 @@ class richcard {
         echo "<center><h2>Please remember your order number ".$this->sn.", and then click on the button below to make a payment!</h2></center>\n";
         echo "<center><h2>Please wait, your order is being processed and you";
         echo " will be redirected to the payment website.</h2></center>\n";
-        echo "<form action='{$this->submit_url}' method='post' name='pay_form' target='_blank'>\n";
+        echo "<form action='{$this->form_url}' method='post' name='pay_form' target='_blank'>\n";
         foreach($this->fields as $name => $value ) {
             echo "<input type=\"hidden\" name=\"$name\" value=\"$value\"/>\n";
         }
@@ -44,13 +46,13 @@ class richcard {
     {
         $pname = get_class($this); 
         
-        $this_script = "http://{$_SERVER['HTTP_HOST']}";
+        
         
 		$this->add_field('payNumber', GetValue($pname . "_order_type")); //支付类 默认0
 		$this->add_field('merNo', GetValue($pname . "_merchant_id")); //商户编号
 		$this->add_field('orderNo', $list['sn']); //订单编号
 		$this->add_field('amount', $list['orders_total']); //交易金额 保留2位小数
-		$this->add_field('currency', $list['currencies_code']); //交易币种
+		$this->add_field('currency', $this->get_currencycode($list['currencies_code'])); //交易币种
 		$this->add_field('email', $list['delivery_email']); //持卡人邮箱
 		$this->add_field('phone', $list['delivery_telephone']); //持卡人电话
 		$this->add_field('billZip', $list['delivery_zip']); //账单邮编
@@ -72,7 +74,7 @@ class richcard {
 		//$this->add_field('shopName', ''); //网店名称 不限制
 		$this->add_field('acceptLanguage', $this->getLanguage()); //浏览器的语言
 		$this->add_field('userAgent', $_SERVER['HTTP_USER_AGENT']); //浏览器信息
-		$this->add_field('payIp', ''); //支付时持卡人所在的IP地址
+		$this->add_field('payIp', get_client_ip()); //支付时持卡人所在的IP地址
 		$this->add_field('paymentUrl', $this->submit_url); //订单支付提交 URL
 		$this->add_field('remark', $list['remark']); //支付备注
 		
@@ -81,17 +83,16 @@ class richcard {
         * 订单签名 md5Info = MD5(merNo+md5key+orderNo+amount+currency+email+returnURL);
         */
 		$hashkey = trim(GetValue($pname . "_key")); // 商户证书
-		$md5Info = GetValue($pname . "_merchant_id") . 
+		$md5Info = $this->fields['merNo'] . 
 					$hashkey . 
-					$list['sn'] . 
-					$list['orders_total'] . 
-					$list['currencies_code'] . 
-					$list['delivery_email'] . 
-					$this->return_url;
+					$this->fields['orderNo'] . 
+					$this->fields['amount'] . 
+					$this->fields['currency'] . 
+					$this->fields['email'] . 
+					$this->fields['returnURL'];
 		$this->add_field('md5Info', MD5($md5Info)); //支付加密唯一签名			
-
 		
-		$this->form = "<form action='{$this->submit_url}' method='post'  target='_blank'>";
+		$this->form = "<form action='{$this->form_url}' method='post'  target='_blank'>";
         foreach($this->fields as $name => $value) {
             $this->form .= "<input type=\"hidden\" name=\"$name\" value=\"$value\"/>\n";
         }
@@ -242,6 +243,16 @@ class richcard {
 	 }
 	 return isset($code)? $code: 'US';
     }
+	
+	public function get_currencycode($code)
+	{
+		$arr = array(
+			'$' => 'USD',
+			'€' => 'EUR',
+			'£' => 'GBP',
+		);
+		return $arr[$code]? $arr[$code]: 'USD';
+	}
     
     
 }

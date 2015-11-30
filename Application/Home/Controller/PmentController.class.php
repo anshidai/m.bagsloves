@@ -255,43 +255,104 @@ class PmentController extends MemberController {
     }
     
 	
-	public function richcard_respond()
+	public function richcard_http()
+	{
+		if(!empty($_GET) && empty($_POST)) {
+            $_POST = $_GET;
+        }
+        unset($_GET);
+        if(empty($_POST)) {
+            die('data error!');
+        }
+        $_GET = $_POST;
+		
+		unset($_GET['btn_submit_x']);
+		unset($_GET['btn_submit_y']);
+		unset($_GET['btn_submit']);
+		
+		$returnURL= $_GET['returnURL'];
+		
+		$post_data = '';
+		foreach($_GET as $k=>$v){
+			$post_data .= $k."=".$v."&";
+		}
+		
+		//提交地址
+		$payUrl = $_REQUEST['paymentUrl'];
+		
+		$ssl = substr($payUrl, 0, 8) == "https://" ? TRUE : FALSE;
+		$wesite = "http://".$_SERVER['HTTP_HOST'];
+		
+        $ch  = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+        curl_setopt($ch, CURLOPT_REFERER,  $wesite);
+        if($ssl) {
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        }
+        $paymentResult = curl_exec($ch);
+        curl_close($ch);
+		
+		$status = $errorMsg = '';
+		
+		if(empty($paymentResult)) {
+			$status = '0';
+			$errorMsg = 'Send data exception,please shopping again';  
+		}else {
+			//解析返回的xml参数
+			$xml = new DOMDocument();
+			$xml->loadXML($paymentResult);
+		}
+		dump($xml);
+
+	}
+	
+	public function richcard_return()
 	{
 		$payment  = get_payment($_REQUEST['code']);
         /* 获取返回参数 */
        // $merNo         = $_REQUEST["merNo"];
-        $orderNo       = $_REQUEST["orderNo"];
-        $tradeNo       = $_REQUEST["tradeNo"];
-        $currency      = $_REQUEST["currency"];
-        $amount        = $_REQUEST["amount"];
-        $succeed       = $_REQUEST["succeed"];
-        $bankInfo      = $_REQUEST["bankInfo"];
-        $errorMsg      = $_REQUEST["errorMsg"];
-        $md5Info       = strtoupper($_REQUEST["md5Info"]);
+        $orderNo       = $_REQUEST['orderNo'];
+        $tradeNo       = $_REQUEST['tradeNo'];
+        $currency      = $_REQUEST['currency'];
+        $amount        = $_REQUEST['amount'];
+        $succeed       = $_REQUEST['succeed'];
+        $bankInfo      = $_REQUEST['bankInfo'];
+        $errorMsg      = $_REQUEST['errorMsg'];
+        $md5Info       = strtoupper($_REQUEST['md5Info']);
 		
-        $log_id        = $this->get_order_id_by_order_no($orderNo);
-        
+		$ordersModel = D('Orders');
+		//查询订单相关信息
+		$orderinfo = $ordersModel->where("sn='{$orderNo}'")->find();
+		if(empty($orderinfo)) {
+			die('Signature error!');
+		}
+		
 		 /* 校验数据 */
         $merKey   = trim($payment['MD5key']);
         $signSrc  = $tradeNo.$orderNo.$merKey.$succeed.$currency.$amount;
         $mysign   = strtoupper(md5($signSrc));
         
-        /* 验证支付结果 */
-        if($md5Info== $mysign){
-            if($succeed == 1){
-                 order_paid($log_id,PS_PAYED);    //支付成功,更改网店后台订单状态为"已付款"。
-                 return true;
-            } else if($succeed == 0){
-                 order_paid($log_id,PS_UNPAYED);  //支付失败,更改网店后台订单状态为"未付款"。
-                 return false; 
-                
-            } else if($succeed == 2 or $succeed == 3) {
-                 order_paid($log_id,PS_PAYING);   //支付待处理,更改网店后台订单状态为"付款中"。
-                 return true;
-            }  
-        } 
+		//根据得到的数据  进行相对应的操作
+		//$succeed支付状态 0-支付失败 1-支付成功 2和3-支付待处理
+		/* 验证支付结果 */
+		if($md5Info == $mysign){
+			if($succeed == '1') {
+				$data['orders_status'] = '2';
+				$ordersModel->where("sn='{$orderNo}'")->save($data); //修改订单支付状态
+				give_member_points($orderNo); //赠送用户积分
+				
+				$this->display('Payment-succeed');
+			}else{  
+				$data['orders_status'] = '1';
+				$ordersModel->where("sn='{$orderNo}'")->save($data);  //修改订单状态为正在付款中
+			}
+		}
+		$this->display('Payment-failure');
     }
-	}
 	
 	
     public function writePaymentLog($sn = '', $status = '', $msg = '')
